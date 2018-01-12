@@ -11,9 +11,18 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private Stats stats;
 
+    [SerializeField]
+    private Inventory keys;
+
     public Stats Stats {
         get {
             return stats;
+        }
+    }
+
+    public Inventory Keys {
+        get {
+            return keys;
         }
     }
 

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Wall : Entity {
 
+    [SerializeField]
+    private KeyType key;
+
     protected override void DoAction(Player player) {
         // Do nothing
     }
