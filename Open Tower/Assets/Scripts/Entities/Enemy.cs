@@ -29,13 +29,13 @@ public class Enemy : Entity {
             return ENEMY_CANNOT_BE_DEFEATED;
         }
 
-        int enemyTurnsToKillPlayer = 0;
+        int enemyTurnsToKillPlayer = int.MaxValue;
         if (damageToPlayer > 0) {
-            enemyTurnsToKillPlayer = player.Stats.Life / damageToPlayer;
+            enemyTurnsToKillPlayer = Mathf.Max(1, player.Stats.Life / damageToPlayer);
         }
-        int playerTurnsToKillEnemy = 0;
+        int playerTurnsToKillEnemy = int.MaxValue;
         if (damageToEnemy > 0) {
-            playerTurnsToKillEnemy = this.stats.Life / damageToEnemy;
+            playerTurnsToKillEnemy = Mathf.Max(1, this.stats.Life / damageToEnemy);
         }
 
         // Player gets killed
