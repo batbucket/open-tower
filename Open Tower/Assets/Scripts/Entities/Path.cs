@@ -9,6 +9,7 @@ public class Path : Entity {
     private float movementDuration = 0.1f;
 
     protected override void DoAction(Player player) {
+        player.Stats.IncrementSteps();
         StartCoroutine(LerpMovement(player));
     }
 
