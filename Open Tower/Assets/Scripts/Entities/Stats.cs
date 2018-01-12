@@ -70,8 +70,8 @@ public class Stats : MonoBehaviour {
 
     private void Start() {
         Util.Assert(Life > 0, "Life must be positive number.");
-        Util.Assert(Power > 0, "Power must be positive number.");
-        Util.Assert(Defense > 0, "Defense must be positive number.");
+        Util.Assert(Power >= 0, "Power must be nonnegative.");
+        Util.Assert(Defense >= 0, "Defense must be nonnegative.");
         Util.Assert(Experience >= 0, "Experience must be nonnegative.");
     }
 }

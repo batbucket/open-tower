@@ -57,7 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 5
   power: 1
-  defense: 1
+  defense: 0
   experience: 1
 --- !u!114 &114557764472684660
 MonoBehaviour:
@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 550587821
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
+  m_Sprite: {fileID: 21300016, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

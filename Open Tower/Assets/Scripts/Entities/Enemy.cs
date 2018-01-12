@@ -29,14 +29,20 @@ public class Enemy : Entity {
             return ENEMY_CANNOT_BE_DEFEATED;
         }
 
-        int playerTurns = player.Stats.Life / damageToPlayer;
-        int enemyTurns = this.stats.Life / damageToEnemy;
+        int enemyTurnsToKillPlayer = 0;
+        if (damageToPlayer > 0) {
+            enemyTurnsToKillPlayer = player.Stats.Life / damageToPlayer;
+        }
+        int playerTurnsToKillEnemy = 0;
+        if (damageToEnemy > 0) {
+            playerTurnsToKillEnemy = this.stats.Life / damageToEnemy;
+        }
 
         // Player gets killed
-        if (enemyTurns >= playerTurns) {
+        if (playerTurnsToKillEnemy >= enemyTurnsToKillPlayer) {
             return ENEMY_CANNOT_BE_DEFEATED;
         }
 
-        return playerTurns * -damageToPlayer;
+        return playerTurnsToKillEnemy * -damageToPlayer;
     }
 }
