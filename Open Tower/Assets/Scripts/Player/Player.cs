@@ -36,5 +36,6 @@ public class Player : MonoBehaviour {
         if (movement.isActiveAndEnabled) {
             movement.OnUpdate(this);
         }
+        Debug.Log(this.transform.localPosition);
     }
 }
