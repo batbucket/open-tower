@@ -38,6 +38,9 @@ public class Stairs : Entity {
         Stairs[] stairsOnOffsetFloor = dungeon.GetFloor(offsetFloorIndex).GetComponentsInChildren<Stairs>();
         foreach (Stairs stairs in stairsOnOffsetFloor) {
             if (stairs.Direction != this.Direction) {
+                if (destination != null) {
+                    Util.Assert(false, "Multiple stair destinations detected for {0}", destination.name);
+                }
                 destination = stairs;
             }
         }
