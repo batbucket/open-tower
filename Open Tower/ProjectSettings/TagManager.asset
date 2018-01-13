@@ -44,6 +44,9 @@ TagManager:
   - name: Floor
     uniqueID: 283523097
     locked: 0
+  - name: Stairs
+    uniqueID: 2184238283
+    locked: 0
   - name: Player
     uniqueID: 1520752811
     locked: 0

@@ -28,7 +28,7 @@ public class DungeonManager : MonoBehaviour {
         return current;
     }
 
-    private void Start() {
-        this.floors = GetComponentsInChildren<FloorManager>();
+    private void Awake() {
+        this.floors = GetComponentsInChildren<FloorManager>(true);
     }
 }
