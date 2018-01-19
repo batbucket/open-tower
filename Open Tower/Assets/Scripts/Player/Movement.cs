@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Player))]
 public class Movement : MonoBehaviour {
     private static DungeonManager dungeon;
 
