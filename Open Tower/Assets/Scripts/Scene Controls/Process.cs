@@ -3,5 +3,9 @@ using UnityEngine;
 
 public abstract class Process : MonoBehaviour {
 
-    public abstract IEnumerator Play();
+    public IEnumerator Play() {
+        yield return PlayHelper();
+    }
+
+    protected abstract IEnumerator PlayHelper();
 }

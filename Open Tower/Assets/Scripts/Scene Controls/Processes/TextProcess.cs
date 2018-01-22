@@ -11,7 +11,7 @@ public class TextProcess : Process {
     [SerializeField]
     private string text; // ensure that too much text is wrapped to next lines
 
-    public override IEnumerator Play() {
+    protected override IEnumerator PlayHelper() {
         Textbox.Instance.Enabled = true;
         yield return Textbox.Instance.LoadContent(icon, text);
         Textbox.Instance.Enabled = false;

@@ -11,12 +11,13 @@ public class MoveProcess : Process {
     private Transform destination;
 
     [SerializeField]
-    private float duration;
+    private float speed;
 
-    public override IEnumerator Play() {
+    protected override IEnumerator PlayHelper() {
         float timer = 0;
         Vector3 startPos = actor.position;
         Vector3 endPos = destination.position;
+        float duration = Mathf.Abs((endPos - startPos).magnitude) / speed;
         while ((timer += Time.deltaTime) < duration) {
             actor.transform.position = Vector3.Lerp(startPos, endPos, timer / duration);
             yield return null;

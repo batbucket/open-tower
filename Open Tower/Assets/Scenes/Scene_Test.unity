@@ -2700,10 +2700,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child: {fileID: 883834494}
   icon: {fileID: 496093538}
+  background: {fileID: 1799778143}
   iconRt: {fileID: 496093537}
   text: {fileID: 1369740358}
   iconMoveInDuration: 0.2
-  secondsPerCharacter: 0.1
+  secondsPerCharacter: 0.02
+  secondsPerBlink: 0.2
 --- !u!1 &285145583
 GameObject:
   m_ObjectHideFlags: 0
@@ -5364,6 +5366,11 @@ Prefab:
       propertyPath: duration
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114308297601751146, guid: a7faf1574b2d8eb4693b38e10bc278bc,
+        type: 2}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7faf1574b2d8eb4693b38e10bc278bc, type: 2}
   m_IsPrefabParent: 0
@@ -5573,6 +5580,11 @@ Prefab:
       propertyPath: duration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114308297601751146, guid: a7faf1574b2d8eb4693b38e10bc278bc,
+        type: 2}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7faf1574b2d8eb4693b38e10bc278bc, type: 2}
   m_IsPrefabParent: 0
@@ -5648,7 +5660,6 @@ GameObject:
   - component: {fileID: 1369740357}
   - component: {fileID: 1369740359}
   - component: {fileID: 1369740358}
-  - component: {fileID: 1369740360}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -5706,27 +5717,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  m_Text: 
 --- !u!222 &1369740359
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1369740356}
---- !u!114 &1369740360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1369740356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
 --- !u!4 &1445760542 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4625532465437896, guid: a7faf1574b2d8eb4693b38e10bc278bc,
