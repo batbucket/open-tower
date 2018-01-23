@@ -12,6 +12,8 @@ public class Textbox : MonoBehaviour {
 
     private const char BLOCK_CHARACTER = '█';
 
+    private const char MESSAGE_SPLIT_CHARACTER = '/';
+
     [SerializeField]
     private GameObject child;
 
@@ -26,6 +28,9 @@ public class Textbox : MonoBehaviour {
 
     [SerializeField]
     private Text text;
+
+    [SerializeField]
+    private Text shadow;
 
     [SerializeField]
     private float iconMoveInDuration;
@@ -58,8 +63,7 @@ public class Textbox : MonoBehaviour {
     }
 
     // magic happens here
-    public IEnumerator LoadContent(Sprite sprite, string message) {
-        isDone = false;
+    public IEnumerator LoadContent(Sprite sprite, string[] messages) {
         // move in sprite
         Vector3 iconOriginalPos = icon.transform.localPosition;
         Vector3 iconDisplacedPos = new Vector3(-iconRt.rect.width, 0, 0);
@@ -69,20 +73,31 @@ public class Textbox : MonoBehaviour {
             yield return null;
         }
 
-        // fancy typing algo goes here
-        for (int i = 0; i < message.Length + 1; i++) {
-            text.text = string.Format("{0}{1}", message.Insert(i, TAG_START), TAG_CLOSE);
-            yield return new WaitForSeconds(secondsPerCharacter);
-        }
+        for (int i = 0; i < messages.Length; i++) {
+            isDone = false;
+            text.text = string.Empty;
+            shadow.text = string.Empty;
+            // fancy typing algo goes here
+            string message = messages[i];
 
-        while (!isDone) {
-            text.text += BLOCK_CHARACTER;
-            if (!isDone) {
-                yield return WaitForInput(secondsPerBlink);
+            for (int j = 0; j < message.Length + 1; j++) {
+                text.text = string.Format("{0}{1}", message.Insert(j, TAG_START), TAG_CLOSE);
+                yield return new WaitForSeconds(secondsPerCharacter);
             }
-            text.text = text.text.Substring(0, text.text.Length - 1);
-            if (!isDone) {
-                yield return WaitForInput(secondsPerBlink);
+            shadow.text = message;
+
+            while (!isDone) {
+                text.text += BLOCK_CHARACTER;
+                shadow.text += BLOCK_CHARACTER;
+                if (!isDone) {
+                    yield return WaitForInput(secondsPerBlink);
+                }
+                // get rid of last block character
+                text.text = text.text.Substring(0, text.text.Length - 1);
+                shadow.text = shadow.text.Substring(0, shadow.text.Length - 1);
+                if (!isDone) {
+                    yield return WaitForInput(secondsPerBlink);
+                }
             }
         }
 
