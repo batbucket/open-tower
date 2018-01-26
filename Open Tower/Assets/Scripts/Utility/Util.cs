@@ -10,4 +10,8 @@ public static class Util {
             throw new UnityException(string.Format(format, args));
         }
     }
+
+    public static float Random() {
+        return UnityEngine.Random.value;
+    }
 }

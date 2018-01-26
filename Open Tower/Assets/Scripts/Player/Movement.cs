@@ -51,7 +51,6 @@ public class Movement : MonoBehaviour {
                 cooldown = 0;
             }
         }
-        Debug.Log(cooldown);
 
         bool isKeyHeldDown = false;
         foreach (KeyCode key in keysDown) {
