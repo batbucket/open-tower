@@ -21,6 +21,9 @@ public class Textbox : MonoBehaviour {
     private Image icon;
 
     [SerializeField]
+    private AudioClip sound;
+
+    [SerializeField]
     private Image background;
 
     [SerializeField]
@@ -82,6 +85,9 @@ public class Textbox : MonoBehaviour {
 
             for (int j = 0; j < message.Length + 1; j++) {
                 text.text = string.Format("{0}{1}", message.Insert(j, TAG_START), TAG_CLOSE);
+                if (j < message.Length && char.IsLetterOrDigit(message[j])) {
+                    SoundManager.Instance.Play(sound);
+                }
                 yield return new WaitForSeconds(secondsPerCharacter);
             }
             shadow.text = message;
