@@ -3984,8 +3984,8 @@ MonoBehaviour:
   icon: {fileID: 21300014, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
   texts:
   - Hello this is our first line.
-  - This is our second line. Hello world.
-  - This is the last line ever. Bye world :((( Sad!
+  - This is our third line.
+  - Bye world.
 --- !u!1 &249262837
 GameObject:
   m_ObjectHideFlags: 0
