@@ -11,7 +11,7 @@ public static class Util {
         }
     }
 
-    public static float Random() {
-        return UnityEngine.Random.value;
+    public static float Random(float min, float max) {
+        return UnityEngine.Random.Range(min, max);
     }
 }

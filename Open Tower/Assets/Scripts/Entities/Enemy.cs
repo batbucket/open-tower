@@ -78,7 +78,7 @@ public class Enemy : Entity {
         float currentShakeScale = 0;
         while ((timer += Time.deltaTime) < duration) {
             currentShakeScale = Mathf.Lerp(shakeScale, 0, timer / duration);
-            sprite.transform.localPosition = new Vector2(Util.Random() * currentShakeScale, Util.Random() * currentShakeScale);
+            sprite.transform.localPosition = new Vector2(Util.Random(-1, 1) * currentShakeScale, Util.Random(-1, 1) * currentShakeScale);
             yield return null;
         }
         sprite.transform.localPosition = Vector2.zero;

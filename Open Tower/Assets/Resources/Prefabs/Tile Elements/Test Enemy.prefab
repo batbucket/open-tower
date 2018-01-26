@@ -111,7 +111,7 @@ MonoBehaviour:
   shakePs: {fileID: 198283249608582642}
   vanishPs: {fileID: 198077607427086324}
   sprite: {fileID: 212512975729498696}
-  shakeScale: 15
+  shakeScale: 5
   flickerInterval: 0.05
   delayBeforeDisappear: 0.05
 --- !u!114 &114592222544607092
