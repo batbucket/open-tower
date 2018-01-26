@@ -5,7 +5,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(Stats))]
 public class Enemy : Entity {
-    private const int ENEMY_CANNOT_BE_DEFEATED = -1;
+    private const int ENEMY_CANNOT_BE_DEFEATED = 1;
+
+    [SerializeField]
+    private Tip tip;
 
     [SerializeField]
     private Stats stats;
@@ -40,6 +43,7 @@ public class Enemy : Entity {
     }
 
     protected override bool IsActionPossible(Player player) {
+        Debug.Log(GetDamageToPlayer(player));
         return (GetDamageToPlayer(player) != ENEMY_CANNOT_BE_DEFEATED);
     }
 
@@ -108,5 +112,14 @@ public class Enemy : Entity {
             yield return new WaitForSeconds(flickerInterval);
             timer += flickerInterval;
         }
+    }
+
+    private void Update() {
+        string result = string.Empty;
+        if (GetDamageToPlayer(Player.Instance) != ENEMY_CANNOT_BE_DEFEATED) {
+            result = string.Format("\nRES: {0} LIFE", GetDamageToPlayer(Player.Instance).ToString());
+        }
+        tip.Body = string.Format("LIFE: {0}\nPOW: {1}\nDEF: {2}\nEXP: {3}{4}",
+            stats.Life, stats.Power, stats.Defense, stats.Experience, result);
     }
 }

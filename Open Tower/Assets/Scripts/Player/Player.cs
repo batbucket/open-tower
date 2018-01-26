@@ -4,6 +4,7 @@
 [RequireComponent(typeof(Stats))]
 [RequireComponent(typeof(Inventory))]
 public class Player : MonoBehaviour {
+    private static Player _instance;
 
     [SerializeField]
     private Movement movement;
@@ -13,6 +14,15 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     private Inventory keys;
+
+    public static Player Instance {
+        get {
+            if (_instance == null) {
+                _instance = FindObjectOfType<Player>();
+            }
+            return _instance;
+        }
+    }
 
     public Stats Stats {
         get {
