@@ -43,7 +43,6 @@ public class Enemy : Entity {
     }
 
     protected override bool IsActionPossible(Player player) {
-        Debug.Log(GetDamageToPlayer(player));
         return (GetDamageToPlayer(player) != ENEMY_CANNOT_BE_DEFEATED);
     }
 
