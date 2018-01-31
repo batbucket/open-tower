@@ -21,9 +21,6 @@ public class PlayerStatsDisplay : MonoBehaviour {
     private int powerAndDefenseIncreaseAmount;
 
     [SerializeField]
-    private Stats player;
-
-    [SerializeField]
     private Text life;
 
     [SerializeField]
@@ -43,6 +40,8 @@ public class PlayerStatsDisplay : MonoBehaviour {
 
     [SerializeField]
     private Button addDefense;
+
+    private Stats player;
 
     private Coroutine buttonEnableRoutine;
 
@@ -75,6 +74,7 @@ public class PlayerStatsDisplay : MonoBehaviour {
             addPower,
             addDefense
         };
+        this.player = Player.Instance.Stats;
     }
 
     private void Update() {

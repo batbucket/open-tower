@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInventoryDisplay : MonoBehaviour {
-
-    [SerializeField]
     private Inventory player;
 
     [SerializeField]
@@ -16,6 +14,10 @@ public class PlayerInventoryDisplay : MonoBehaviour {
 
     [SerializeField]
     private Text red;
+
+    private void Start() {
+        player = Player.Instance.Keys;
+    }
 
     private void Update() {
         this.yellow.text = player.Yellow.ToString();
