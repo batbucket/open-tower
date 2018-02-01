@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -130,7 +130,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1399894083
-  m_SortingLayer: 5
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300018, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
