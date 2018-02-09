@@ -14,4 +14,12 @@ public static class Util {
     public static float Random(float min, float max) {
         return UnityEngine.Random.Range(min, max);
     }
+
+    public static void KillAllChildren(Transform t) {
+        foreach (Transform child in t) {
+            if (child != t) {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
+    }
 }
