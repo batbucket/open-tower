@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 222607873098530704}
   - component: {fileID: 114320963326570160}
   m_Layer: 0
-  m_Name: 3221
+  m_Name: 4111
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,9 +472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22834dbf669c1e34099773f5bce8ee38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 3
-  power: 2
-  defense: 2
+  life: 4
+  power: 1
+  defense: 1
   experience: 1
 --- !u!114 &114208221525793958
 MonoBehaviour:
