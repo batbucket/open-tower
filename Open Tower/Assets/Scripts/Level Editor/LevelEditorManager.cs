@@ -16,7 +16,43 @@ public class LevelEditorManager : MonoBehaviour {
         }
     }
 
+    [SerializeField]
+    private TabMode current;
+
+    [SerializeField]
+    private Panel entitiesPanel;
+
+    [SerializeField]
+    private Panel playerPanel;
+
+    [SerializeField]
+    private Panel floorsPanel;
+
+    [SerializeField]
+    private Panel menuPanel;
+
+    [SerializeField]
+    private Panel[] allPanels;
+
     public Element Selected;
+
+    public void SetTab(int modeIndex) {
+        SetTab((TabMode)modeIndex);
+    }
+
+    public void SetTab(TabMode mode) {
+        foreach (Panel panel in allPanels) {
+            panel.SetActive(false);
+            if (panel.Mode == mode) {
+                panel.SetActive(true);
+            }
+        }
+        this.current = mode;
+    }
+
+    private void Start() {
+        SetTab(current);
+    }
 
     private void Update() {
     }

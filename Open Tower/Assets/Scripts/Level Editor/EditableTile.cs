@@ -6,15 +6,26 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+    private static EntitiesPanel _entitiesPanel;
 
     [SerializeField]
     private Outline outline;
 
+    private static EntitiesPanel EntitiesPanel {
+        get {
+            if (_entitiesPanel == null) {
+                _entitiesPanel = FindObjectOfType<EntitiesPanel>();
+            }
+            return _entitiesPanel;
+        }
+    }
+
     public void Interact() {
-        Util.KillAllChildren(transform);
-        Element selected = Instantiate(LevelEditorManager.Instance.Selected);
-        selected.transform.SetParent(transform);
-        selected.transform.localPosition = Vector3.zero;
+        foreach (Element e in transform.GetComponentsInChildren<Element>()) {
+            e.RemoveFromSourceListing();
+            Destroy(e.gameObject);
+        }
+        EntitiesPanel.LastSelected.CreateElement(transform);
     }
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData) {

@@ -8,11 +8,18 @@ public class Element : MonoBehaviour {
     [SerializeField]
     private Image image;
 
-    public int ID = int.MinValue;
+    private AddableTile source;
 
-    public Sprite Sprite {
-        set {
-            image.sprite = value;
-        }
+    public void Init(AddableTile source) {
+        this.source = source;
+        Update();
+    }
+
+    public void RemoveFromSourceListing() {
+        source.RemoveFromListing(this);
+    }
+
+    private void Update() {
+        this.image.sprite = source.Sprite;
     }
 }
