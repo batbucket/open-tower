@@ -31,6 +31,16 @@ public static class Util {
         int clampedValue = Mathf.Clamp(value, min, max);
         field.text = clampedValue.ToString();
     }
+
+    public static IEnumerator AnimatedScrollToBottom(Scrollbar scroll, float scrollDuration = 0.5f) {
+        float timer = 0;
+        float startValue = scroll.value;
+        while ((timer += Time.deltaTime) < scrollDuration) {
+            scroll.value = Mathf.SmoothStep(startValue, 0, timer / scrollDuration);
+            yield return null;
+        }
+        scroll.value = 0;
+    }
 }
 
 public static class Extensions {

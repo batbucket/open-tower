@@ -15,11 +15,10 @@ public class Element : MonoBehaviour {
         Update();
     }
 
-    public void RemoveFromSourceListing() {
-        source.RemoveFromListing(this);
-    }
-
     private void Update() {
         this.image.sprite = source.Sprite;
+        if (source == null) {
+            Destroy(this.gameObject);
+        }
     }
 }

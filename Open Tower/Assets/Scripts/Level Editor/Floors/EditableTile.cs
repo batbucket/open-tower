@@ -22,7 +22,6 @@ public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void Interact() {
         foreach (Element e in transform.GetComponentsInChildren<Element>()) {
-            e.RemoveFromSourceListing();
             Destroy(e.gameObject);
         }
         EntitiesPanel.LastSelected.CreateElement(transform);

@@ -21,9 +21,6 @@ public class EntitiesPanel : Panel {
     [SerializeField]
     private Scrollbar scroll;
 
-    [SerializeField]
-    private float scrollDuration = 0.50f;
-
     private Coroutine current;
 
     [HideInInspector]
@@ -43,16 +40,6 @@ public class EntitiesPanel : Panel {
         if (current != null) {
             StopCoroutine(current);
         }
-        current = StartCoroutine(AnimatedScrollToBottom());
-    }
-
-    private IEnumerator AnimatedScrollToBottom() {
-        float timer = 0;
-        float startValue = scroll.value;
-        while ((timer += Time.deltaTime) < scrollDuration) {
-            scroll.value = Mathf.SmoothStep(startValue, 0, timer / scrollDuration);
-            yield return null;
-        }
-        scroll.value = 0;
+        current = StartCoroutine(Util.AnimatedScrollToBottom(scroll));
     }
 }

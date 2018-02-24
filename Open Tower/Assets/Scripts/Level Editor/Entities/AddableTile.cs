@@ -66,9 +66,6 @@ public class AddableTile : MonoBehaviour {
 
     private int spriteID;
 
-    // int is the instance ID
-    private IDictionary<int, Element> placedElements;
-
     public TileType TileType {
         get {
             return tile;
@@ -109,18 +106,10 @@ public class AddableTile : MonoBehaviour {
         if (EntitiesPanel.Instance.LastSelected == this) {
             EntitiesPanel.Instance.LastSelected = null;
         }
-        foreach (Element e in placedElements.Values) {
-            Destroy(e.gameObject);
-        }
     }
 
     public void SelectThisTile() {
         EntitiesPanel.Instance.LastSelected = this;
-    }
-
-    public void RemoveFromListing(Element e) {
-        placedElements.Remove(e.gameObject.GetInstanceID());
-        Debug.Log(placedElements.Count);
     }
 
     public void OnBoosterValueChange(string value) {
@@ -151,7 +140,6 @@ public class AddableTile : MonoBehaviour {
     public void CreateElement(Transform parent) {
         Element e = Instantiate(elementPrefab, parent);
         e.Init(this);
-        placedElements.Add(e.gameObject.GetInstanceID(), e);
     }
 
     private void ClampStats(InputField field, int min) {
@@ -184,7 +172,6 @@ public class AddableTile : MonoBehaviour {
     }
 
     private void Start() {
-        placedElements = new Dictionary<int, Element>();
         if (changeSprite != null) {
             changeSprite.onClick.AddListener(new UnityEngine.Events.UnityAction(
                 () => {
