@@ -43,7 +43,11 @@ public class LevelEditorManager : MonoBehaviour {
     public void SetTab(TabMode mode) {
         foreach (Panel panel in allPanels) {
             panel.SetActive(false);
+            if (panel.Mode == current) {
+                panel.OnExit();
+            }
             if (panel.Mode == mode) {
+                panel.OnEnter();
                 panel.SetActive(true);
             }
         }

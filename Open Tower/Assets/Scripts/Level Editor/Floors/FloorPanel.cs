@@ -73,9 +73,9 @@ public class FloorPanel : Panel {
         return index > 0;
     }
 
-    public bool IsFloorContainsType(int indexToCheck, TileType type) {
+    public bool IsFloorContainsType<T>(int indexToCheck, TileType type) where T : Element {
         EditableFloor floorToCheck = GetFloorAtIndex(indexToCheck);
-        return floorToCheck.GetComponentsInChildren<Element>(true).Any(e => e.IsType(type));
+        return floorToCheck.GetComponentsInChildren<T>(true).Any(e => e.IsType(type));
     }
 
     public void AddFloor() {

@@ -18,19 +18,24 @@ public class StairsElement : Element {
     [SerializeField]
     private StairType type;
 
-    private void Update() {
-        int currentIndex = Floors.Selected.Index;
-        bool isValidStairs = false;
-        switch (type) {
-            case StairType.GOES_UP:
-                isValidStairs = Floors.CanGoUp(currentIndex) && Floors.IsFloorContainsType(currentIndex + 1, TileType.DOWN_STAIRS);
-                break;
+    public bool IsValid {
+        get {
+            int currentIndex = Floors.Selected.Index;
+            bool isValidStairs = false;
+            switch (type) {
+                case StairType.GOES_UP:
+                    isValidStairs = Floors.CanGoUp(currentIndex) && Floors.IsFloorContainsType<StairsElement>(currentIndex + 1, TileType.DOWN_STAIRS);
+                    break;
 
-            case StairType.GOES_DOWN:
-                isValidStairs = Floors.CanGoDown(currentIndex) && Floors.IsFloorContainsType(currentIndex - 1, TileType.UP_STAIRS);
-                break;
+                case StairType.GOES_DOWN:
+                    isValidStairs = Floors.CanGoDown(currentIndex) && Floors.IsFloorContainsType<StairsElement>(currentIndex - 1, TileType.UP_STAIRS);
+                    break;
+            }
+            return isValidStairs;
         }
+    }
 
-        image.color = isValidStairs ? Color.white : Color.red;
+    private void Update() {
+        image.color = IsValid ? Color.white : Color.red;
     }
 }

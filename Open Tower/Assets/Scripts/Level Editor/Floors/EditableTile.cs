@@ -9,7 +9,9 @@ public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private static EntitiesPanel _entitiesPanel;
 
     [SerializeField]
-    private Outline outline;
+    private Image image;
+
+    private bool isInteractive;
 
     private static EntitiesPanel EntitiesPanel {
         get {
@@ -20,7 +22,14 @@ public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
     }
 
+    public void SetButtonInteractivity(bool isInteractive) {
+        this.isInteractive = isInteractive;
+    }
+
     public void OnPointerClick(PointerEventData eventData) {
+        if (!isInteractive) {
+            return;
+        }
         if (eventData.button == PointerEventData.InputButton.Left) {
             Clear();
             Interact();
@@ -30,20 +39,29 @@ public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData) {
-        outline.enabled = true;
+        if (!isInteractive) {
+            return;
+        }
+        image.color = Color.cyan;
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData) {
-        outline.enabled = false;
+        image.color = Color.white;
     }
 
     private void Interact() {
-        EntitiesPanel.LastSelected.CreateElement(transform);
+        if (EntitiesPanel.LastSelected != null) {
+            EntitiesPanel.LastSelected.CreateElement(transform);
+        }
     }
 
     private void Clear() {
         foreach (Element e in transform.GetComponentsInChildren<Element>()) {
             Destroy(e.gameObject);
         }
+    }
+
+    private void Start() {
+        this.isInteractive = true;
     }
 }

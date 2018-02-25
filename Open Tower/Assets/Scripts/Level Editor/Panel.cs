@@ -25,4 +25,10 @@ public class Panel : MonoBehaviour {
         holder.gameObject.SetActive(isActive);
         button.interactable = !isActive;
     }
+
+    public virtual void OnEnter() {
+    }
+
+    public virtual void OnExit() {
+    }
 }
