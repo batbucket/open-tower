@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +15,7 @@ public class AddableTile : MonoBehaviour {
     };
 
     private static EntitiesPanel _parentPanel;
+    private static FloorPanel _floorPanel;
 
     [SerializeField]
     private Outline outline;
@@ -22,9 +23,8 @@ public class AddableTile : MonoBehaviour {
     [SerializeField]
     private TileType tile;
 
-    // NOT used if tile is not of key type
     [SerializeField]
-    private KeyType key;
+    private PlaceType placementType;
 
     [SerializeField]
     private Button changeSprite;
@@ -88,9 +88,30 @@ public class AddableTile : MonoBehaviour {
     private static EntitiesPanel ParentPanel {
         get {
             if (_parentPanel == null) {
-                _parentPanel = FindObjectOfType<EntitiesPanel>();
+                _parentPanel = EntitiesPanel.Instance;
             }
             return _parentPanel;
+        }
+    }
+
+    private static FloorPanel FloorPanel {
+        get {
+            if (_floorPanel == null) {
+                _floorPanel = FloorPanel.Instance;
+            }
+            return _floorPanel;
+        }
+    }
+
+    private IEnumerable<Element> AllAssociatedElementsInLevel {
+        get {
+            return FloorPanel.FloorParent.GetComponentsInChildren<Element>(true).Where(e => e.IsSource(this));
+        }
+    }
+
+    private IEnumerable<Element> AllAssociatedElementsInFloor {
+        get {
+            return FloorPanel.Selected.Associated.GetComponentsInChildren<Element>(true).Where(e => e.IsSource(this));
         }
     }
 
@@ -105,6 +126,9 @@ public class AddableTile : MonoBehaviour {
         Destroy(gameObject);
         if (EntitiesPanel.Instance.LastSelected == this) {
             EntitiesPanel.Instance.LastSelected = null;
+        }
+        foreach (Element e in AllAssociatedElementsInLevel) {
+            Destroy(e.gameObject);
         }
     }
 
@@ -138,8 +162,25 @@ public class AddableTile : MonoBehaviour {
     }
 
     public void CreateElement(Transform parent) {
-        Element e = Instantiate(elementPrefab, parent);
-        e.Init(this);
+        switch (placementType) {
+            case PlaceType.NO_RESTRICTION:
+                // do nothing
+                break;
+
+            case PlaceType.UNIQUE_PER_FLOOR:
+                foreach (Element e in AllAssociatedElementsInFloor) {
+                    Destroy(e.gameObject);
+                }
+                break;
+
+            case PlaceType.UNIQUE_PER_LEVEL:
+                foreach (Element e in AllAssociatedElementsInLevel) {
+                    Destroy(e.gameObject);
+                }
+                break;
+        }
+        Element newElement = Instantiate(elementPrefab, parent);
+        newElement.Init(this);
     }
 
     private void ClampStats(InputField field, int min) {
@@ -178,9 +219,28 @@ public class AddableTile : MonoBehaviour {
                     SpritePicker.Instance.Activate(this.TileType, pickable => {
                         image.sprite = pickable.Sprite;
                         spriteID = pickable.ID;
+                        foreach (Element e in AllAssociatedElementsInLevel) {
+                            e.Sprite = pickable.Sprite;
+                        }
                     });
                 }
                 ));
+        }
+    }
+
+    private void DeleteAllPlacedElementsInLevel() {
+        foreach (Element e in AllAssociatedElementsInLevel) {
+            if (e.IsSource(this)) {
+                Destroy(e.gameObject);
+            }
+        }
+    }
+
+    private void DeleteAllPlacedElementsInCurrentFloor() {
+        foreach (Element e in AllAssociatedElementsInFloor) {
+            if (e.IsSource(this)) {
+                Destroy(e.gameObject);
+            }
         }
     }
 

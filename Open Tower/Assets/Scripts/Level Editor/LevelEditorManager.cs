@@ -20,13 +20,13 @@ public class LevelEditorManager : MonoBehaviour {
     private TabMode current;
 
     [SerializeField]
-    private Panel entitiesPanel;
+    private EntitiesPanel entitiesPanel;
 
     [SerializeField]
-    private Panel playerPanel;
+    private PlayerPanel playerPanel;
 
     [SerializeField]
-    private Panel floorsPanel;
+    private FloorPanel floorsPanel;
 
     [SerializeField]
     private Panel menuPanel;
@@ -52,6 +52,7 @@ public class LevelEditorManager : MonoBehaviour {
 
     private void Start() {
         SetTab(current);
+        floorsPanel.AddFloor();
     }
 
     private void Update() {

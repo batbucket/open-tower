@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,13 +35,13 @@ public class FloorPanel : Panel {
 
     private IList<FloorListing> Listings {
         get {
-            return floorListingParent.GetComponentsInChildren<FloorListing>();
+            return floorListingParent.GetComponentsInChildren<FloorListing>(true);
         }
     }
 
     private IList<EditableFloor> Floors {
         get {
-            return floorParent.GetComponentsInChildren<EditableFloor>();
+            return floorParent.GetComponentsInChildren<EditableFloor>(true);
         }
     }
 
@@ -58,12 +59,23 @@ public class FloorPanel : Panel {
         }
     }
 
+    public Transform FloorParent {
+        get {
+            return floorParent;
+        }
+    }
+
     public bool CanGoUp(int index) {
         return index < Listings.Count - 1;
     }
 
     public bool CanGoDown(int index) {
         return index > 0;
+    }
+
+    public bool IsFloorContainsType(int indexToCheck, TileType type) {
+        EditableFloor floorToCheck = GetFloorAtIndex(indexToCheck);
+        return floorToCheck.GetComponentsInChildren<Element>(true).Any(e => e.IsType(type));
     }
 
     public void AddFloor() {
@@ -90,8 +102,8 @@ public class FloorPanel : Panel {
         b.transform.SetSiblingIndex(item1);
     }
 
-    private void Start() {
-        AddFloor();
+    private EditableFloor GetFloorAtIndex(int index) {
+        return Floors[index];
     }
 
     private IEnumerator UpdateFloorIndices() {

@@ -6,19 +6,26 @@ using UnityEngine.UI;
 public class Element : MonoBehaviour {
 
     [SerializeField]
-    private Image image;
+    protected Image image;
 
     private AddableTile source;
 
-    public void Init(AddableTile source) {
-        this.source = source;
-        Update();
+    public Sprite Sprite {
+        set {
+            image.sprite = value;
+        }
     }
 
-    private void Update() {
-        this.image.sprite = source.Sprite;
-        if (source == null) {
-            Destroy(this.gameObject);
-        }
+    public bool IsSource(AddableTile source) {
+        return this.source == source;
+    }
+
+    public bool IsType(TileType type) {
+        return source.TileType == type;
+    }
+
+    public void Init(AddableTile source) {
+        this.source = source;
+        Sprite = source.Sprite;
     }
 }

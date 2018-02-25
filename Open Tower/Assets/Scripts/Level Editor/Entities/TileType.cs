@@ -1,6 +1,12 @@
 ﻿public enum TileType {
     WALL,
-    KEY,
+    UP_STAIRS,
+    DOWN_STAIRS,
+    YELLOW_KEY,
+    BLUE_KEY,
+    RED_KEY,
     ENEMY,
-    BOOSTER
+    BOOSTER,
+    PLAYER,
+    EXIT
 }

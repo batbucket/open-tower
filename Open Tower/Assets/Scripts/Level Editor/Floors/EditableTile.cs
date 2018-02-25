@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
     private static EntitiesPanel _entitiesPanel;
 
     [SerializeField]
@@ -20,11 +20,13 @@ public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
     }
 
-    public void Interact() {
-        foreach (Element e in transform.GetComponentsInChildren<Element>()) {
-            Destroy(e.gameObject);
+    public void OnPointerClick(PointerEventData eventData) {
+        if (eventData.button == PointerEventData.InputButton.Left) {
+            Clear();
+            Interact();
+        } else if (eventData.button == PointerEventData.InputButton.Right) {
+            Clear();
         }
-        EntitiesPanel.LastSelected.CreateElement(transform);
     }
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData) {
@@ -33,5 +35,15 @@ public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData) {
         outline.enabled = false;
+    }
+
+    private void Interact() {
+        EntitiesPanel.LastSelected.CreateElement(transform);
+    }
+
+    private void Clear() {
+        foreach (Element e in transform.GetComponentsInChildren<Element>()) {
+            Destroy(e.gameObject);
+        }
     }
 }

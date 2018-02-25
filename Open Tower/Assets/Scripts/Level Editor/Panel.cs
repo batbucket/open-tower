@@ -12,6 +12,9 @@ public class Panel : MonoBehaviour {
     [SerializeField]
     private Button button;
 
+    [SerializeField]
+    private Transform holder;
+
     public TabMode Mode {
         get {
             return mode;
@@ -19,7 +22,7 @@ public class Panel : MonoBehaviour {
     }
 
     public void SetActive(bool isActive) {
-        gameObject.SetActive(isActive);
+        holder.gameObject.SetActive(isActive);
         button.interactable = !isActive;
     }
 }
