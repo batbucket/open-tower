@@ -68,9 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22834dbf669c1e34099773f5bce8ee38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0
-  power: 0
-  defense: 0
+  life: 3
+  power: 1
+  defense: 1
   experience: 0
 --- !u!114 &114815182626964110
 MonoBehaviour:
