@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 222607873098530704}
   - component: {fileID: 114320963326570160}
   m_Layer: 0
-  m_Name: 5451
+  m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,9 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22834dbf669c1e34099773f5bce8ee38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 5
-  power: 4
-  defense: 5
+  life: 1
+  power: 1
+  defense: 0
   experience: 1
 --- !u!114 &114097270942120740
 MonoBehaviour:
