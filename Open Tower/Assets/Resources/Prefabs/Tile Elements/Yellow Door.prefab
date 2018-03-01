@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  key: 1
+  key: 0
 --- !u!114 &114704704996249350
 MonoBehaviour:
   m_ObjectHideFlags: 1

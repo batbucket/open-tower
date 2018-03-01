@@ -6434,7 +6434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outline: {fileID: 1848823098}
   tile: 0
-  placementType: 2
+  placementType: 0
   changeSprite: {fileID: 0}
   delete: {fileID: 0}
   life: {fileID: 0}

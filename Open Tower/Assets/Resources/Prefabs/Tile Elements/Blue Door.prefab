@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  key: 2
+  key: 1
 --- !u!114 &114867252351351202
 MonoBehaviour:
   m_ObjectHideFlags: 1

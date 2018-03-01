@@ -11,6 +11,18 @@ public class Pickup : Entity {
     [SerializeField]
     private int amount;
 
+    public PickupType Type {
+        get {
+            return pickup;
+        }
+    }
+
+    public int Amount {
+        get {
+            return amount;
+        }
+    }
+
     protected override bool IsActionPossible(Player player) {
         return true;
     }
