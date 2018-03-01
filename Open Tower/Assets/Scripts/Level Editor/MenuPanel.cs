@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,6 +39,7 @@ public class MenuPanel : Panel {
     }
 
     public void StartPlaytest() {
+        throw new NotImplementedException();
     }
 
     public override void OnEnter() {
