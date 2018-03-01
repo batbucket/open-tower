@@ -2457,7 +2457,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bf7e926768b8ad24798557167f0afdc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fa0ceb0c3f8c0f468c4b0174d32bab3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4677,7 +4677,7 @@ MonoBehaviour:
   lerpMin: {r: 1, g: 1, b: 1, a: 0}
   lerpMax: {r: 1, g: 1, b: 1, a: 0.19607843}
   lerpInterval: 0.5
-  lifeIncreaseAmount: 5
+  lifeIncreaseAmount: 1
   powerAndDefenseIncreaseAmount: 1
   life: {fileID: 114056346579958370}
   power: {fileID: 114695770052750834}

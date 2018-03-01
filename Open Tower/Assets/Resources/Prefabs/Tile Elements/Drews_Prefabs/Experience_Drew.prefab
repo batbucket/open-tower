@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 224643827317799372}
   - component: {fileID: 114674074477295514}
   m_Layer: 0
-  m_Name: Experience
+  m_Name: Experience_Drew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   pickup: 3
-  amount: 3
+  amount: 1
 --- !u!212 &212512975729498696
 SpriteRenderer:
   m_ObjectHideFlags: 1

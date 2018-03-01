@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 224643827317799372}
   - component: {fileID: 114674074477295514}
   m_Layer: 0
-  m_Name: Experience
+  m_Name: Power_Drew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,8 +55,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  pickup: 3
-  amount: 3
+  pickup: 1
+  amount: 1
 --- !u!212 &212512975729498696
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -91,7 +91,7 @@ SpriteRenderer:
   m_SortingLayerID: 1399894083
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3fa0ceb0c3f8c0f468c4b0174d32bab3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23890bef4332edf418fce65849240a5d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
