@@ -52,4 +52,19 @@ public static class Extensions {
         int j = Array.IndexOf<T>(Arr, src) + 1;
         return (Arr.Length == j) ? Arr[0] : Arr[j];
     }
+
+    public static bool IsPlaying(this Animator anim) {
+        return anim.GetCurrentAnimatorStateInfo(0).length >
+               anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    }
+
+    public static bool IsPlaying(this Animator anim, string stateName) {
+        return anim.IsPlaying() && anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    }
+
+    public static IEnumerator WaitForAnimation(this Animation anim) {
+        do {
+            yield return null;
+        } while (anim.isPlaying);
+    }
 }
