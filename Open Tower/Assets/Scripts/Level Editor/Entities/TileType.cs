@@ -2,11 +2,14 @@
     WALL,
     UP_STAIRS,
     DOWN_STAIRS,
-    YELLOW_KEY,
+    GOLD_KEY,
     BLUE_KEY,
     RED_KEY,
     ENEMY,
     BOOSTER,
     PLAYER,
-    EXIT
+    EXIT,
+    GOLD_DOOR,
+    BLUE_DOOR,
+    RED_DOOR
 }

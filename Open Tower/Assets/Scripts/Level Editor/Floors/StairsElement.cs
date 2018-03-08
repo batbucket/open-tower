@@ -20,7 +20,7 @@ public class StairsElement : Element {
 
     public bool IsValid {
         get {
-            int currentIndex = Floors.Selected.Index;
+            int currentIndex = this.transform.parent.parent.parent.GetSiblingIndex(); // floor object in editor
             bool isValidStairs = false;
             switch (type) {
                 case StairType.GOES_UP:

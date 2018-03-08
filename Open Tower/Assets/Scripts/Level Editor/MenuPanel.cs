@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Scripts.LevelEditor.Serialization;
+using System;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuPanel : Panel {
@@ -22,6 +24,12 @@ public class MenuPanel : Panel {
     [SerializeField]
     private Button playtest;
 
+    [SerializeField]
+    private EntitiesPanel entities;
+
+    [SerializeField]
+    private PlayerPanel player;
+
     private bool isLevelValidated;
 
     public void CheckIfLevelIsValid() {
@@ -39,7 +47,9 @@ public class MenuPanel : Panel {
     }
 
     public void StartPlaytest() {
-        throw new NotImplementedException();
+        string json = SerializationUtil.GetSerializedDungeon("test", "@user", floorsParent, entities, player);
+        LevelInfo.Instance.Init(json, "Level_Editor");
+        SceneManager.LoadScene("Custom_Level");
     }
 
     public override void OnEnter() {
@@ -58,7 +68,8 @@ public class MenuPanel : Panel {
     }
 
     private bool IsStairsValid() {
-        return floorsParent.GetComponentsInChildren<StairsElement>(true)
+        return floorsParent
+            .GetComponentsInChildren<StairsElement>(true)
             .All(stairs => stairs.IsValid);
     }
 

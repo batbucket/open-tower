@@ -16,6 +16,12 @@ public class Element : MonoBehaviour {
         }
     }
 
+    public bool IsStaticType {
+        get {
+            return source.IsStaticTileType;
+        }
+    }
+
     public bool IsSource(AddableTile source) {
         return this.source == source;
     }

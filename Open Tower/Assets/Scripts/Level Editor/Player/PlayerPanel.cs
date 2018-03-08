@@ -27,6 +27,48 @@ public class PlayerPanel : Panel {
     [SerializeField]
     private InputField red;
 
+    public int Life {
+        get {
+            return int.Parse(life.text);
+        }
+    }
+
+    public int Power {
+        get {
+            return int.Parse(power.text);
+        }
+    }
+
+    public int Defense {
+        get {
+            return int.Parse(defense.text);
+        }
+    }
+
+    public int Stars {
+        get {
+            return int.Parse(stars.text);
+        }
+    }
+
+    public int GoldKeys {
+        get {
+            return int.Parse(yellow.text);
+        }
+    }
+
+    public int BlueKeys {
+        get {
+            return int.Parse(blue.text);
+        }
+    }
+
+    public int RedKeys {
+        get {
+            return int.Parse(red.text);
+        }
+    }
+
     public void OnLifeChange(string value) {
         AllowPositive(life, value);
     }

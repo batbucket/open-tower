@@ -35,6 +35,12 @@ public class EntitiesPanel : Panel {
         }
     }
 
+    public Transform TileHolder {
+        get {
+            return tileHolder;
+        }
+    }
+
     public void AddTile() {
         Instantiate(prefabs[dropdown.value], tileHolder);
         if (current != null) {

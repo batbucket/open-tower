@@ -65,7 +65,7 @@ public class BoosterStatsDisplay : MonoBehaviour {
         }
         image.sprite = sprite;
         image.color = color;
-        text.text = pickup.Amount.ToString();
+        text.text = "+" + pickup.Amount;
     }
 
     private void Update() {

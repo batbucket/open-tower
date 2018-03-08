@@ -23,6 +23,29 @@ public class Pickup : Entity {
         }
     }
 
+    public void Init(StatType type, int amount) {
+        PickupType pickup = PickupType.BLUE_KEY;
+        switch (type) {
+            case StatType.LIFE:
+                pickup = PickupType.LIFE;
+                break;
+
+            case StatType.POWER:
+                pickup = PickupType.POWER;
+                break;
+
+            case StatType.DEFENSE:
+                pickup = PickupType.DEFENSE;
+                break;
+
+            case StatType.EXPERIENCE:
+                pickup = PickupType.EXPERIENCE;
+                break;
+        }
+        this.pickup = pickup;
+        this.amount = amount;
+    }
+
     protected override bool IsActionPossible(Player player) {
         return true;
     }

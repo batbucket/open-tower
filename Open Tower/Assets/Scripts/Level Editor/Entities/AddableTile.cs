@@ -7,6 +7,21 @@ public class AddableTile : MonoBehaviour {
     private const int MAX_VALUE_FOR_ENEMY_STATS = 99999;
     private const int MAX_VALUE_FOR_BOOSTER_STATS = 9999;
 
+    // Static types have no customizable values
+    private static readonly HashSet<TileType> STATIC_TYPES = new HashSet<TileType>() {
+        TileType.WALL,
+        TileType.UP_STAIRS,
+        TileType.DOWN_STAIRS,
+        TileType.GOLD_KEY,
+        TileType.BLUE_KEY,
+        TileType.RED_KEY,
+        TileType.PLAYER,
+        TileType.EXIT,
+        TileType.GOLD_DOOR,
+        TileType.BLUE_DOOR,
+        TileType.RED_DOOR
+    };
+
     private static readonly IDictionary<int, StatType> MAPPING = new Dictionary<int, StatType>() {
         { 0, StatType.LIFE },
         { 1, StatType.POWER },
@@ -66,6 +81,12 @@ public class AddableTile : MonoBehaviour {
 
     private int spriteID;
 
+    public bool IsStaticTileType {
+        get {
+            return STATIC_TYPES.Contains(tile);
+        }
+    }
+
     public TileType TileType {
         get {
             return tile;
@@ -78,10 +99,52 @@ public class AddableTile : MonoBehaviour {
         }
     }
 
+    public int EnemyLife {
+        get {
+            Util.Assert(tile == TileType.ENEMY, "Expected Enemy type, was {0} instead.", this.tile);
+            return int.Parse(life.text);
+        }
+    }
+
+    public int EnemyPower {
+        get {
+            Util.Assert(tile == TileType.ENEMY, "Expected Enemy type, was {0} instead.", this.tile);
+            return int.Parse(power.text);
+        }
+    }
+
+    public int EnemyDefense {
+        get {
+            Util.Assert(tile == TileType.ENEMY, "Expected Enemy type, was {0} instead.", this.tile);
+            return int.Parse(defense.text);
+        }
+    }
+
+    public int EnemyStars {
+        get {
+            Util.Assert(tile == TileType.ENEMY, "Expected Enemy type, was {0} instead.", this.tile);
+            return int.Parse(experience.text);
+        }
+    }
+
     public StatType BoostedStatType {
         get {
             Util.Assert(tile == TileType.BOOSTER, "Expected Booster type, was {0} instead.", this.tile);
             return boostedStatType;
+        }
+    }
+
+    public int BoostedAmount {
+        get {
+            Util.Assert(tile == TileType.BOOSTER, "Expected Booster type, was {0} instead.", this.tile);
+            return int.Parse(boostedAmount.text);
+        }
+    }
+
+    public int SpriteID {
+        get {
+            Util.Assert(!IsStaticTileType, "Tile type is not dynamic.");
+            return spriteID;
         }
     }
 
@@ -213,6 +276,11 @@ public class AddableTile : MonoBehaviour {
     }
 
     private void Start() {
+        if (this.TileType == TileType.BOOSTER) {
+            this.image.sprite = SpriteList.GetBooster(spriteID);
+        } else if (this.TileType == TileType.ENEMY) {
+            this.image.sprite = SpriteList.GetEnemy(spriteID);
+        }
         if (changeSprite != null) {
             changeSprite.onClick.AddListener(new UnityEngine.Events.UnityAction(
                 () => {

@@ -42,6 +42,11 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void Init(Scripts.LevelEditor.Serialization.StartingValues sv) {
+        Stats.Init(sv.Life, sv.Power, sv.Defense, sv.Stars);
+        Keys.Init(sv.GoldKeys, sv.BlueKeys, sv.RedKeys);
+    }
+
     private void Update() {
         if (movement.isActiveAndEnabled) {
             movement.OnUpdate(this);

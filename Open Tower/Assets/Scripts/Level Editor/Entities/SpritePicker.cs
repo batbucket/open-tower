@@ -8,12 +8,6 @@ public class SpritePicker : MonoBehaviour {
     private static SpritePicker _instance;
 
     [SerializeField]
-    private Sprite[] enemies;
-
-    [SerializeField]
-    private Sprite[] boosters;
-
-    [SerializeField]
     private Transform enemyHolder;
 
     [SerializeField]
@@ -25,6 +19,8 @@ public class SpritePicker : MonoBehaviour {
     private IList<PickableSprite> enemyPicks;
 
     private IList<PickableSprite> boosterPicks;
+
+    private IDictionary<int, PickableSprite> spriteIDs;
 
     public static SpritePicker Instance {
         get {
@@ -63,16 +59,15 @@ public class SpritePicker : MonoBehaviour {
 
     private void Start() {
         enemyPicks = new List<PickableSprite>();
-        int index = 0;
-        foreach (Sprite sprite in enemies) {
+        foreach (KeyValuePair<int, Sprite> pair in SpriteList.GetEnemyIDs()) {
             PickableSprite ps = Instantiate(pickableSpritePrefab, enemyHolder);
-            ps.Init(index++, sprite);
+            ps.Init(pair.Key, pair.Value);
             enemyPicks.Add(ps);
         }
         boosterPicks = new List<PickableSprite>();
-        foreach (Sprite sprite in boosters) {
+        foreach (KeyValuePair<int, Sprite> pair in SpriteList.GetBoosterIDs()) {
             PickableSprite ps = Instantiate(pickableSpritePrefab, boosterHolder);
-            ps.Init(index++, sprite);
+            ps.Init(pair.Key, pair.Value);
             boosterPicks.Add(ps);
         }
     }

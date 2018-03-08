@@ -9,6 +9,10 @@ public class Exit : Entity {
     [SerializeField]
     private int trophyID = int.MinValue;
 
+    public void Init(string destination) {
+        this.destinationScene = destination;
+    }
+
     protected override void DoAction(Player player) {
         player.IsMovementEnabled = false;
         if (trophyID != int.MinValue) {

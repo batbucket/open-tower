@@ -965,6 +965,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224003209811114654}
+  - component: {fileID: 114423091067037388}
   m_Layer: 0
   m_Name: Dungeon
   m_TagString: Untagged
@@ -2139,7 +2140,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 13
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -3468,6 +3469,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114423091067037388
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609333824837114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de91c1748248ee4385f195bfeb2aad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: {fileID: 114030084106141940}
+  location: {fileID: 114579204778178284}
 --- !u!114 &114425105334118096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7445,10 +7459,10 @@ RectTransform:
   m_Father: {fileID: 224974502470877376}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.35, y: -0.00000023842}
-  m_SizeDelta: {x: 39.3, y: 15}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.0039634705, y: -0.0011963844}
+  m_SizeDelta: {x: -0.0048675537, y: 0.0007581711}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224733918858981082
 RectTransform:
@@ -7900,8 +7914,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 64}
-  m_SizeDelta: {x: 50, y: 15}
+  m_AnchoredPosition: {x: -64, y: 210}
+  m_SizeDelta: {x: 64, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224989534192030782
 RectTransform:
