@@ -27,5 +27,10 @@ public class ResultsManager : MonoBehaviour {
 
     public void ChangeScene() {
         SceneManager.LoadScene(destination);
+
+        LevelInfo info = LevelInfo.Instance;
+        if (info != null) {
+            info.IsLevelCleared = true;
+        }
     }
 }

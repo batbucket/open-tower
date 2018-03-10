@@ -32,6 +32,9 @@ public class LevelEditorManager : MonoBehaviour {
     private Panel menuPanel;
 
     [SerializeField]
+    private LevelSubmissionManager levelSubmission;
+
+    [SerializeField]
     private Panel[] allPanels;
 
     public Element Selected;
@@ -57,6 +60,12 @@ public class LevelEditorManager : MonoBehaviour {
     private void Start() {
         SetTab(current);
         floorsPanel.AddFloor();
+
+        LevelInfo info = LevelInfo.Instance;
+        if (info.IsLevelCleared) {
+            info.IsLevelCleared = false;
+            levelSubmission.OpenWindow();
+        }
     }
 
     private void Update() {

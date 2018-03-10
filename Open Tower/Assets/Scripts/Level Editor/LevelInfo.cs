@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class LevelInfo : MonoBehaviour {
     private static LevelInfo _instance;
+
+    [SerializeField]
     private string json;
+
+    [SerializeField]
     private string exitScene;
+
+    [SerializeField]
+    private bool isLevelCleared;
 
     public static LevelInfo Instance {
         get {
+            if (_instance == null) {
+                _instance = FindObjectOfType<LevelInfo>();
+            }
             return _instance;
         }
     }
@@ -25,17 +35,18 @@ public class LevelInfo : MonoBehaviour {
         }
     }
 
+    public bool IsLevelCleared {
+        get {
+            return isLevelCleared;
+        }
+
+        set {
+            isLevelCleared = value;
+        }
+    }
+
     public void Init(string json, string exitScene) {
         this.json = json;
         this.exitScene = exitScene;
-    }
-
-    private void Awake() {
-        if (_instance == null) {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            DestroyImmediate(gameObject);
-        }
     }
 }

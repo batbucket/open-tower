@@ -92,6 +92,29 @@ namespace Scripts.LevelEditor.Serialization {
         }
 
         // Loading into level editor
+        public static void DeserializeDungeon(
+            string json,
+            EntitiesPanel entities,
+            PlayerPanel player,
+            FloorPanel floors
+            ) {
+            Dungeon dungeon = JsonUtility.FromJson<Dungeon>(json);
+
+            // setup starting values
+            StartingValues values = dungeon.StartingValues;
+            player.Init(
+                values.Life,
+                values.Power,
+                values.Defense,
+                values.Stars,
+                values.GoldKeys,
+                values.BlueKeys,
+                values.RedKeys);
+
+            // setup entities
+
+            // setup floors
+        }
 
         // Loading into game
         public static void DeserializeDungeon(
@@ -123,7 +146,7 @@ namespace Scripts.LevelEditor.Serialization {
             Floor[] floors = dungeon.Floors;
             StartingValues startingValues = dungeon.StartingValues;
 
-            infoTarget.Init(name, author);
+            infoTarget.Init(name, author, exitScene);
 
             for (int i = 0; i < floors.Length; i++) {
                 GameObject floor = GameObject.Instantiate(floorPrefab, floorsParent.transform);
@@ -138,7 +161,6 @@ namespace Scripts.LevelEditor.Serialization {
                     if (index != NO_ELEMENT) {
                         Addable addable = addables[index];
                         GameObject instantiated = null;
-                        Debug.Log("adding: " + index + " to " + current.gameObject.GetInstanceID());
 
                         if (addable.AddableType == AddableType.STATIC) {
                             StaticData data = addable.StaticData;
