@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using Scripts.LevelEditor.Serialization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelInfo : MonoBehaviour {
     private static LevelInfo _instance;
+
+    [SerializeField]
+    private Dungeon dungeon;
 
     [SerializeField]
     private string json;

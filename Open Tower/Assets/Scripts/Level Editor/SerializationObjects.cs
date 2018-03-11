@@ -10,6 +10,39 @@ namespace Scripts.LevelEditor.Serialization {
     }
 
     [Serializable]
+    public struct Upload {
+        public string LevelJson;
+        public string LevelName;
+        public string AuthorName;
+        public int AuthorID;
+        public string DateCreated;
+        public string[] UsersAttempted;
+        public string[] UsersCompleted;
+        public Score[] Leaderboards;
+
+        public Upload(string levelJson, string levelName, string authorName, int authorID, string dateCreated) : this() {
+            LevelJson = levelJson;
+            LevelName = levelName;
+            AuthorName = authorName;
+            AuthorID = authorID;
+            DateCreated = dateCreated;
+        }
+    }
+
+    [Serializable]
+    public struct Score {
+        public int Steps;
+        public string DateAchieved;
+        public string User;
+
+        public Score(int steps, string dateAchieved, string user) {
+            Steps = steps;
+            DateAchieved = dateAchieved;
+            User = user;
+        }
+    }
+
+    [Serializable]
     public struct Dungeon {
         public Addable[] Addables;
         public Floor[] Floors;

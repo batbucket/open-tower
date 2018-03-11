@@ -18,7 +18,7 @@ namespace Scripts.LevelEditor.Serialization {
             Floor[] floors = GetSerializedFloors(addableTiles, floorsParent.GetComponentsInChildren<EditableFloor>(true));
             StartingValues startingValues = SerializeStartingValues(player);
 
-            return JsonUtility.ToJson(new Dungeon(addables, floors, startingValues), true);
+            return JsonUtility.ToJson(new Dungeon(addables, floors, startingValues));
         }
 
         private static StartingValues SerializeStartingValues(PlayerPanel player) {
@@ -216,7 +216,7 @@ namespace Scripts.LevelEditor.Serialization {
             Floor[] floors = dungeon.Floors;
             StartingValues startingValues = dungeon.StartingValues;
 
-            infoTarget.Init("Custom Level", "???", exitScene);
+            infoTarget.Init("?-?", "Custom Level", exitScene);
 
             for (int i = 0; i < floors.Length; i++) {
                 GameObject floor = GameObject.Instantiate(floorPrefab, floorsParent.transform);

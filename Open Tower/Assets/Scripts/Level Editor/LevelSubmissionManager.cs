@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GameJolt.API.Objects;
+using Scripts.LevelEditor.Serialization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,9 @@ public class LevelSubmissionManager : MonoBehaviour {
     [SerializeField]
     private TextAsset badWords;
 
+    [SerializeField]
+    private Button submit;
+
     private HashSet<string> badWordSet;
     private Coroutine warningRoutine;
 
@@ -43,15 +48,21 @@ public class LevelSubmissionManager : MonoBehaviour {
 
     public void SubmitLevel() {
         string nameToCheck = nameField.text;
-        Debug.Log(nameToCheck);
         GameJolt.API.DataStore.GetKeys(true, keys => {
             CheckName(() => {
-                GameJolt.API.DataStore.Set(nameToCheck, LevelInfo.Instance.JSON, true, isSuccess => {
-                    if (isSuccess) {
-                        ReturnToEditor();
-                    } else {
-                        SetWarning("Unknown error occurred.", false);
-                    }
+                submit.interactable = false; // prevent button spam
+                SetWarning("Attempting to upload...", true);
+                GameJolt.API.Misc.GetTime(dateTime => {
+                    User user = GameJolt.API.Manager.Instance.CurrentUser;
+                    Upload upload = new Upload(LevelInfo.Instance.JSON, nameToCheck, user.Name, user.ID, dateTime.ToString());
+                    GameJolt.API.DataStore.Set(nameToCheck, JsonUtility.ToJson(upload, true), true, isSuccess => {
+                        if (isSuccess) {
+                            ReturnToEditor();
+                        } else {
+                            submit.interactable = true;
+                            SetWarning("Unknown error occurred.", false);
+                        }
+                    });
                 });
             });
         });
