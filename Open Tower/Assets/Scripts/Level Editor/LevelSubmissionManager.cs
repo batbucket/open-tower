@@ -101,7 +101,7 @@ public class LevelSubmissionManager : MonoBehaviour {
 
     private bool IsNameContainsBadWords() {
         string nameToCheck = nameField.text;
-        return badWordSet.Any(nameToCheck.Contains);
+        return badWordSet.Any(badWord => nameToCheck.ToUpper().Contains(badWord.ToUpper()));
     }
 
     private void SetupBadWords() {
