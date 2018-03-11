@@ -8485,13 +8485,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1465338363}
   m_TextComponent: {fileID: 2092738016}
   m_Placeholder: {fileID: 1459777481}
-  m_ContentType: 4
+  m_ContentType: 5
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 6
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
+  m_CharacterValidation: 4
   m_CharacterLimit: 18
   m_OnEndEdit:
     m_PersistentCalls:

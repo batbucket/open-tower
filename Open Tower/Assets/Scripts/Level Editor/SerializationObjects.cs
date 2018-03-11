@@ -11,15 +11,11 @@ namespace Scripts.LevelEditor.Serialization {
 
     [Serializable]
     public struct Dungeon {
-        public string Name;
-        public string Author;
         public Addable[] Addables;
         public Floor[] Floors;
         public StartingValues StartingValues;
 
-        public Dungeon(string name, string author, Addable[] addables, Floor[] floors, StartingValues startingValues) {
-            Name = name;
-            Author = author;
+        public Dungeon(Addable[] addables, Floor[] floors, StartingValues startingValues) {
             Addables = addables;
             Floors = floors;
             StartingValues = startingValues;
