@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -92,17 +93,24 @@ namespace Scripts.LevelEditor.Serialization {
         }
 
         // Loading into level editor
-        public static void DeserializeDungeon(
+        public static void DeserializeDungeonToEditor(
             string json,
-            EntitiesPanel entities,
-            PlayerPanel player,
-            FloorPanel floors
+            EntitiesPanel entitiesPanel,
+            GameObject boosterPrefab,
+            GameObject enemyPrefab,
+            PlayerPanel playerPanel,
+            FloorPanel floorPanel,
+            GameObject floorListingPrefab,
+            GameObject floorPrefab,
+            GameObject elementPrefab,
+            GameObject upStairsPrefab,
+            GameObject downStairsPrefab
             ) {
             Dungeon dungeon = JsonUtility.FromJson<Dungeon>(json);
 
             // setup starting values
             StartingValues values = dungeon.StartingValues;
-            player.Init(
+            playerPanel.Init(
                 values.Life,
                 values.Power,
                 values.Defense,
@@ -112,12 +120,76 @@ namespace Scripts.LevelEditor.Serialization {
                 values.RedKeys);
 
             // setup entities
+            Transform tileHolder = entitiesPanel.TileHolder;
+            Addable[] addables = dungeon.Addables;
+            foreach (Addable addable in addables) {
+                GameObject go;
+                AddableTile at;
+                switch (addable.AddableType) {
+                    case AddableType.BOOSTER:
+                        BoosterData booster = addable.BoosterData;
+                        go = GameObject.Instantiate(boosterPrefab, tileHolder);
+                        at = go.GetComponent<AddableTile>();
+                        while (at.BoostedStatType != booster.StatToBoost) {
+                            at.IterateBoosterStat();
+                        }
+                        at.BoostedAmount = booster.AmountBoosted;
+                        at.SetSprite(booster.SpriteID, AddableType.BOOSTER);
+                        break;
+
+                    case AddableType.ENEMY:
+                        EnemyData enemy = addable.EnemyData;
+                        go = GameObject.Instantiate(enemyPrefab, tileHolder);
+                        at = go.GetComponent<AddableTile>();
+                        at.SetSprite(enemy.SpriteID, AddableType.ENEMY);
+                        at.InitEnemy(enemy.Life, enemy.Power, enemy.Defense, enemy.Stars);
+                        break;
+                }
+            }
+
+            AddableTile[] addableTiles = tileHolder.GetComponentsInChildren<AddableTile>();
 
             // setup floors
+            Floor[] floors = dungeon.Floors;
+            for (int i = 0; i < floors.Length; i++) {
+                Floor floor = floors[i];
+                GameObject floorGo = GameObject.Instantiate(floorPrefab, floorPanel.FloorParent);
+                GameObject floorListingGo = GameObject.Instantiate(floorListingPrefab, floorPanel.FloorListingParent);
+                FloorListing floorListing = floorListingGo.GetComponent<FloorListing>();
+                EditableFloor editableFloor = floorGo.GetComponent<EditableFloor>();
+                floorListing.Init(i, editableFloor);
+
+                if (i == 0) { // first floor
+                    floorPanel.Selected = floorListing;
+                }
+
+                EditableTile[] tiles = floorGo.GetComponentsInChildren<EditableTile>(true);
+                int[] indices = floor.Indices;
+                // same range as serialized array
+                for (int j = 0; j < tiles.Length; j++) {
+                    EditableTile tile = tiles[j];
+                    int index = indices[j];
+                    if (index != NO_ELEMENT) {
+                        AddableTile source = addableTiles[index];
+                        GameObject chosenPrefab = null;
+
+                        // up and down stairs use a special prefab
+                        if (source.TileType == TileType.UP_STAIRS) {
+                            chosenPrefab = upStairsPrefab;
+                        } else if (source.TileType == TileType.DOWN_STAIRS) {
+                            chosenPrefab = downStairsPrefab;
+                        } else {
+                            chosenPrefab = elementPrefab;
+                        }
+                        GameObject elementGo = GameObject.Instantiate(chosenPrefab, tile.transform);
+                        elementGo.GetComponent<Element>().Init(source);
+                    }
+                }
+            }
         }
 
         // Loading into game
-        public static void DeserializeDungeon(
+        public static void DeserializeDungeonToPlayable(
             string json,
             string exitScene,
             DungeonInfo infoTarget,

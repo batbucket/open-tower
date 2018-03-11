@@ -58,7 +58,7 @@ public class Deserializer : MonoBehaviour {
         DungeonManager dungeon = DungeonManager.Instance;
         DungeonInfo info = DungeonInfo.Instance;
 
-        SerializationUtil.DeserializeDungeon(
+        SerializationUtil.DeserializeDungeonToPlayable(
             json,
             exitScene,
             info,

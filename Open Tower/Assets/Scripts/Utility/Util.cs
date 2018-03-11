@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public static class Util {
     private static readonly bool IS_DEBUG = true && Application.isEditor;
 
-    public static void Assert(bool expression, string format, params object[] args) {
-        if (IS_DEBUG && !expression) {
+    public static void Assert(bool expression, string format = null, params object[] args) {
+        if (IS_DEBUG && !expression && !string.IsNullOrEmpty(format)) {
             throw new UnityException(string.Format(format, args));
         }
     }

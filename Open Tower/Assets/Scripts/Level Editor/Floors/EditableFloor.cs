@@ -13,8 +13,4 @@ public class EditableFloor : MonoBehaviour {
             floorDisplay.text = value.ToString();
         }
     }
-
-    public void Init(int floor) {
-        FloorNumber = floor;
-    }
 }

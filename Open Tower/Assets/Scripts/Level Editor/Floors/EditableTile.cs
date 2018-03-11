@@ -23,6 +23,7 @@ public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
 
     public void SetButtonInteractivity(bool isInteractive) {
+        image.color = isInteractive ? Color.white : Color.grey;
         this.isInteractive = isInteractive;
     }
 
@@ -46,6 +47,9 @@ public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData) {
+        if (!isInteractive) {
+            return;
+        }
         image.color = Color.white;
     }
 

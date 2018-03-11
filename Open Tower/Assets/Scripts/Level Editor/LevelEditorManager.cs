@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Scripts.LevelEditor.Serialization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -37,6 +38,27 @@ public class LevelEditorManager : MonoBehaviour {
     [SerializeField]
     private Panel[] allPanels;
 
+    [SerializeField]
+    private GameObject boosterPrefab;
+
+    [SerializeField]
+    private GameObject enemyPrefab;
+
+    [SerializeField]
+    private GameObject floorPrefab;
+
+    [SerializeField]
+    private GameObject floorListingPrefab;
+
+    [SerializeField]
+    private GameObject elementPrefab;
+
+    [SerializeField]
+    private GameObject upStairsPrefab;
+
+    [SerializeField]
+    private GameObject downStairsPrefab;
+
     public Element Selected;
 
     public void SetTab(int modeIndex) {
@@ -59,9 +81,22 @@ public class LevelEditorManager : MonoBehaviour {
 
     private void Start() {
         SetTab(current);
-        floorsPanel.AddFloor();
 
         LevelInfo info = LevelInfo.Instance;
+        if (!string.IsNullOrEmpty(info.JSON)) {
+            SerializationUtil.DeserializeDungeonToEditor(
+                info.JSON,
+                entitiesPanel,
+                boosterPrefab,
+                enemyPrefab,
+                playerPanel,
+                floorsPanel,
+                floorListingPrefab,
+                floorPrefab,
+                elementPrefab,
+                upStairsPrefab,
+                downStairsPrefab);
+        }
         if (info.IsLevelCleared) {
             info.IsLevelCleared = false;
             levelSubmission.OpenWindow();

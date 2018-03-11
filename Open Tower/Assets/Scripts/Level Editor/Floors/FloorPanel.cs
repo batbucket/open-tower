@@ -65,6 +65,12 @@ public class FloorPanel : Panel {
         }
     }
 
+    public Transform FloorListingParent {
+        get {
+            return floorListingParent;
+        }
+    }
+
     public bool CanGoUp(int index) {
         return index < Listings.Count - 1;
     }
@@ -76,6 +82,12 @@ public class FloorPanel : Panel {
     public bool IsFloorContainsType<T>(int indexToCheck, TileType type) where T : Element {
         EditableFloor floorToCheck = GetFloorAtIndex(indexToCheck);
         return floorToCheck.GetComponentsInChildren<T>(true).Any(e => e.IsType(type));
+    }
+
+    public void SetFloorEditability(bool isEditable) {
+        foreach (EditableTile tile in floorParent.GetComponentsInChildren<EditableTile>(true)) {
+            tile.SetButtonInteractivity(isEditable);
+        }
     }
 
     public void AddFloor() {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Scripts.LevelEditor.Serialization;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -139,6 +140,9 @@ public class AddableTile : MonoBehaviour {
             Util.Assert(tile == TileType.BOOSTER, "Expected Booster type, was {0} instead.", this.tile);
             return int.Parse(boostedAmount.text);
         }
+        set {
+            boostedAmount.text = value.ToString();
+        }
     }
 
     public int SpriteID {
@@ -176,6 +180,26 @@ public class AddableTile : MonoBehaviour {
         get {
             return FloorPanel.Selected.Associated.GetComponentsInChildren<Element>(true).Where(e => e.IsSource(this));
         }
+    }
+
+    public void InitEnemy(int life, int power, int defense, int stars) {
+        Util.Assert(this.TileType == TileType.ENEMY);
+        this.life.text = life.ToString();
+        this.power.text = power.ToString();
+        this.defense.text = defense.ToString();
+        this.experience.text = stars.ToString();
+    }
+
+    public void SetSprite(int id, AddableType type) {
+        Util.Assert(type == AddableType.BOOSTER || type == AddableType.ENEMY);
+        Sprite sprite = null;
+        if (type == AddableType.BOOSTER) {
+            sprite = SpriteList.GetBooster(id);
+        } else { // == Enemy
+            sprite = SpriteList.GetEnemy(id);
+        }
+        this.image.sprite = sprite;
+        this.spriteID = id;
     }
 
     // Toggle through all boostable stats

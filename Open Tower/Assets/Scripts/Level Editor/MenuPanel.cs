@@ -30,6 +30,9 @@ public class MenuPanel : Panel {
     [SerializeField]
     private PlayerPanel player;
 
+    [SerializeField]
+    private FloorPanel floor;
+
     private bool isLevelValidated;
 
     public void CheckIfLevelIsValid() {
@@ -54,17 +57,11 @@ public class MenuPanel : Panel {
 
     public override void OnEnter() {
         isLevelValidated = false;
-        SetFloorEditability(false);
+        floor.SetFloorEditability(false);
     }
 
     public override void OnExit() {
-        SetFloorEditability(true);
-    }
-
-    private void SetFloorEditability(bool isEditable) {
-        foreach (EditableTile tile in floorsParent.GetComponentsInChildren<EditableTile>(true)) {
-            tile.SetButtonInteractivity(isEditable);
-        }
+        floor.SetFloorEditability(true);
     }
 
     private bool IsStairsValid() {
