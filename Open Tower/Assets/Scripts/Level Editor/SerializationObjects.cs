@@ -26,6 +26,9 @@ namespace Scripts.LevelEditor.Serialization {
             AuthorName = authorName;
             AuthorID = authorID;
             DateCreated = dateCreated;
+            UsersAttempted = new string[0];
+            UsersCompleted = new string[0];
+            Leaderboards = new Score[0];
         }
     }
 

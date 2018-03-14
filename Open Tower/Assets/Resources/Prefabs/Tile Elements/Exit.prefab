@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   destinationScene: Scene_Test
-  trophyID: 88803
+  trophyID: 0
 --- !u!212 &212512975729498696
 SpriteRenderer:
   m_ObjectHideFlags: 1

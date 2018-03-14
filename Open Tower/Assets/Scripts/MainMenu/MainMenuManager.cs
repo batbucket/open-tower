@@ -27,7 +27,8 @@ public class MainMenuManager : MonoBehaviour {
     }
 
     private void Update() {
-        bool isUserAuthenticated = GameJolt.API.Manager.Instance.CurrentUser.IsAuthenticated;
+        bool isUserAuthenticated = GameJolt.API.Manager.Instance.CurrentUser != null
+            && GameJolt.API.Manager.Instance.CurrentUser.IsAuthenticated;
         signIn.interactable = !isUserAuthenticated;
         foreach (Button button in requiresSignIn) {
             button.interactable = isUserAuthenticated;

@@ -10,6 +10,9 @@ using UnityEngine.UI;
 public class LevelSubmissionManager : MonoBehaviour {
 
     [SerializeField]
+    private float warningAppearDuration = 0.05f;
+
+    [SerializeField]
     private float warningFadeWaitDuration = 5f;
 
     [SerializeField]
@@ -87,7 +90,9 @@ public class LevelSubmissionManager : MonoBehaviour {
             warning = "Name is too short.";
         } else if (IsNameContainsBadWords()) {
             warning = "Name contains forbidden words.";
-        } else {
+        }
+
+        if (string.IsNullOrEmpty(warning)) {
             GameJolt.API.DataStore.GetKeys(true, keys => {
                 HashSet<string> keySet = new HashSet<string>(keys);
                 if (keySet.Contains(nameToCheck)) {
@@ -99,10 +104,11 @@ public class LevelSubmissionManager : MonoBehaviour {
                         onAvailable();
                     }
                 }
+                SetWarning(warning, isGreen);
             });
+        } else {
+            SetWarning(warning, isGreen);
         }
-
-        SetWarning(warning, isGreen);
     }
 
     private void Start() {
@@ -123,7 +129,7 @@ public class LevelSubmissionManager : MonoBehaviour {
         nameAvailable.text = warning;
         nameAvailable.color = isGreen ? Color.green : Color.red;
         if (warningRoutine != null) {
-            StopCoroutine(warning);
+            StopCoroutine(warningRoutine);
         }
         warningRoutine = StartCoroutine(WarningFade());
     }
@@ -131,7 +137,13 @@ public class LevelSubmissionManager : MonoBehaviour {
     private IEnumerator WarningFade() {
         float timer = 0;
         Color startColor = nameAvailable.color;
+        while ((timer += Time.deltaTime) < warningAppearDuration) {
+            nameAvailable.color = Color.Lerp(Color.clear, startColor, timer / warningAppearDuration);
+            yield return null;
+        }
+        nameAvailable.color = startColor;
         yield return new WaitForSeconds(warningFadeWaitDuration);
+        timer = 0;
         while ((timer += Time.deltaTime) < warningFadeDuration) {
             nameAvailable.color = Color.Lerp(startColor, Color.clear, timer / warningFadeDuration);
             yield return null;
