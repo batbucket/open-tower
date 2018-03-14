@@ -38,8 +38,8 @@ public class LevelListing : MonoBehaviour {
             authorAndLeader.text = string.Format("<color=yellow>{0}</color>\n{1}", upload.AuthorName, leader);
 
             DateTime date = DateTime.Parse(upload.DateCreated);
-            string truncatedYear = date.ToString("yy");
-            dateCreated.text = string.Format("{0}/{1}/{2}\n{3}", date.Day, date.Month, truncatedYear, date.Hour, date.Minute);
+            string dateString = date.ToString("MM/dd/yy\nhh:mm tt");
+            dateCreated.text = dateString;
 
             int clearCount = upload.UsersAttempted.Length;
             int tryCount = upload.UsersCompleted.Length;
