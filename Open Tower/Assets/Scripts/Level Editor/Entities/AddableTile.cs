@@ -8,21 +8,6 @@ public class AddableTile : MonoBehaviour {
     private const int MAX_VALUE_FOR_ENEMY_STATS = 99999;
     private const int MAX_VALUE_FOR_BOOSTER_STATS = 9999;
 
-    // Static types have no customizable values
-    private static readonly HashSet<TileType> STATIC_TYPES = new HashSet<TileType>() {
-        TileType.WALL,
-        TileType.UP_STAIRS,
-        TileType.DOWN_STAIRS,
-        TileType.GOLD_KEY,
-        TileType.BLUE_KEY,
-        TileType.RED_KEY,
-        TileType.PLAYER,
-        TileType.EXIT,
-        TileType.GOLD_DOOR,
-        TileType.BLUE_DOOR,
-        TileType.RED_DOOR
-    };
-
     private static readonly IDictionary<int, StatType> MAPPING = new Dictionary<int, StatType>() {
         { 0, StatType.LIFE },
         { 1, StatType.POWER },
@@ -84,7 +69,7 @@ public class AddableTile : MonoBehaviour {
 
     public bool IsStaticTileType {
         get {
-            return STATIC_TYPES.Contains(tile);
+            return SerializationUtil.IsStaticType(this.TileType);
         }
     }
 

@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class LevelListing : MonoBehaviour {
 
     [SerializeField]
+    private Color selectedColor;
+
+    [SerializeField]
     private Text levelName;
 
     [SerializeField]
@@ -22,29 +25,50 @@ public class LevelListing : MonoBehaviour {
     [SerializeField]
     private Image background;
 
-    [SerializeField]
-    private string levelJson;
+    private Upload upload;
 
-    public void Init(string key) {
-        GameJolt.API.DataStore.Get(key, true, json => {
-            Upload upload = JsonUtility.FromJson<Upload>(json);
-            levelName.text = upload.LevelName;
-            string leader;
-            if (upload.Leaderboards.Length > 0) {
-                leader = upload.Leaderboards[0].User;
-            } else {
-                leader = "<color=grey>Nobody!</color>";
-            }
-            authorAndLeader.text = string.Format("<color=yellow>{0}</color>\n{1}", upload.AuthorName, leader);
+    private Color normalColor;
 
-            DateTime date = DateTime.Parse(upload.DateCreated);
-            string dateString = date.ToString("MM/dd/yy\nhh:mm tt");
-            dateCreated.text = dateString;
+    public Upload Upload {
+        get {
+            return upload;
+        }
+    }
 
-            int clearCount = upload.UsersAttempted.Length;
-            int tryCount = upload.UsersCompleted.Length;
+    public void SelectThisLevel() {
+        LevelBrowserManager.Instance.SelectLevel(this);
+    }
 
-            clearsAndTries.text = string.Format("{0}\n<color=grey>{1}</color>", clearCount, tryCount);
-        });
+    public void Init(string uploadJson) {
+        this.upload = JsonUtility.FromJson<Upload>(uploadJson);
+        levelName.text = upload.LevelName;
+        string leader;
+        if (upload.Leaderboards.Length > 0) {
+            leader = upload.Leaderboards[0].User;
+        } else {
+            leader = "<color=grey>Nobody!</color>";
+        }
+        authorAndLeader.text = string.Format("<color=yellow>{0}</color>\n{1}", upload.AuthorName, leader);
+
+        DateTime date = DateTime.Parse(upload.DateCreated);
+        string dateString = date.ToString("MM/dd/yy\nhh:mm tt");
+        dateCreated.text = dateString;
+
+        int clearCount = upload.UsersAttempted.Length;
+        int tryCount = upload.UsersCompleted.Length;
+
+        clearsAndTries.text = string.Format("{0}\n<color=grey>{1}</color>", clearCount, tryCount);
+    }
+
+    private void Start() {
+        this.normalColor = background.color;
+    }
+
+    private void Update() {
+        Color color = normalColor;
+        if (LevelBrowserManager.Instance.IsLevelBeingSelected(this)) {
+            color = selectedColor;
+        }
+        background.color = color;
     }
 }

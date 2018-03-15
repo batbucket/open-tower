@@ -7,7 +7,33 @@ using UnityEngine.UI;
 namespace Scripts.LevelEditor.Serialization {
 
     public static class SerializationUtil {
-        private const int NO_ELEMENT = -1;
+        public const int NO_ELEMENT = -1;
+
+        // Util
+        // Static types have no customizable values
+        private static readonly HashSet<TileType> STATIC_TYPES = new HashSet<TileType>() {
+                TileType.WALL,
+                TileType.UP_STAIRS,
+                TileType.DOWN_STAIRS,
+                TileType.GOLD_KEY,
+                TileType.BLUE_KEY,
+                TileType.RED_KEY,
+                TileType.PLAYER,
+                TileType.EXIT,
+                TileType.GOLD_DOOR,
+                TileType.BLUE_DOOR,
+                TileType.RED_DOOR
+            };
+
+        public static int StaticTypeCount {
+            get {
+                return STATIC_TYPES.Count;
+            }
+        }
+
+        public static bool IsStaticType(TileType type) {
+            return STATIC_TYPES.Contains(type);
+        }
 
         // Saving
 
