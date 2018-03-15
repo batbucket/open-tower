@@ -7,7 +7,7 @@ public class LevelInfo : MonoBehaviour {
     private static LevelInfo _instance;
 
     [SerializeField]
-    private Dungeon dungeon;
+    private LevelInfoMode mode;
 
     [SerializeField]
     private string json;
@@ -49,7 +49,8 @@ public class LevelInfo : MonoBehaviour {
         }
     }
 
-    public void Init(string json, string exitScene) {
+    public void Init(LevelInfoMode mode, string json, string exitScene) {
+        this.mode = mode;
         this.json = json;
         this.exitScene = exitScene;
     }

@@ -19,9 +19,13 @@ public class InspectorManager : MonoBehaviour {
     [SerializeField]
     private Transform leaderboardParent;
 
+    [SerializeField]
+    private Transform panel;
+
     private PreviewElement[] elements;
 
     public void SetLevel(Upload upload) {
+        panel.gameObject.SetActive(true);
         nameDisplay.text = string.Format("<b><color=yellow>{0}</color></b>'s\n{1}", upload.AuthorName, upload.LevelName);
 
         // setup leaderboard

@@ -242,7 +242,7 @@ namespace Scripts.LevelEditor.Serialization {
             Floor[] floors = dungeon.Floors;
             StartingValues startingValues = dungeon.StartingValues;
 
-            infoTarget.Init("?-?", "Custom Level", exitScene);
+            infoTarget.Init("?-?", "Custom", exitScene);
 
             for (int i = 0; i < floors.Length; i++) {
                 GameObject floor = GameObject.Instantiate(floorPrefab, floorsParent.transform);
