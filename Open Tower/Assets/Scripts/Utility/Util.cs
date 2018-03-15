@@ -25,6 +25,14 @@ public static class Util {
         }
     }
 
+    public static IEnumerator Lerp(float duration, Action<float> perStep) {
+        float timer = 0;
+        while ((timer += Time.deltaTime) < duration) {
+            perStep(timer / duration);
+            yield return null;
+        }
+    }
+
     public static void ClampField(InputField field, int min, int max) {
         int value = 0;
         int.TryParse(field.text, out value);

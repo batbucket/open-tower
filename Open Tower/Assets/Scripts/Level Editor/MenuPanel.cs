@@ -51,7 +51,13 @@ public class MenuPanel : Panel {
 
     public void StartPlaytest() {
         string json = SerializationUtil.GetSerializedDungeon(floorsParent, entities, player);
-        LevelInfo.Instance.Init(LevelInfoMode.PLAY_TEST, json, "Level_Editor");
+        LevelInfo.Instance.Init(LevelInfoMode.PLAY_TEST,
+                new Upload(json,
+                "Playtest",
+                GameJolt.API.Manager.Instance.CurrentUser.Name,
+                GameJolt.API.Manager.Instance.CurrentUser.ID,
+                string.Empty),
+            "Level_Editor");
         SceneManager.LoadScene("Custom_Level");
     }
 

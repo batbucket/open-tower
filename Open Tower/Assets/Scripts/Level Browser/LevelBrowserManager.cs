@@ -42,7 +42,7 @@ public class LevelBrowserManager : MonoBehaviour {
 
     public void PlaySelectedLevel() {
         if (selected != null) {
-            LevelInfo.Instance.Init(LevelInfoMode.USER_GENERATED_LEVEL, selected.Upload.LevelJson, "Level_Browser");
+            LevelInfo.Instance.Init(LevelInfoMode.USER_GENERATED_LEVEL, selected.Upload, "Level_Browser");
             SceneManager.LoadScene("Custom_Level");
         }
     }

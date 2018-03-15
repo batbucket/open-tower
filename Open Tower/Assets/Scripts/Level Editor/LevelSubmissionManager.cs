@@ -57,7 +57,12 @@ public class LevelSubmissionManager : MonoBehaviour {
                 SetWarning("Attempting to upload...", true);
                 GameJolt.API.Misc.GetTime(dateTime => {
                     User user = GameJolt.API.Manager.Instance.CurrentUser;
-                    Upload upload = new Upload(LevelInfo.Instance.JSON, nameToCheck, user.Name, user.ID, dateTime.ToString());
+                    Upload upload = new Upload(
+                        LevelInfo.Instance.Upload.LevelJson,
+                        nameToCheck,
+                        user.Name,
+                        user.ID,
+                        dateTime.ToString());
                     GameJolt.API.DataStore.Set(nameToCheck, JsonUtility.ToJson(upload, true), true, isSuccess => {
                         if (isSuccess) {
                             ReturnToEditor();

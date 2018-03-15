@@ -48,9 +48,12 @@ public class Deserializer : MonoBehaviour {
     [SerializeField]
     private GameObject boosterPrefab;
 
+    private Upload upload;
+
     private void Awake() {
         LevelInfo info = LevelInfo.Instance;
-        Init(info.JSON, info.ExitScene);
+        this.upload = info.Upload;
+        Init(upload.LevelJson, info.ExitScene);
     }
 
     private void Init(string json, string exitScene) {

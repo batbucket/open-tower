@@ -10,7 +10,7 @@ public class LevelInfo : MonoBehaviour {
     private LevelInfoMode mode;
 
     [SerializeField]
-    private string json;
+    private Upload upload;
 
     [SerializeField]
     private string exitScene;
@@ -27,9 +27,15 @@ public class LevelInfo : MonoBehaviour {
         }
     }
 
-    public string JSON {
+    public LevelInfoMode Mode {
         get {
-            return json;
+            return mode;
+        }
+    }
+
+    public Upload Upload {
+        get {
+            return upload;
         }
     }
 
@@ -49,9 +55,9 @@ public class LevelInfo : MonoBehaviour {
         }
     }
 
-    public void Init(LevelInfoMode mode, string json, string exitScene) {
+    public void Init(LevelInfoMode mode, Upload upload, string exitScene) {
         this.mode = mode;
-        this.json = json;
+        this.upload = upload;
         this.exitScene = exitScene;
     }
 }

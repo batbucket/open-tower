@@ -83,9 +83,9 @@ public class LevelEditorManager : MonoBehaviour {
         SetTab(current);
 
         LevelInfo info = LevelInfo.Instance;
-        if (!string.IsNullOrEmpty(info.JSON)) {
+        if (!string.IsNullOrEmpty(info.Upload.LevelJson)) {
             SerializationUtil.DeserializeDungeonToEditor(
-                info.JSON,
+                info.Upload.LevelJson,
                 entitiesPanel,
                 boosterPrefab,
                 enemyPrefab,
