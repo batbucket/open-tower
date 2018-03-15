@@ -78,9 +78,9 @@ public class ResultsManager : MonoBehaviour {
         foreach (GameObject display in stats) {
             yield return WaitThenDisplay(0.25f, display);
         }
-        yield return AnimateScore(time, (int)Time.timeSinceLevelLoad, 0.75f);
-        yield return AnimateScore(steps, Player.Instance.Stats.StepCount, 0.75f);
-        yield return AnimateScore(rank, 100, 0.75f);
+        yield return AnimateScore(time, (int)Time.timeSinceLevelLoad, 0.25f);
+        yield return AnimateScore(steps, Player.Instance.Stats.StepCount, 0.25f);
+        yield return AnimateScore(rank, 100, 0.25f);
         yield return WaitThenDisplay(0.5f, exit.gameObject);
         exit.gameObject.SetActive(true);
     }
