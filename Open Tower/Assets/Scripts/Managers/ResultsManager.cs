@@ -74,6 +74,7 @@ public class ResultsManager : MonoBehaviour {
         yield return Util.Lerp(successFadeInDuration, t => success.color = Color.Lerp(Color.clear, Color.white, t));
         window.gameObject.SetActive(true);
         yield return Util.Lerp(windowTransitionDuration, t => window.transform.localScale = Vector2.Lerp(Vector2.up, Vector2.one, t));
+        exit.gameObject.SetActive(true);
         yield return WaitThenDisplay(1f, results.gameObject);
         foreach (GameObject display in stats) {
             yield return WaitThenDisplay(0.25f, display);
@@ -81,7 +82,6 @@ public class ResultsManager : MonoBehaviour {
         yield return AnimateScore(time, (int)Time.timeSinceLevelLoad, 0.25f);
         yield return AnimateScore(steps, Player.Instance.Stats.StepCount, 0.25f);
         yield return AnimateScore(rank, 100, 0.25f);
-        yield return WaitThenDisplay(0.5f, exit.gameObject);
         exit.gameObject.SetActive(true);
     }
 
