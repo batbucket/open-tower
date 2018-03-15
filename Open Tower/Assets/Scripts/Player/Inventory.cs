@@ -44,11 +44,22 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+    public void Init(int gold, int blue, int red) {
+        this.yellow = gold;
+        this.blue = blue;
+        this.red = red;
+        AssertValuesAreValid();
+    }
+
     private void AssertKeyParameterIsValid(int value) {
         Util.Assert(value >= 0, "Invalid parameter {0}", value);
     }
 
     private void Start() {
+        AssertValuesAreValid();
+    }
+
+    private void AssertValuesAreValid() {
         AssertKeyParameterIsValid(yellow);
         AssertKeyParameterIsValid(blue);
         AssertKeyParameterIsValid(red);
