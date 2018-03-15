@@ -43,8 +43,8 @@ public class LevelListing : MonoBehaviour {
         this.upload = JsonUtility.FromJson<Upload>(uploadJson);
         levelName.text = upload.LevelName;
         string leader;
-        if (upload.Leaderboards.Length > 0) {
-            leader = upload.Leaderboards[0].User;
+        if (upload.Leaderboards.Count > 0) {
+            leader = upload.Leaderboards[0].Username;
         } else {
             leader = "<color=grey>Nobody!</color>";
         }
@@ -54,8 +54,8 @@ public class LevelListing : MonoBehaviour {
         string dateString = date.ToString("MM/dd/yy\nhh:mm tt");
         dateCreated.text = dateString;
 
-        int clearCount = upload.UsersAttempted.Length;
-        int tryCount = upload.UsersCompleted.Length;
+        int clearCount = upload.AttemptedUserIds.Count;
+        int tryCount = upload.CompletedUserIds.Count;
 
         clearsAndTries.text = string.Format("{0}\n<color=grey>{1}</color>", clearCount, tryCount);
     }

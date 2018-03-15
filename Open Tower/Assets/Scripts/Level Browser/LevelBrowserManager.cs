@@ -42,6 +42,10 @@ public class LevelBrowserManager : MonoBehaviour {
 
     public void PlaySelectedLevel() {
         if (selected != null) {
+            int currentUserID = GameJolt.API.Manager.Instance.CurrentUser.ID;
+            if (currentUserID != selected.Upload.AuthorID) {
+                selected.Upload.AttemptedUserIds.Add(currentUserID);
+            }
             LevelInfo.Instance.Init(LevelInfoMode.USER_GENERATED_LEVEL, selected.Upload, "Level_Browser");
             SceneManager.LoadScene("Custom_Level");
         }

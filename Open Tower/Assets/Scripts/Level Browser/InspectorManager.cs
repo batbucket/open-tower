@@ -30,13 +30,13 @@ public class InspectorManager : MonoBehaviour {
 
         // setup leaderboard
         Util.KillAllChildren(leaderboardParent);
-        Score[] leaderboard = upload.Leaderboards;
-        for (int i = 0; i < leaderboard.Length; i++) {
+        List<Score> leaderboard = upload.Leaderboards;
+        for (int i = 0; i < leaderboard.Count; i++) {
             Score score = leaderboard[i];
             Instantiate(leaderboardListingPrefab, leaderboardParent)
                 .Init(null,
                 i,
-                score.User,
+                score.Username,
                 score.Steps,
                 score.DateAchieved);
         }

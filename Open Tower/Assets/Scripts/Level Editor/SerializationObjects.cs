@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Scripts.LevelEditor.Serialization {
 
@@ -16,9 +17,9 @@ namespace Scripts.LevelEditor.Serialization {
         public string AuthorName;
         public int AuthorID;
         public string DateCreated;
-        public string[] UsersAttempted;
-        public string[] UsersCompleted;
-        public Score[] Leaderboards;
+        public List<int> AttemptedUserIds; // gamejolt ids
+        public List<int> CompletedUserIds; // gamejolt ids
+        public List<Score> Leaderboards;
 
         public Upload(string levelJson, string levelName, string authorName, int authorID, string dateCreated) : this() {
             LevelJson = levelJson;
@@ -26,22 +27,34 @@ namespace Scripts.LevelEditor.Serialization {
             AuthorName = authorName;
             AuthorID = authorID;
             DateCreated = dateCreated;
-            UsersAttempted = new string[0];
-            UsersCompleted = new string[0];
-            Leaderboards = new Score[0];
+            AttemptedUserIds = new List<int>();
+            CompletedUserIds = new List<int>();
+            Leaderboards = new List<Score>();
         }
     }
 
     [Serializable]
-    public struct Score {
+    public class Score : IComparable<Score> {
         public int Steps;
         public string DateAchieved;
-        public string User;
+        public string Username;
+        public int UserID;
 
-        public Score(int steps, string dateAchieved, string user) {
+        public Score(int steps, string dateAchieved, string user, int userID) {
             Steps = steps;
             DateAchieved = dateAchieved;
-            User = user;
+            Username = user;
+            UserID = userID;
+        }
+
+        public int CompareTo(Score other) {
+            DateTime otherDate = DateTime.Parse(other.DateAchieved);
+            DateTime ourDate = DateTime.Parse(this.DateAchieved);
+            int stepComparison = this.Steps.CompareTo(other.Steps);
+            if (stepComparison == 0) {
+                return ourDate.CompareTo(otherDate);
+            }
+            return stepComparison;
         }
     }
 
