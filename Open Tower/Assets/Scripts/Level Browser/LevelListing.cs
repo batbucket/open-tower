@@ -48,14 +48,17 @@ public class LevelListing : MonoBehaviour {
         } else {
             leader = "<color=grey>Nobody!</color>";
         }
-        authorAndLeader.text = string.Format("<color=yellow>{0}</color>\n{1}", upload.AuthorName, leader);
+
+        GameJolt.API.Users.Get(upload.AuthorID, user => {
+            authorAndLeader.text = string.Format("<color=yellow>{0}</color>\n{1}", user.Name, leader);
+        });
 
         DateTime date = DateTime.Parse(upload.DateCreated);
         string dateString = date.ToString("MM/dd/yy\nhh:mm tt");
         dateCreated.text = dateString;
 
-        int clearCount = upload.AttemptedUserIds.Count;
-        int tryCount = upload.CompletedUserIds.Count;
+        int tryCount = upload.AttemptedUserIds.Count;
+        int clearCount = upload.CompletedUserIds.Count;
 
         clearsAndTries.text = string.Format("{0}\n<color=grey>{1}</color>", clearCount, tryCount);
     }

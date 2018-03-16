@@ -20,6 +20,9 @@ public class LevelBrowserManager : MonoBehaviour {
     [SerializeField]
     private Button playLevel;
 
+    [SerializeField]
+    private Text username;
+
     private LevelListing selected;
 
     public static LevelBrowserManager Instance {
@@ -43,9 +46,8 @@ public class LevelBrowserManager : MonoBehaviour {
     public void PlaySelectedLevel() {
         if (selected != null) {
             int currentUserID = GameJolt.API.Manager.Instance.CurrentUser.ID;
-            if (currentUserID != selected.Upload.AuthorID) {
-                selected.Upload.AttemptedUserIds.Add(currentUserID);
-            }
+            selected.Upload.AddToAttempt(currentUserID);
+            selected.Upload.UpdateDataStore();
             LevelInfo.Instance.Init(LevelInfoMode.USER_GENERATED_LEVEL, selected.Upload, "Level_Browser");
             SceneManager.LoadScene("Custom_Level");
         }
@@ -59,6 +61,7 @@ public class LevelBrowserManager : MonoBehaviour {
         GameJolt.API.DataStore.GetKeys(true, keys => {
             StartCoroutine(InitLevelListing(keys));
         });
+        username.text = GameJolt.API.Manager.Instance.CurrentUser.Name;
     }
 
     private IEnumerator InitLevelListing(string[] keys) {
@@ -73,6 +76,6 @@ public class LevelBrowserManager : MonoBehaviour {
     }
 
     private void Update() {
-        playLevel.interactable = (selected != null);
+        playLevel.interactable = (selected != null && GameJolt.API.Manager.Instance.CurrentUser != null);
     }
 }

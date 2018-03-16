@@ -55,6 +55,12 @@ public class ResultsManager : MonoBehaviour {
     [SerializeField]
     private AudioClip scoreSound;
 
+    [SerializeField]
+    private Text pastStepsLabel;
+
+    [SerializeField]
+    private Text pastRankingLabel;
+
     private string destination;
 
     public void ShowResults(string destination) {
@@ -74,7 +80,7 @@ public class ResultsManager : MonoBehaviour {
     private IEnumerator ResultsAnim() {
         LevelInfo level = LevelInfo.Instance;
 
-        success.text = string.Format("<color=yellow>{1}</color>\nwas cleared!", level.Upload.AuthorName, level.Upload.LevelName);
+        success.text = string.Format("<color=yellow>{0}</color>\nwas cleared!", level.Upload.LevelName);
         success.gameObject.SetActive(true);
         yield return Util.Lerp(successFadeInDuration, t => success.color = Color.Lerp(Color.clear, Color.white, t));
         window.gameObject.SetActive(true);
@@ -111,7 +117,9 @@ public class ResultsManager : MonoBehaviour {
     }
 
     private IEnumerator AnimateRank(Upload upload, int stepCount) {
-        int rankNumber = -1;
+        int calculatedRank = -1;
+        Score previousBestScore = null;
+        int previousBestRank = -1;
         bool isRankLoaded = false;
         List<Score> leaderboard = upload.Leaderboards;
         GameJolt.API.Objects.User currentUser = GameJolt.API.Manager.Instance.CurrentUser;
@@ -119,42 +127,20 @@ public class ResultsManager : MonoBehaviour {
         bool isUserAuthor = (currentUser.ID == upload.AuthorID);
         GameJolt.API.Misc.GetTime(dateTime => {
             isRankLoaded = true;
-            Score scoreToAdd = new Score(stepCount, dateTime.ToString(), currentUser.Name, currentUser.ID);
-            bool isInserted = false;
-
-            // Update successful attempts
-            if (!isUserAuthor && !upload.CompletedUserIds.Contains(currentUser.ID)) {
-                upload.CompletedUserIds.Add(currentUser.ID);
-            }
-
-            // Leaderboard updating
-
-            // Find existing score by user
-            Score existingRecord = leaderboard.Where(score => score.UserID == scoreToAdd.UserID).FirstOrDefault();
-
-            if (existingRecord == null) { // Either count == 0 or needs to be appended to end
-                rankNumber = leaderboard.Count;
-                if (!isUserAuthor) {
-                    leaderboard.Add(scoreToAdd);
-                }
-            } else if (existingRecord.CompareTo(scoreToAdd) < 0) { // existing record is not better
-                // try to insert
-                for (int i = 0; i < leaderboard.Count && !isInserted; i++) {
-                    Score current = leaderboard[i];
-                    if (scoreToAdd.CompareTo(current) < 0) {
-                        if (!isUserAuthor) {
-                            leaderboard.Insert(i, scoreToAdd);
-                        }
-                        rankNumber = i;
-                        isInserted = true;
-                    }
-                }
-            }
-            GameJolt.API.DataStore.Set(upload.LevelName, JsonUtility.ToJson(upload), true, isSuccess => {
-                isRankLoaded = isSuccess;
+            upload.AddToLeaderboard(currentUser, stepCount, dateTime, out calculatedRank, out previousBestScore, out previousBestRank, isSuccess => {
+                isRankLoaded = true;
             });
         });
         yield return new WaitUntil(() => isRankLoaded);
-        yield return AnimateScore(rank, rankNumber, 0.35f);
+        yield return AnimateScore(rank, calculatedRank, 0.35f);
+
+        if (previousBestScore != null) {
+            pastStepsLabel.gameObject.SetActive(true);
+            pastStepsLabel.color = Color.yellow;
+            pastStepsLabel.text = string.Format("Old steps: {0}", previousBestScore.Steps);
+            pastRankingLabel.gameObject.SetActive(true);
+            pastRankingLabel.color = Color.yellow;
+            pastRankingLabel.text = string.Format("Old rank: {0}", previousBestRank);
+        }
     }
 }

@@ -60,7 +60,6 @@ public class LevelSubmissionManager : MonoBehaviour {
                     Upload upload = new Upload(
                         LevelInfo.Instance.Upload.LevelJson,
                         nameToCheck,
-                        user.Name,
                         user.ID,
                         dateTime.ToString());
                     GameJolt.API.DataStore.Set(nameToCheck, JsonUtility.ToJson(upload, true), true, isSuccess => {
