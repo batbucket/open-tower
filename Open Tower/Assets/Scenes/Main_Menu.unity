@@ -1590,4 +1590,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   signIn: {fileID: 735224463}
-  requiresSignIn: []
+  requiresSignIn:
+  - {fileID: 468867816}
+  - {fileID: 70312873}

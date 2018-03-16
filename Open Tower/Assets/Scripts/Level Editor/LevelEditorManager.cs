@@ -83,7 +83,9 @@ public class LevelEditorManager : MonoBehaviour {
         SetTab(current);
 
         LevelInfo info = LevelInfo.Instance;
-        if (!string.IsNullOrEmpty(info.Upload.LevelJson)) {
+        // if playtest mode not set, this level info can be from the level browser
+        // if you play a level browser game and then enter the level editor it'll mistakenly parse the browser game's json
+        if (info.Mode == LevelInfoMode.PLAY_TEST && !string.IsNullOrEmpty(info.Upload.LevelJson)) {
             SerializationUtil.DeserializeDungeonToEditor(
                 info.Upload.LevelJson,
                 entitiesPanel,

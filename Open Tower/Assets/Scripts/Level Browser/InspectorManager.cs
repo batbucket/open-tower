@@ -23,22 +23,31 @@ public class InspectorManager : MonoBehaviour {
     private Transform panel;
 
     private PreviewElement[] elements;
+    private Upload current;
 
     public void SetLevel(Upload upload) {
+        this.current = upload;
         panel.gameObject.SetActive(true);
-        nameDisplay.text = string.Format("<b><color=yellow>{0}</color></b>'s\n{1}", upload.AuthorName, upload.LevelName);
+        GameJolt.API.Users.Get(upload.AuthorID, user => {
+            nameDisplay.text = string.Format("<b><color=yellow>{0}</color></b>'s\n{1}", user.Name, upload.LevelName);
+        });
 
         // setup leaderboard
         Util.KillAllChildren(leaderboardParent);
         List<Score> leaderboard = upload.Leaderboards;
         for (int i = 0; i < leaderboard.Count; i++) {
             Score score = leaderboard[i];
-            Instantiate(leaderboardListingPrefab, leaderboardParent)
-                .Init(null,
-                i,
-                score.Username,
-                score.Steps,
-                score.DateAchieved);
+            int ranking = i; // prevent i from being passed into callback
+            GameJolt.API.Users.Get(score.UserID, user => {
+                if (upload.LevelName.Equals(current.LevelName)) { // prevent past level's listings from popping up if we've already switched to a new level
+                    Instantiate(leaderboardListingPrefab, leaderboardParent)
+                        .Init(user.Avatar,
+                        ranking,
+                        score.Username,
+                        score.Steps,
+                        score.DateAchieved);
+                }
+            });
         }
 
         // setup preview
