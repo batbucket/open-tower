@@ -48,6 +48,7 @@ public class ImportExportLevelManager : MonoBehaviour {
             try {
                 LevelEditorManager.Instance.ImportLevel(jsonField.text);
             } catch (Exception e) {
+                Debug.Log("invalid json detected");
                 Debug.Log(e);
             }
         }
