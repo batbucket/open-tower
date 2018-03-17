@@ -174,6 +174,7 @@ namespace Scripts.LevelEditor.Serialization {
             }
 
             AddableTile[] addableTiles = tileHolder.GetComponentsInChildren<AddableTile>();
+            FloorListing firstFloorListing = null;
 
             // setup floors
             Floor[] floors = dungeon.Floors;
@@ -186,7 +187,7 @@ namespace Scripts.LevelEditor.Serialization {
                 floorListing.Init(i, editableFloor);
 
                 if (i == 0) { // first floor
-                    floorPanel.Selected = floorListing;
+                    firstFloorListing = floorListing;
                 }
 
                 EditableTile[] tiles = floorGo.GetComponentsInChildren<EditableTile>(true);
@@ -212,6 +213,7 @@ namespace Scripts.LevelEditor.Serialization {
                     }
                 }
             }
+            floorPanel.Selected = firstFloorListing; // do this last so the other floors are properly disabled
         }
 
         // Loading into game

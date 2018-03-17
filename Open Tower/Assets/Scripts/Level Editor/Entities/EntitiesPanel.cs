@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,5 +48,14 @@ public class EntitiesPanel : Panel {
             StopCoroutine(current);
         }
         current = StartCoroutine(Util.AnimatedScrollToBottom(scroll));
+    }
+
+    public override void Clear() {
+        foreach (AddableTile tile in tileHolder.GetComponentsInChildren<AddableTile>(true)) {
+            if (!tile.IsStaticTileType) {
+                Destroy(tile.gameObject);
+            }
+        }
+        LastSelected = null;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public static class Util {
@@ -23,6 +24,11 @@ public static class Util {
                 GameObject.Destroy(child.gameObject);
             }
         }
+    }
+
+    public static void FocusOnField(InputField field) {
+        EventSystem.current.SetSelectedGameObject(field.gameObject, null);
+        field.ActivateInputField();
     }
 
     public static IEnumerator Lerp(float duration, Action<float> perStep) {

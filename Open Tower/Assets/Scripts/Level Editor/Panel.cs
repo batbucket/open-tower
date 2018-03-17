@@ -4,7 +4,7 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
-public class Panel : MonoBehaviour {
+public abstract class Panel : MonoBehaviour {
 
     [SerializeField]
     private TabMode mode;
@@ -31,4 +31,6 @@ public class Panel : MonoBehaviour {
 
     public virtual void OnExit() {
     }
+
+    public abstract void Clear();
 }

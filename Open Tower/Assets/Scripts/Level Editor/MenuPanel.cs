@@ -33,6 +33,12 @@ public class MenuPanel : Panel {
     [SerializeField]
     private FloorPanel floor;
 
+    [SerializeField]
+    private ImportExportLevelManager export;
+
+    [SerializeField]
+    private ImportExportLevelManager import;
+
     private bool isLevelValidated;
 
     public void CheckIfLevelIsValid() {
@@ -61,6 +67,18 @@ public class MenuPanel : Panel {
         SceneManager.LoadScene("Custom_Level");
     }
 
+    public void OpenImport() {
+        import.DoEnter();
+    }
+
+    public void OpenExport() {
+        export.DoEnter();
+    }
+
+    public void GoToScene(string sceneName) {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public override void OnEnter() {
         isLevelValidated = false;
         floor.SetFloorEditability(false);
@@ -86,5 +104,8 @@ public class MenuPanel : Panel {
 
     private void Update() {
         playtest.interactable = isLevelValidated;
+    }
+
+    public override void Clear() {
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Scripts.LevelEditor.Serialization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,6 +80,24 @@ public class LevelEditorManager : MonoBehaviour {
         this.current = mode;
     }
 
+    public void ImportLevel(string levelJson) {
+        foreach (Panel panel in allPanels) {
+            panel.Clear();
+        }
+        SerializationUtil.DeserializeDungeonToEditor(
+            levelJson,
+            entitiesPanel,
+            boosterPrefab,
+            enemyPrefab,
+            playerPanel,
+            floorsPanel,
+            floorListingPrefab,
+            floorPrefab,
+            elementPrefab,
+            upStairsPrefab,
+            downStairsPrefab);
+    }
+
     private void Start() {
         SetTab(current);
 
@@ -86,18 +105,7 @@ public class LevelEditorManager : MonoBehaviour {
         // if playtest mode not set, this level info can be from the level browser
         // if you play a level browser game and then enter the level editor it'll mistakenly parse the browser game's json
         if (info.Mode == LevelInfoMode.PLAY_TEST && !string.IsNullOrEmpty(info.Upload.LevelJson)) {
-            SerializationUtil.DeserializeDungeonToEditor(
-                info.Upload.LevelJson,
-                entitiesPanel,
-                boosterPrefab,
-                enemyPrefab,
-                playerPanel,
-                floorsPanel,
-                floorListingPrefab,
-                floorPrefab,
-                elementPrefab,
-                upStairsPrefab,
-                downStairsPrefab);
+            ImportLevel(info.Upload.LevelJson);
         }
         if (info.IsLevelCleared) {
             info.IsLevelCleared = false;

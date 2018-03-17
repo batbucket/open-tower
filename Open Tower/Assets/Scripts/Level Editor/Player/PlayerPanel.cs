@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerPanel : Panel {
     private const int MAX_VALUE = 99999;
+    private static PlayerPanel _instance;
 
     [SerializeField]
     private InputField life;
@@ -26,6 +28,15 @@ public class PlayerPanel : Panel {
 
     [SerializeField]
     private InputField red;
+
+    public static PlayerPanel Instance {
+        get {
+            if (_instance == null) {
+                _instance = FindObjectOfType<PlayerPanel>();
+            }
+            return _instance;
+        }
+    }
 
     public int Life {
         get {
@@ -97,7 +108,7 @@ public class PlayerPanel : Panel {
         this.Stars = stars;
         this.GoldKeys = goldKeys;
         this.BlueKeys = blueKeys;
-        this.RedKeys = RedKeys;
+        this.RedKeys = redKeys;
     }
 
     public void OnLifeChange(string value) {
@@ -134,5 +145,16 @@ public class PlayerPanel : Panel {
 
     private void AllowPositive(InputField input, string value) {
         Util.ClampField(input, 1, MAX_VALUE);
+    }
+
+    public override void Clear() {
+        life.text = string.Empty;
+        power.text = string.Empty;
+        defense.text = string.Empty;
+        stars.text = string.Empty;
+
+        yellow.text = string.Empty;
+        blue.text = string.Empty;
+        red.text = string.Empty;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -123,5 +124,12 @@ public class FloorPanel : Panel {
         foreach (FloorListing listing in Listings) {
             listing.Index = listing.transform.GetSiblingIndex();
         }
+    }
+
+    public override void Clear() {
+        foreach (FloorListing listing in floorListingParent.GetComponentsInChildren<FloorListing>(true)) {
+            Delete(listing);
+        }
+        _selected = null;
     }
 }
