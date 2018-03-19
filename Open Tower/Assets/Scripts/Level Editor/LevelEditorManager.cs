@@ -62,6 +62,12 @@ public class LevelEditorManager : MonoBehaviour {
 
     public Element Selected;
 
+    public string DungeonJson {
+        get {
+            return SerializationUtil.GetSerializedDungeon(floorsPanel.FloorParent, entitiesPanel, playerPanel);
+        }
+    }
+
     public void SetTab(int modeIndex) {
         SetTab((TabMode)modeIndex);
     }
