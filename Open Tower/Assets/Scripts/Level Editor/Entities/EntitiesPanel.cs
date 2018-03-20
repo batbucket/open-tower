@@ -7,14 +7,11 @@ using UnityEngine.UI;
 public class EntitiesPanel : Panel {
     private static EntitiesPanel _instance;
 
-    /// <summary>
-    /// The prefabs. Should be parallel to the dropdown!
-    /// </summary>
     [SerializeField]
-    private AddableTile[] prefabs;
+    private AddableTile enemyPrefab;
 
     [SerializeField]
-    private Dropdown dropdown;
+    private AddableTile pickupPrefab;
 
     [SerializeField]
     private Transform tileHolder;
@@ -42,12 +39,12 @@ public class EntitiesPanel : Panel {
         }
     }
 
-    public void AddTile() {
-        Instantiate(prefabs[dropdown.value], tileHolder);
-        if (current != null) {
-            StopCoroutine(current);
-        }
-        current = StartCoroutine(Util.AnimatedScrollToBottom(scroll));
+    public void AddEnemy() {
+        AddTile(enemyPrefab.gameObject);
+    }
+
+    public void AddPickup() {
+        AddTile(pickupPrefab.gameObject);
     }
 
     public override void Clear() {
@@ -57,5 +54,13 @@ public class EntitiesPanel : Panel {
             }
         }
         LastSelected = null;
+    }
+
+    private void AddTile(GameObject prefab) {
+        Instantiate(prefab, tileHolder);
+        if (current != null) {
+            StopCoroutine(current);
+        }
+        current = StartCoroutine(Util.AnimatedScrollToBottom(scroll));
     }
 }

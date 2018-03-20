@@ -62,6 +62,9 @@ public class AddableTile : MonoBehaviour {
     private Image image;
 
     [SerializeField]
+    private Button[] boosterStatChooserButtons;
+
+    [SerializeField]
     private Element elementPrefab;
 
     private StatType boostedStatType;
@@ -188,10 +191,21 @@ public class AddableTile : MonoBehaviour {
         this.spriteID = id;
     }
 
-    // Toggle through all boostable stats
-    public void IterateBoosterStat() {
-        boostedStatType = boostedStatType.Next();
-        boosterStatIcon.sprite = boosterStatIcons[(int)BoostedStatType];
+    public void ChooseBoostedStat(StatType stat) {
+        ChooseBoostedStat((int)stat);
+    }
+
+    public void ChooseBoostedStat(int index) {
+        boosterStatIcon.sprite = boosterStatIcons[index];
+        boostedStatType = MAPPING[index];
+        for (int i = 0; i < boosterStatChooserButtons.Length; i++) {
+            Button button = boosterStatChooserButtons[i];
+            if (i == index) {
+                button.interactable = false;
+            } else {
+                button.interactable = true;
+            }
+        }
     }
 
     public void Delete() {

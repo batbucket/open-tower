@@ -1,21 +1,36 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpriteAnimator : MonoBehaviour {
-    private const float secondsPerFrame = 0.5f;
+
+    [SerializeField]
+    private float secondsPerFrame = 0.5f;
+
+    [SerializeField]
+    private bool isReverse;
 
     [SerializeField]
     private Sprite[] sprites;
 
     private new SpriteRenderer renderer;
+    private Image image;
     private Coroutine routine;
 
     private Transform rendererT;
+    private Action<Sprite> setSprite;
 
     private void Start() {
         renderer = GetComponentInChildren<SpriteRenderer>(true);
-        rendererT = renderer.transform;
+        image = GetComponentInChildren<Image>(true);
+        Util.Assert(renderer != null || image != null, "Either image or renderer has to be assigned.");
+        if (renderer != null) {
+            setSprite = (sprite => renderer.sprite = sprite);
+        } else {
+            setSprite = (sprite => image.sprite = sprite);
+        }
     }
 
     private void OnEnable() {
@@ -46,7 +61,13 @@ public class SpriteAnimator : MonoBehaviour {
         while (true) {
             foreach (Sprite sprite in sprites) {
                 yield return new WaitForSeconds(secondsPerFrame);
-                renderer.sprite = sprite;
+                setSprite(sprite);
+            }
+            if (true) {
+                for (int i = sprites.Length - 1; i <= 0; i--) {
+                    yield return new WaitForSeconds(secondsPerFrame);
+                    setSprite(sprites[i]);
+                }
             }
             yield return null;
         }
