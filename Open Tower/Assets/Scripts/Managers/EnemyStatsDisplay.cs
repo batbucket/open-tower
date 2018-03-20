@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class EnemyStatsDisplay : MonoBehaviour {
 
     [SerializeField]
+    private Font font;
+
+    [SerializeField]
     private Stats enemy;
 
     [SerializeField]
@@ -24,6 +27,11 @@ public class EnemyStatsDisplay : MonoBehaviour {
     private GameObject wrapper;
 
     private void Start() {
+        Util.Assert(font != null, "Font is null.");
+        life.font = font;
+        power.font = font;
+        defense.font = font;
+        experience.font = font;
         life.text = enemy.Life.ToString();
         power.text = enemy.Power.ToString();
         defense.text = enemy.Defense.ToString();

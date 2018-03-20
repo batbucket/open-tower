@@ -12,6 +12,9 @@ public class BoosterStatsDisplay : MonoBehaviour {
     private static readonly Color STARS = Color.white;
 
     [SerializeField]
+    private Font font;
+
+    [SerializeField]
     private GameObject wrapper;
 
     [SerializeField]
@@ -36,6 +39,7 @@ public class BoosterStatsDisplay : MonoBehaviour {
     private Sprite stars;
 
     private void Start() {
+        Util.Assert(font != null, "Font is null.");
         Sprite sprite = null;
         Color color = Color.black;
         switch (pickup.Type) {
@@ -65,6 +69,7 @@ public class BoosterStatsDisplay : MonoBehaviour {
         }
         image.sprite = sprite;
         image.color = color;
+        text.font = font;
         text.text = "+" + pickup.Amount;
     }
 
