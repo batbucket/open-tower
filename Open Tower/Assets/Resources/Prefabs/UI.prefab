@@ -3571,7 +3571,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114380828916933140}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114850183523091864}
+        m_MethodName: GoBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114333447749779798
@@ -5891,6 +5902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70aaa58dcc8eec40aa759565b989a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backScene: Main_Menu
 --- !u!114 &114870419068506158
 MonoBehaviour:
   m_ObjectHideFlags: 1

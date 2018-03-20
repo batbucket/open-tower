@@ -16,6 +16,9 @@ public class ButtonManager : MonoBehaviour {
     }
 
     public void GoBack() {
+        if (string.IsNullOrEmpty(backScene)) {
+            backScene = "Main_Menu";
+        }
         SceneManager.LoadScene(backScene);
     }
 }

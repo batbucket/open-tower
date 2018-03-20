@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c459e5de95c0a04daaf6a86bf448a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  font: {fileID: 12800000, guid: 416ea1b94ca64df468f0577ccc502ecd, type: 3}
   wrapper: {fileID: 1017677077517662}
   damageTaken: {fileID: 114794762421372926}
 --- !u!114 &114610480335320928
