@@ -7,13 +7,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuPanel : Panel {
-    private const string SUCCESS = "<color=lime>SUCCESS!</color>";
-
-    private const string FAILURE = "<color=red>FAILED!</color>";
-
-    private const string PLAYER_CHECK = "Player-in-level check: {0}\n";
-    private const string STAIRS_CHECK = "Stairs-all-valid check: {0}\n";
-    private const string EXIT_CHECK = "Exit-in-level check: {0}";
+    private const string SUCCESS = "lime";
+    private const string FAILURE = "red";
+    private const string PLAYER_CHECK = "<color={0}>Player in level</color>\n";
+    private const string STAIRS_CHECK = "<color={0}>Stairs valid</color>\n";
+    private const string EXIT_CHECK = "<color={0}>Exit in level</color>";
 
     [SerializeField]
     private Text error;
@@ -46,20 +44,6 @@ public class MenuPanel : Panel {
     private SaveLevelManager save;
 
     private bool isLevelValidated;
-
-    public void CheckIfLevelIsValid() {
-        bool isPlayerPlaced = IsPlayerPlaced();
-        bool isStairsValid = IsStairsValid();
-        bool isExitPlaced = IsExitPlaced();
-
-        StringBuilder sb = new StringBuilder();
-        sb.AppendFormat(PLAYER_CHECK, isPlayerPlaced ? SUCCESS : FAILURE);
-        sb.AppendFormat(STAIRS_CHECK, isStairsValid ? SUCCESS : FAILURE);
-        sb.AppendFormat(EXIT_CHECK, isExitPlaced ? SUCCESS : FAILURE);
-
-        error.text = sb.ToString();
-        isLevelValidated = isPlayerPlaced && isStairsValid && isExitPlaced;
-    }
 
     public void StartPlaytest() {
         string json = SerializationUtil.GetSerializedDungeon(floorsParent, entities, player);
@@ -96,6 +80,7 @@ public class MenuPanel : Panel {
     public override void OnEnter() {
         isLevelValidated = false;
         floor.SetFloorEditability(false);
+        CheckIfLevelIsValid();
     }
 
     public override void OnExit() {
@@ -121,5 +106,19 @@ public class MenuPanel : Panel {
     }
 
     public override void Clear() {
+    }
+
+    private void CheckIfLevelIsValid() {
+        bool isPlayerPlaced = IsPlayerPlaced();
+        bool isStairsValid = IsStairsValid();
+        bool isExitPlaced = IsExitPlaced();
+
+        StringBuilder sb = new StringBuilder();
+        sb.AppendFormat(PLAYER_CHECK, isPlayerPlaced ? SUCCESS : FAILURE);
+        sb.AppendFormat(STAIRS_CHECK, isStairsValid ? SUCCESS : FAILURE);
+        sb.AppendFormat(EXIT_CHECK, isExitPlaced ? SUCCESS : FAILURE);
+
+        error.text = sb.ToString();
+        isLevelValidated = isPlayerPlaced && isStairsValid && isExitPlaced;
     }
 }

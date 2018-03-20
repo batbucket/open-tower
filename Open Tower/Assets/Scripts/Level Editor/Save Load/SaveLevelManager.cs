@@ -70,7 +70,7 @@ public class SaveLevelManager : MonoBehaviour {
                 if (isSuccess) {
                     window.SetActive(false);
                 } else {
-                    button.text = "<color=red>An unknown error occurred.</color>";
+                    warning.text = "<color=red>An unknown error occurred.</color>";
                 }
                 save.interactable = true;
                 field.interactable = true;

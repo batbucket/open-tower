@@ -49,6 +49,8 @@ public class LoadLevelManager : MonoBehaviour {
             preview.gameObject.SetActive(selected != null);
             if (selected != null) {
                 preview.Init(JsonUtility.FromJson<Dungeon>(selected.DungeonJson));
+            } else {
+                preview.Clear();
             }
         }
         get {
@@ -79,7 +81,7 @@ public class LoadLevelManager : MonoBehaviour {
     public void Cancel() {
         Util.KillAllChildren(listingParent);
         preview.Clear();
-        selected = null;
+        Selected = null;
         window.SetActive(false);
     }
 

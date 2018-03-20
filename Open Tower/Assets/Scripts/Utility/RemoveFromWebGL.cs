@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnlyShowInEditor : MonoBehaviour {
+public class RemoveFromWebGL : MonoBehaviour {
 
     private void Start() {
-        if (!Application.isEditor) {
+        if (Application.platform == RuntimePlatform.WebGLPlayer) {
             this.gameObject.SetActive(false);
         }
     }

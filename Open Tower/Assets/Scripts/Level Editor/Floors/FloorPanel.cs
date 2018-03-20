@@ -53,7 +53,9 @@ public class FloorPanel : Panel {
             foreach (EditableFloor ef in Floors) {
                 ef.gameObject.SetActive(false);
             }
-            _selected.Associated.gameObject.SetActive(true);
+            if (value != null) {
+                _selected.Associated.gameObject.SetActive(true);
+            }
         }
         get {
             return _selected;

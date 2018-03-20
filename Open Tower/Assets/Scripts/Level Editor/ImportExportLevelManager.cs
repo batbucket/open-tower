@@ -23,6 +23,9 @@ public class ImportExportLevelManager : MonoBehaviour {
     [SerializeField]
     private InputField jsonField;
 
+    [SerializeField]
+    private Button import;
+
     public void DoEnter() {
         DoInteraction(InteractionType.ENTER);
         Util.FocusOnField(jsonField);
@@ -50,6 +53,7 @@ public class ImportExportLevelManager : MonoBehaviour {
             } catch (Exception e) {
                 Debug.Log("invalid json detected");
                 Debug.Log(e);
+                window.SetActive(true);
             }
         }
     }

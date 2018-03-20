@@ -43,29 +43,32 @@ public class LevelPreview : MonoBehaviour {
             }
         }
 
-        // setup preview, startingFloor length should match preview
-        for (int i = 0; i < startingFloor.Length; i++) {
-            PreviewElement element = elements[i];
-            int index = startingFloor[i];
+        // Who submits an empty level???
+        if (startingFloor != null) {
+            // setup preview, startingFloor length should match preview
+            for (int i = 0; i < startingFloor.Length; i++) {
+                PreviewElement element = elements[i];
+                int index = startingFloor[i];
 
-            element.IsVisible = (index != SerializationUtil.NO_ELEMENT);
-            if (index != SerializationUtil.NO_ELEMENT) {
-                Addable addable = addables[index];
-                Sprite sprite = null;
-                switch (addable.AddableType) {
-                    case AddableType.STATIC:
-                        sprite = SpriteList.GetStatic(addable.StaticData.TileType);
-                        break;
+                element.IsVisible = (index != SerializationUtil.NO_ELEMENT);
+                if (index != SerializationUtil.NO_ELEMENT) {
+                    Addable addable = addables[index];
+                    Sprite sprite = null;
+                    switch (addable.AddableType) {
+                        case AddableType.STATIC:
+                            sprite = SpriteList.GetStatic(addable.StaticData.TileType);
+                            break;
 
-                    case AddableType.BOOSTER:
-                        sprite = SpriteList.GetBooster(addable.BoosterData.SpriteID);
-                        break;
+                        case AddableType.BOOSTER:
+                            sprite = SpriteList.GetBooster(addable.BoosterData.SpriteID);
+                            break;
 
-                    case AddableType.ENEMY:
-                        sprite = SpriteList.GetEnemy(addable.EnemyData.SpriteID);
-                        break;
+                        case AddableType.ENEMY:
+                            sprite = SpriteList.GetEnemy(addable.EnemyData.SpriteID);
+                            break;
+                    }
+                    element.Sprite = sprite;
                 }
-                element.Sprite = sprite;
             }
         }
     }
@@ -76,7 +79,7 @@ public class LevelPreview : MonoBehaviour {
         Init(dungeon);
     }
 
-    private void Start() {
+    private void Awake() {
         elements = tileParent.GetComponentsInChildren<PreviewElement>();
     }
 }
