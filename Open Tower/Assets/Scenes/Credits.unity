@@ -775,7 +775,7 @@ Prefab:
     - target: {fileID: 114939099850644636, guid: 4c6dc45b93a5f4b409238245f86d36f9,
         type: 2}
       propertyPath: m_Text
-      value: back
+      value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 114781474626118376, guid: 4c6dc45b93a5f4b409238245f86d36f9,
         type: 2}
@@ -1747,7 +1747,7 @@ Prefab:
     - target: {fileID: 114420055889399224, guid: 45944a4a3244afe4aa71f789087f3f8e,
         type: 2}
       propertyPath: m_Text
-      value: credits
+      value: Credits
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45944a4a3244afe4aa71f789087f3f8e, type: 2}
