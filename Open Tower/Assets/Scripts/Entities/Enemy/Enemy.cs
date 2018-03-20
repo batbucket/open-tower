@@ -5,7 +5,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(Stats))]
 public class Enemy : Entity {
-    private const int ENEMY_CANNOT_BE_DEFEATED = 1;
+    public const int ENEMY_CANNOT_BE_DEFEATED = 1;
+
+    [SerializeField]
+    private EnemyResultDisplay resultPrefab;
 
     [SerializeField]
     private Tip tip;
@@ -31,6 +34,32 @@ public class Enemy : Entity {
     [SerializeField]
     private float delayBeforeDisappear;
 
+    public static int GetDamageToPlayer(Stats enemy, Stats player) {
+        int damageToPlayer = Mathf.Max(0, enemy.Power - player.Defense);
+        int damageToEnemy = Mathf.Max(0, player.Power - enemy.Defense);
+
+        // Stalemate check
+        if (damageToEnemy <= 0) {
+            return ENEMY_CANNOT_BE_DEFEATED;
+        }
+
+        int enemyTurnsToKillPlayer = int.MaxValue;
+        if (damageToPlayer > 0) {
+            enemyTurnsToKillPlayer = Mathf.Max(1, player.Life / damageToPlayer);
+        }
+        int playerTurnsToKillEnemy = int.MaxValue;
+        if (damageToEnemy > 0) {
+            playerTurnsToKillEnemy = Mathf.Max(1, enemy.Life / damageToEnemy);
+        }
+
+        // Player gets killed
+        if (playerTurnsToKillEnemy >= enemyTurnsToKillPlayer) {
+            return ENEMY_CANNOT_BE_DEFEATED;
+        }
+
+        return playerTurnsToKillEnemy * -damageToPlayer;
+    }
+
     private Coroutine flicker;
 
     protected override void DoAction(Player player) {
@@ -47,29 +76,7 @@ public class Enemy : Entity {
     }
 
     private int GetDamageToPlayer(Player player) {
-        int damageToPlayer = Mathf.Max(0, this.stats.Power - player.Stats.Defense);
-        int damageToEnemy = Mathf.Max(0, player.Stats.Power - this.stats.Defense);
-
-        // Stalemate check
-        if (damageToEnemy <= 0) {
-            return ENEMY_CANNOT_BE_DEFEATED;
-        }
-
-        int enemyTurnsToKillPlayer = int.MaxValue;
-        if (damageToPlayer > 0) {
-            enemyTurnsToKillPlayer = Mathf.Max(1, player.Stats.Life / damageToPlayer);
-        }
-        int playerTurnsToKillEnemy = int.MaxValue;
-        if (damageToEnemy > 0) {
-            playerTurnsToKillEnemy = Mathf.Max(1, this.stats.Life / damageToEnemy);
-        }
-
-        // Player gets killed
-        if (playerTurnsToKillEnemy >= enemyTurnsToKillPlayer) {
-            return ENEMY_CANNOT_BE_DEFEATED;
-        }
-
-        return playerTurnsToKillEnemy * -damageToPlayer;
+        return GetDamageToPlayer(this.stats, player.Stats);
     }
 
     private IEnumerator DeathEffect(float duration, Action callback) {
@@ -111,6 +118,10 @@ public class Enemy : Entity {
             yield return new WaitForSeconds(flickerInterval);
             timer += flickerInterval;
         }
+    }
+
+    private void Start() {
+        Instantiate(resultPrefab, this.transform).Init(this.stats);
     }
 
     private void Update() {

@@ -766,6 +766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  resultPrefab: {fileID: 114523506891852370, guid: 3659337d1a83c0f4887cf416aeed9385,
+    type: 2}
   tip: {fileID: 114895400633438444}
   stats: {fileID: 114087849573090588}
   shakePs: {fileID: 198403280403824828}

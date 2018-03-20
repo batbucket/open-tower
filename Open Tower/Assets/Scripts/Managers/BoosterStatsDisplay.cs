@@ -69,6 +69,6 @@ public class BoosterStatsDisplay : MonoBehaviour {
     }
 
     private void Update() {
-        wrapper.SetActive(Input.GetKey(KeyCode.Space));
+        wrapper.SetActive(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0));
     }
 }
