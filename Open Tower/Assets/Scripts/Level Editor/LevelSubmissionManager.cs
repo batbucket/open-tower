@@ -54,6 +54,7 @@ public class LevelSubmissionManager : MonoBehaviour {
         GameJolt.API.DataStore.GetKeys(true, keys => {
             CheckName(() => {
                 submit.interactable = false; // prevent button spam
+                nameField.interactable = false;
                 SetWarning("Attempting to upload...", true);
                 GameJolt.API.Misc.GetTime(dateTime => {
                     User user = GameJolt.API.Manager.Instance.CurrentUser;
@@ -66,6 +67,7 @@ public class LevelSubmissionManager : MonoBehaviour {
                         if (isSuccess) {
                             ReturnToEditor();
                         } else {
+                            nameField.interactable = true;
                             submit.interactable = true;
                             SetWarning("Unknown error occurred.", false);
                         }

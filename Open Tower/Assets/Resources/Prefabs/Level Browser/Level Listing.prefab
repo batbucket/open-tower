@@ -515,7 +515,6 @@ MonoBehaviour:
   dateCreated: {fileID: 114495686069697258}
   clearsAndTries: {fileID: 114194256887068796}
   background: {fileID: 114652194534105888}
-  json: 
 --- !u!114 &114751249429209428
 MonoBehaviour:
   m_ObjectHideFlags: 1

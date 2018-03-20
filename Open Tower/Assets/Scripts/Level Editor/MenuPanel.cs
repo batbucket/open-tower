@@ -39,6 +39,12 @@ public class MenuPanel : Panel {
     [SerializeField]
     private ImportExportLevelManager import;
 
+    [SerializeField]
+    private LoadLevelManager load;
+
+    [SerializeField]
+    private SaveLevelManager save;
+
     private bool isLevelValidated;
 
     public void CheckIfLevelIsValid() {
@@ -73,6 +79,14 @@ public class MenuPanel : Panel {
 
     public void OpenExport() {
         export.DoEnter();
+    }
+
+    public void OpenSave() {
+        save.DoEnter();
+    }
+
+    public void OpenLoad() {
+        load.DoEnter();
     }
 
     public void GoToScene(string sceneName) {

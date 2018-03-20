@@ -11,9 +11,13 @@ public class LevelPreview : MonoBehaviour {
 
     private PreviewElement[] elements;
 
-    public void Init(Upload upload) {
-        // setup preview
-        Dungeon dungeon = JsonUtility.FromJson<Dungeon>(upload.LevelJson);
+    public void Clear() {
+        foreach (PreviewElement element in elements) {
+            element.Sprite = null;
+        }
+    }
+
+    public void Init(Dungeon dungeon) {
         Addable[] addables = dungeon.Addables;
         int playerIndex = PLACEHOLDER_PLAYER_INDEX;
 
@@ -64,6 +68,12 @@ public class LevelPreview : MonoBehaviour {
                 element.Sprite = sprite;
             }
         }
+    }
+
+    public void Init(Upload upload) {
+        // setup preview
+        Dungeon dungeon = JsonUtility.FromJson<Dungeon>(upload.LevelJson);
+        Init(dungeon);
     }
 
     private void Start() {
