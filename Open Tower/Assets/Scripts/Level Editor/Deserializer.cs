@@ -7,7 +7,7 @@ public class Deserializer : MonoBehaviour {
     private static Deserializer _instance;
 
     [SerializeField]
-    private JSONLevel uploadOverride;
+    private JSONLevel jsonLevel;
 
     [SerializeField]
     private GameObject floorPrefab;
@@ -63,27 +63,28 @@ public class Deserializer : MonoBehaviour {
     }
 
     public void CreateLevelFromJson() {
-        this.upload = uploadOverride.Upload;
-        Init(upload.LevelJson, uploadOverride.SceneOnVictory, uploadOverride.SceneOnVictory);
+        this.upload = jsonLevel.Upload;
+        Init(upload, jsonLevel.Stage, jsonLevel.SceneOnVictory, jsonLevel.SceneOnExit);
     }
 
     private void Awake() {
         LevelInfo info = LevelInfo.Instance;
-        if (uploadOverride == null) {
+        if (jsonLevel == null) {
             this.upload = info.Upload;
-            Init(upload.LevelJson, info.ExitScene, info.ExitScene);
+            Init(upload, "N/A", info.ExitScene, info.ExitScene);
         } else {
             CreateLevelFromJson();
         }
     }
 
-    private void Init(string json, string sceneOnVictory, string sceneOnExit) {
+    private void Init(Upload upload, string stage, string sceneOnVictory, string sceneOnExit) {
         DontDestroyOnLoad(this.gameObject);
         DungeonManager dungeon = DungeonManager.Instance;
         DungeonInfo info = DungeonInfo.Instance;
 
         SerializationUtil.DeserializeDungeonToPlayable(
-            json,
+            upload,
+            stage,
             sceneOnVictory,
             sceneOnExit,
             info,

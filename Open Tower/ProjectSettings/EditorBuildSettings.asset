@@ -20,3 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level_Browser.unity
     guid: d2cb450367d957642b0f9900f4ca086d
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Tutorial_0.unity
+    guid: 44b97a79b3d4493419ae6e82e6ad079a
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Tutorial_1.unity
+    guid: 920baeb457ed4124291270c46d18d19c

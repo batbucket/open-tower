@@ -224,6 +224,11 @@ Prefab:
       propertyPath: m_Text
       value: Tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 114813413889493496, guid: 4c6dc45b93a5f4b409238245f86d36f9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Tutorial_0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c6dc45b93a5f4b409238245f86d36f9, type: 2}
   m_IsPrefabParent: 0

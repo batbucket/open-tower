@@ -78,9 +78,12 @@ public class ResultsManager : MonoBehaviour {
     }
 
     private IEnumerator ResultsAnim() {
-        LevelInfo level = LevelInfo.Instance;
+        foreach (TutorialBoard tb in FindObjectsOfType<TutorialBoard>()) {
+            Destroy(tb.gameObject);
+        }
+        DungeonInfo info = DungeonInfo.Instance;
 
-        success.text = string.Format("<color=yellow>{0}</color>\nwas cleared!", level.Upload.LevelName);
+        success.text = string.Format("<color=yellow>{0}</color>\nwas cleared!", info.LevelName);
         success.gameObject.SetActive(true);
         yield return Util.Lerp(successFadeInDuration, t => success.color = Color.Lerp(Color.clear, Color.white, t));
         window.gameObject.SetActive(true);
@@ -95,7 +98,9 @@ public class ResultsManager : MonoBehaviour {
         yield return AnimateScore(steps, stepCount, 0.25f);
 
         // Ranking and leaderboard
-        yield return AnimateRank(level.Upload, stepCount);
+        if (LevelInfo.Instance != null) {
+            yield return AnimateRank(LevelInfo.Instance.Upload, stepCount);
+        }
     }
 
     private IEnumerator WaitThenDisplay(float waitTime, GameObject go) {

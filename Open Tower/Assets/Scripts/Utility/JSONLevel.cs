@@ -40,4 +40,10 @@ public class JSONLevel : MonoBehaviour {
             return new Upload(levelJson.text, levelName, int.MinValue, DateTime.MinValue.ToString());
         }
     }
+
+    public string Stage {
+        get {
+            return stage;
+        }
+    }
 }

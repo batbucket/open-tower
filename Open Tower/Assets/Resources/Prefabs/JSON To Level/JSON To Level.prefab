@@ -52,10 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e220e36e191bf4db691c830f0562d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelJson: {fileID: 0}
-  stage: 
-  levelName: 
-  sceneOnVictory: 
+  levelJson: {fileID: 4900000, guid: fc414f826f284b649aa26c7678781a97, type: 3}
+  stage: T-1
+  levelName: Combat
+  sceneOnVictory: Main_Menu
   sceneOnExit: Main_Menu
 --- !u!114 &114813171045306534
 MonoBehaviour:
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a2e436f37fa64e43ae78de8aaa02883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uploadOverride: {fileID: 114201307451341294}
+  jsonLevel: {fileID: 114201307451341294}
   floorPrefab: {fileID: 1899072255388966, guid: 24bbf95c9fd6ce24baeae2f51ce3f25a,
     type: 2}
   wallPrefab: {fileID: 1488332039349902, guid: bb1f0dcee89cd7448978317a99e7bd7b, type: 2}

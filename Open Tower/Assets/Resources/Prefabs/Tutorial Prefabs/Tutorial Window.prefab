@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114112677759470584}
   - component: {fileID: 114643731422350462}
   - component: {fileID: 114218355868628736}
+  - component: {fileID: 114994100626054446}
   m_Layer: 0
   m_Name: Tutorial Window
   m_TagString: Untagged
@@ -172,6 +173,17 @@ MonoBehaviour:
   m_Text: '<color=yellow>MOVEMENT:</color>
 
     WASD or Arrow keys'
+--- !u!114 &114994100626054446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589859041098504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b3ed8deb7dbb14a9bad5094202f37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222520236316882104
 CanvasRenderer:
   m_ObjectHideFlags: 1

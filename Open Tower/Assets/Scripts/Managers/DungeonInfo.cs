@@ -15,6 +15,12 @@ public class DungeonInfo : MonoBehaviour {
     [SerializeField]
     private ButtonManager buttons;
 
+    public string LevelName {
+        get {
+            return location.text;
+        }
+    }
+
     public static DungeonInfo Instance {
         get {
             if (_instance == null) {
