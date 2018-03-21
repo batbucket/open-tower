@@ -93,9 +93,9 @@ public class ResultsManager : MonoBehaviour {
         foreach (GameObject display in stats) {
             yield return WaitThenDisplay(0.25f, display);
         }
-        yield return AnimateScore(time, (int)Time.timeSinceLevelLoad, 0.25f);
+        yield return Util.AnimateScore(time, 0, (int)Time.timeSinceLevelLoad, 0.25f, scoreSound);
         int stepCount = Player.Instance.Stats.StepCount;
-        yield return AnimateScore(steps, stepCount, 0.25f);
+        yield return Util.AnimateScore(steps, 0, stepCount, 0.25f, scoreSound);
 
         // Ranking and leaderboard
         if (LevelInfo.Instance != null) {
@@ -107,18 +107,6 @@ public class ResultsManager : MonoBehaviour {
         yield return new WaitForSeconds(waitTime);
         go.SetActive(true);
         SoundManager.Instance.Play(displaySound);
-    }
-
-    private IEnumerator AnimateScore(Text target, int endScore, float duration) {
-        float timer = 0;
-        target.color = Color.grey;
-        while ((timer += Time.deltaTime) < duration) {
-            target.text = Mathf.CeilToInt(Mathf.Lerp(0, endScore, timer / duration)).ToString();
-            yield return null;
-        }
-        target.color = Color.white;
-        target.text = endScore.ToString();
-        SoundManager.Instance.Play(scoreSound);
     }
 
     private IEnumerator AnimateRank(Upload upload, int stepCount) {
@@ -137,7 +125,7 @@ public class ResultsManager : MonoBehaviour {
             });
         });
         yield return new WaitUntil(() => isRankLoaded);
-        yield return AnimateScore(rank, calculatedRank, 0.35f);
+        yield return Util.AnimateScore(rank, 0, calculatedRank, 0.35f, scoreSound);
 
         if (previousBestScore != null) {
             pastStepsLabel.gameObject.SetActive(true);

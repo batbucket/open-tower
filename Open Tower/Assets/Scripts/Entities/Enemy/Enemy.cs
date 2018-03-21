@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Stats))]
 public class Enemy : Entity {
     public const int ENEMY_CANNOT_BE_DEFEATED = 1;
+    private const float DEATH_PLAYBACK_SPEED = 2;
 
     [SerializeField]
     private EnemyResultDisplay resultPrefab;
@@ -34,6 +35,14 @@ public class Enemy : Entity {
     [SerializeField]
     private float delayBeforeDisappear;
 
+    private Coroutine flicker;
+
+    public Sprite Sprite {
+        get {
+            return sprite.sprite;
+        }
+    }
+
     public static int GetDamageToPlayer(Stats enemy, Stats player) {
         int damageToPlayer = Mathf.Max(0, enemy.Power - player.Defense);
         int damageToEnemy = Mathf.Max(0, player.Power - enemy.Defense);
@@ -47,12 +56,10 @@ public class Enemy : Entity {
         if (damageToPlayer > 0) {
             enemyTurnsToKillPlayer = Mathf.Max(1, Mathf.CeilToInt(((float)player.Life) / damageToPlayer));
         }
-        Debug.Log("et: " + enemyTurnsToKillPlayer);
         int playerTurnsToKillEnemy = int.MaxValue;
         if (damageToEnemy > 0) {
             playerTurnsToKillEnemy = Mathf.Max(1, Mathf.CeilToInt(((float)enemy.Life) / damageToEnemy));
         }
-        Debug.Log("pt: " + playerTurnsToKillEnemy);
 
         // Player gets killed
         if (playerTurnsToKillEnemy > enemyTurnsToKillPlayer) {
@@ -62,15 +69,21 @@ public class Enemy : Entity {
         return Mathf.Max(0, playerTurnsToKillEnemy - 1) * -damageToPlayer;
     }
 
-    private Coroutine flicker;
+    public static void GetNetDamages(Stats player, Stats enemy, out int playerNetDamage, out int enemyNetDamage) {
+        playerNetDamage = Mathf.Max(0, player.Power - enemy.Defense);
+        enemyNetDamage = Mathf.Max(0, enemy.Power - player.Defense);
+    }
 
     protected override void DoAction(Player player) {
-        player.Stats.AddToLife(GetDamageToPlayer(player));
-        player.Stats.AddToExperience(this.stats.Experience);
         player.IsMovementEnabled = false;
-        float effectDuration = shakePs.main.startLifetime.constantMax;
-        StartCoroutine(DeathEffect(effectDuration, () => player.IsMovementEnabled = true));
-        flicker = StartCoroutine(Flicker(effectDuration));
+        shakePs.playbackSpeed = DEATH_PLAYBACK_SPEED;
+        float effectDuration = shakePs.main.startLifetime.constantMax / DEATH_PLAYBACK_SPEED;
+        StartCoroutine(Battle.Instance.Init(player, this.Sprite, this.stats, () => {
+            StartCoroutine(DeathEffect(effectDuration, () => player.IsMovementEnabled = true));
+            flicker = StartCoroutine(Flicker(effectDuration));
+            player.Stats.AddToLife(GetDamageToPlayer(player));
+            player.Stats.AddToExperience(this.stats.Experience);
+        }));
     }
 
     protected override bool IsActionPossible(Player player) {

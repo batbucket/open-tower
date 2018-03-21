@@ -10,6 +10,6 @@ public class ParticleSortLayerScript : MonoBehaviour {
     private void Start() {
         Renderer psr = GetComponent<ParticleSystem>().GetComponent<Renderer>();
         psr.sortingLayerID = spriteRenderer.sortingLayerID;
-        psr.sortingOrder = spriteRenderer.sortingOrder;
+        psr.sortingOrder = spriteRenderer.sortingOrder + 1;
     }
 }

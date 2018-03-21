@@ -55,6 +55,44 @@ public static class Util {
         }
         scroll.value = 0;
     }
+
+    // assumes scales are initially 1,1,1
+    public static IEnumerator ShakeItem(float shakeIntensity, float scaleIntensity, float duration, Action callback, params Transform[] targets) {
+        Vector3[] originalPos = new Vector3[targets.Length];
+        for (int i = 0; i < targets.Length; i++) {
+            originalPos[i] = targets[i].transform.localPosition;
+        }
+        yield return Util.Lerp(duration, t => {
+            for (int i = 0; i < targets.Length; i++) {
+                Transform target = targets[i];
+                Vector3 originalPosition = originalPos[i];
+                Vector3 offset = new Vector3(shakeIntensity * Random(-1, 1), shakeIntensity * Random(-1, 1), 0);
+                Vector3 scaleShift = new Vector3(Random(1 - scaleIntensity, 1 + scaleIntensity), Random(1 - scaleIntensity, 1 + scaleIntensity), 1);
+                target.localPosition = (originalPosition + offset);
+                target.localScale = scaleShift;
+            }
+        });
+        for (int i = 0; i < targets.Length; i++) {
+            targets[i].transform.localPosition = originalPos[i];
+            targets[i].transform.localScale = Vector3.one;
+        }
+        callback();
+    }
+
+    public static IEnumerator AnimateScore(Text target, int startScore, int endScore, float duration, AudioClip scoreSound, Action callback = null) {
+        float timer = 0;
+        target.color = Color.grey;
+        while ((timer += Time.deltaTime) < duration) {
+            target.text = Mathf.CeilToInt(Mathf.Lerp(startScore, endScore, timer / duration)).ToString();
+            yield return null;
+        }
+        target.color = Color.white;
+        target.text = endScore.ToString();
+        SoundManager.Instance.Play(scoreSound);
+        if (callback != null) {
+            callback();
+        }
+    }
 }
 
 public static class Extensions {
