@@ -13,6 +13,8 @@ public class MenuPanel : Panel {
     private const string STAIRS_CHECK = "<color={0}>Stairs valid</color>\n";
     private const string EXIT_CHECK = "<color={0}>Exit in level</color>";
 
+    private static MenuPanel _instance;
+
     [SerializeField]
     private Text error;
 
@@ -45,6 +47,15 @@ public class MenuPanel : Panel {
 
     private bool isLevelValidated;
 
+    public static MenuPanel Instance {
+        get {
+            if (_instance == null) {
+                _instance = FindObjectOfType<MenuPanel>();
+            }
+            return _instance;
+        }
+    }
+
     public void StartPlaytest() {
         string json = SerializationUtil.GetSerializedDungeon(floorsParent, entities, player);
         LevelInfo.Instance.Init(LevelInfoMode.PLAY_TEST,
@@ -53,6 +64,7 @@ public class MenuPanel : Panel {
                 "Playtest",
                 GameJolt.API.Manager.Instance.CurrentUser.ID,
                 string.Empty),
+            "Level_Editor",
             "Level_Editor");
         SceneManager.LoadScene("Custom_Level");
     }

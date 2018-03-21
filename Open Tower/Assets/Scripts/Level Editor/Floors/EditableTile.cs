@@ -64,8 +64,4 @@ public class EditableTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             Destroy(e.gameObject);
         }
     }
-
-    private void Start() {
-        this.isInteractive = true;
-    }
 }

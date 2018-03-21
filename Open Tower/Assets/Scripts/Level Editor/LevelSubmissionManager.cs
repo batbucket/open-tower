@@ -78,12 +78,10 @@ public class LevelSubmissionManager : MonoBehaviour {
     }
 
     public void OpenWindow() {
-        floor.SetFloorEditability(false);
         window.SetActive(true);
     }
 
     public void ReturnToEditor() {
-        floor.SetFloorEditability(true);
         window.SetActive(false);
     }
 

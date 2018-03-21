@@ -18,6 +18,8 @@ public class LevelInfo : MonoBehaviour {
     [SerializeField]
     private bool isLevelCleared;
 
+    private string victoryScene;
+
     public static LevelInfo Instance {
         get {
             if (_instance == null) {
@@ -55,9 +57,16 @@ public class LevelInfo : MonoBehaviour {
         }
     }
 
-    public void Init(LevelInfoMode mode, Upload upload, string exitScene) {
+    public string VictoryScene {
+        get {
+            return victoryScene;
+        }
+    }
+
+    public void Init(LevelInfoMode mode, Upload upload, string victoryScene, string exitScene) {
         this.mode = mode;
         this.upload = upload;
+        this.victoryScene = victoryScene;
         this.exitScene = exitScene;
     }
 }

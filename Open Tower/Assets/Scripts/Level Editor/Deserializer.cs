@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Deserializer : MonoBehaviour {
-    private string json;
+    private static Deserializer _instance;
+
+    [SerializeField]
+    private JSONLevel uploadOverride;
 
     [SerializeField]
     private GameObject floorPrefab;
@@ -50,20 +53,39 @@ public class Deserializer : MonoBehaviour {
 
     private Upload upload;
 
-    private void Awake() {
-        LevelInfo info = LevelInfo.Instance;
-        this.upload = info.Upload;
-        Init(upload.LevelJson, info.ExitScene);
+    public static Deserializer Instance {
+        get {
+            if (_instance == null) {
+                _instance = FindObjectOfType<Deserializer>();
+            }
+            return _instance;
+        }
     }
 
-    private void Init(string json, string exitScene) {
+    public void CreateLevelFromJson() {
+        this.upload = uploadOverride.Upload;
+        Init(upload.LevelJson, uploadOverride.SceneOnVictory, uploadOverride.SceneOnVictory);
+    }
+
+    private void Awake() {
+        LevelInfo info = LevelInfo.Instance;
+        if (uploadOverride == null) {
+            this.upload = info.Upload;
+            Init(upload.LevelJson, info.ExitScene, info.ExitScene);
+        } else {
+            CreateLevelFromJson();
+        }
+    }
+
+    private void Init(string json, string sceneOnVictory, string sceneOnExit) {
         DontDestroyOnLoad(this.gameObject);
         DungeonManager dungeon = DungeonManager.Instance;
         DungeonInfo info = DungeonInfo.Instance;
 
         SerializationUtil.DeserializeDungeonToPlayable(
             json,
-            exitScene,
+            sceneOnVictory,
+            sceneOnExit,
             info,
             dungeon.gameObject,
             floorPrefab,

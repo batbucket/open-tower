@@ -45,19 +45,21 @@ public class Enemy : Entity {
 
         int enemyTurnsToKillPlayer = int.MaxValue;
         if (damageToPlayer > 0) {
-            enemyTurnsToKillPlayer = Mathf.Max(1, player.Life / damageToPlayer);
+            enemyTurnsToKillPlayer = Mathf.Max(1, Mathf.CeilToInt(((float)player.Life) / damageToPlayer));
         }
+        Debug.Log("et: " + enemyTurnsToKillPlayer);
         int playerTurnsToKillEnemy = int.MaxValue;
         if (damageToEnemy > 0) {
-            playerTurnsToKillEnemy = Mathf.Max(1, enemy.Life / damageToEnemy);
+            playerTurnsToKillEnemy = Mathf.Max(1, Mathf.CeilToInt(((float)enemy.Life) / damageToEnemy));
         }
+        Debug.Log("pt: " + playerTurnsToKillEnemy);
 
         // Player gets killed
-        if (playerTurnsToKillEnemy >= enemyTurnsToKillPlayer) {
+        if (playerTurnsToKillEnemy > enemyTurnsToKillPlayer) {
             return ENEMY_CANNOT_BE_DEFEATED;
         }
 
-        return playerTurnsToKillEnemy * -damageToPlayer;
+        return Mathf.Max(0, playerTurnsToKillEnemy - 1) * -damageToPlayer;
     }
 
     private Coroutine flicker;

@@ -789,6 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f0e141710967d4f9392aa384820ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  font: {fileID: 12800000, guid: 416ea1b94ca64df468f0577ccc502ecd, type: 3}
   enemy: {fileID: 114087849573090588}
   life: {fileID: 114514453607359360}
   power: {fileID: 114450480481317958}

@@ -50,6 +50,7 @@ public class ImportExportLevelManager : MonoBehaviour {
         } else if (interaction == InteractionType.DO_IMPORT) {
             try {
                 LevelEditorManager.Instance.ImportLevel(jsonField.text);
+                MenuPanel.Instance.OnEnter();
             } catch (Exception e) {
                 Debug.Log("invalid json detected");
                 Debug.Log(e);

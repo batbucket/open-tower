@@ -217,7 +217,8 @@ namespace Scripts.LevelEditor.Serialization {
         // Loading into game
         public static void DeserializeDungeonToPlayable(
             string json,
-            string exitScene,
+            string sceneOnVictory,
+            string sceneOnExit,
             DungeonInfo infoTarget,
             GameObject floorsParent,
             GameObject floorPrefab,
@@ -242,7 +243,7 @@ namespace Scripts.LevelEditor.Serialization {
             Floor[] floors = dungeon.Floors;
             StartingValues startingValues = dungeon.StartingValues;
 
-            infoTarget.Init("?-?", "Custom", exitScene);
+            infoTarget.Init("?-?", "Custom", sceneOnExit);
 
             for (int i = 0; i < floors.Length; i++) {
                 GameObject floor = GameObject.Instantiate(floorPrefab, floorsParent.transform);
@@ -293,7 +294,7 @@ namespace Scripts.LevelEditor.Serialization {
 
                                 case TileType.EXIT:
                                     instantiated = GameObject.Instantiate(exitPrefab, current.transform);
-                                    instantiated.GetComponent<Exit>().Init(exitScene);
+                                    instantiated.GetComponent<Exit>().Init(sceneOnVictory);
                                     break;
 
                                 case TileType.GOLD_DOOR:
