@@ -48,6 +48,14 @@ public class Stats : MonoBehaviour {
         }
     }
 
+    public void Init(int life, int power, int defense, int experience) {
+        this.life = life;
+        this.power = power;
+        this.defense = defense;
+        this.experience = experience;
+        AssertValuesAreValid();
+    }
+
     public void AddToLife(int amount) {
         this.life += amount;
     }
@@ -69,6 +77,10 @@ public class Stats : MonoBehaviour {
     }
 
     private void Start() {
+        AssertValuesAreValid();
+    }
+
+    private void AssertValuesAreValid() {
         Util.Assert(Life > 0, "Life must be positive number.");
         Util.Assert(Power >= 0, "Power must be nonnegative.");
         Util.Assert(Defense >= 0, "Defense must be nonnegative.");

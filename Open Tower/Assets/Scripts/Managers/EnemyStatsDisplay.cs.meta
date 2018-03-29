@@ -1,11 +1,18 @@
 fileFormatVersion: 2
 guid: a5f0e141710967d4f9392aa384820ed0
-timeCreated: 1517476404
+timeCreated: 1521588305
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - font: {fileID: 12800000, guid: 416ea1b94ca64df468f0577ccc502ecd, type: 3}
+  - enemy: {instanceID: 0}
+  - life: {instanceID: 0}
+  - power: {instanceID: 0}
+  - defense: {instanceID: 0}
+  - experience: {instanceID: 0}
+  - wrapper: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

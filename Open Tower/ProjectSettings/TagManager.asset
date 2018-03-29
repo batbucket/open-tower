@@ -44,14 +44,14 @@ TagManager:
   - name: Stairs
     uniqueID: 2184238283
     locked: 0
-  - name: Player
-    uniqueID: 1520752811
+  - name: Wall
+    uniqueID: 1399894083
     locked: 0
   - name: Monster
     uniqueID: 550587821
     locked: 0
-  - name: Wall
-    uniqueID: 1399894083
+  - name: Player
+    uniqueID: 1520752811
     locked: 0
   - name: Default
     uniqueID: 0

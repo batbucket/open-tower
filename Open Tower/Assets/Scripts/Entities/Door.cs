@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : Entity {
+    private const string ANIM_START_TRIGGER = "Open";
 
     [SerializeField]
     private KeyType key;
+
+    [SerializeField]
+    private Animator anim;
 
     protected override void DoAction(Player player) {
         switch (key) {
@@ -22,7 +26,8 @@ public class Door : Entity {
                 player.Keys.Red--;
                 break;
         }
-        this.gameObject.SetActive(false);
+        Player.Instance.IsMovementEnabled = false;
+        anim.SetTrigger(ANIM_START_TRIGGER);
     }
 
     protected override bool IsActionPossible(Player player) {
