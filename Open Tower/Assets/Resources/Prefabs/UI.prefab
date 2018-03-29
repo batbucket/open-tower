@@ -4301,7 +4301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 212241235434941118}
-  ps: {fileID: 0}
+  ps: {fileID: 198408514459777686}
   life: {fileID: 114363907421330448}
   power: {fileID: 114241423326302026}
   defense: {fileID: 114247416207559304}
@@ -7042,7 +7042,7 @@ MonoBehaviour:
   shakeDuration: 0.5
   shakeDurationDecay: 0.9
   minShakeDuration: 0.01
-  window: {fileID: 0}
+  window: {fileID: 224644105904894330}
   hero: {fileID: 114276232232299030}
   enemy: {fileID: 114746670142902964}
 --- !u!114 &114746670142902964
@@ -7057,7 +7057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 212066746204222628}
-  ps: {fileID: 0}
+  ps: {fileID: 198475295444346454}
   life: {fileID: 114389675001962420}
   power: {fileID: 114113483269047732}
   defense: {fileID: 114269841847779136}
