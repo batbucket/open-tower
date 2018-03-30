@@ -7,6 +7,12 @@ public class SpriteListLoader : MonoBehaviour {
     private static SpriteListLoader _prefab;
 
     [SerializeField]
+    private Sprite[] lifeTiles;
+
+    [SerializeField]
+    private Sprite[] towerTiles;
+
+    [SerializeField]
     private Sprite[] enemies;
 
     [SerializeField]
@@ -64,6 +70,18 @@ public class SpriteListLoader : MonoBehaviour {
                 _prefab = Resources.Load<SpriteListLoader>("Prefabs/Level Editor/Sprite List Loader");
             }
             return _prefab;
+        }
+    }
+
+    public Sprite[] Life {
+        get {
+            return lifeTiles;
+        }
+    }
+
+    public Sprite[] Tower {
+        get {
+            return towerTiles;
         }
     }
 

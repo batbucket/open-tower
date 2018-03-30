@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class SpriteAnimator : MonoBehaviour {
 
     [SerializeField]
+    private bool isLoop = true;
+
+    [SerializeField]
     private float secondsPerFrame = 0.5f;
 
     [SerializeField]
@@ -22,6 +25,17 @@ public class SpriteAnimator : MonoBehaviour {
     private Transform rendererT;
     private Action<Sprite> setSprite;
 
+    public void Init(Sprite[] sprites) {
+        this.sprites = sprites;
+    }
+
+    public void Play() {
+        if (routine != null) {
+            StopCoroutine(routine);
+        }
+        routine = StartCoroutine(DoAnimation());
+    }
+
     private void Start() {
         renderer = GetComponentInChildren<SpriteRenderer>(true);
         image = GetComponentInChildren<Image>(true);
@@ -34,7 +48,9 @@ public class SpriteAnimator : MonoBehaviour {
     }
 
     private void OnEnable() {
-        routine = StartCoroutine(DoAnimation());
+        if (isLoop) {
+            routine = StartCoroutine(DoAnimation());
+        }
     }
 
     private void OnDisable() {
@@ -58,18 +74,6 @@ public class SpriteAnimator : MonoBehaviour {
     }
 
     private IEnumerator DoAnimation() {
-        while (true) {
-            foreach (Sprite sprite in sprites) {
-                yield return new WaitForSeconds(secondsPerFrame);
-                setSprite(sprite);
-            }
-            if (true) {
-                for (int i = sprites.Length - 1; i <= 0; i--) {
-                    yield return new WaitForSeconds(secondsPerFrame);
-                    setSprite(sprites[i]);
-                }
-            }
-            yield return null;
-        }
+        yield return Util.DoSpriteAnimation(secondsPerFrame, sprites, s => setSprite(s));
     }
 }

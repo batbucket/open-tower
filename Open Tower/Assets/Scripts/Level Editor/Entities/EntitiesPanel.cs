@@ -56,6 +56,10 @@ public class EntitiesPanel : Panel {
         LastSelected = null;
     }
 
+    public override void OnEnter() {
+        FloorPanel.Instance.SetFloorEditability(true);
+    }
+
     private void AddTile(GameObject prefab) {
         Instantiate(prefab, tileHolder);
         if (current != null) {

@@ -26,6 +26,26 @@ public static class Util {
         }
     }
 
+    public static IEnumerator DoSpriteAnimation(float secondsPerFrame, IList<Sprite> sprites, Action<Sprite> setSprite) {
+        if (sprites.Count == 1) {
+            setSprite(sprites[0]);
+            yield break;
+        }
+        while (true) {
+            foreach (Sprite sprite in sprites) {
+                yield return new WaitForSeconds(secondsPerFrame);
+                setSprite(sprite);
+            }
+            if (true) {
+                for (int i = sprites.Count - 1; i <= 0; i--) {
+                    yield return new WaitForSeconds(secondsPerFrame);
+                    setSprite(sprites[i]);
+                }
+            }
+            yield return null;
+        }
+    }
+
     public static void FocusOnField(InputField field) {
         EventSystem.current.SetSelectedGameObject(field.gameObject, null);
         field.ActivateInputField();
