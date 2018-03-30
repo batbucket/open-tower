@@ -156,7 +156,7 @@ namespace Scripts.LevelEditor.Serialization {
                         BoosterData booster = addable.BoosterData;
                         go = GameObject.Instantiate(boosterPrefab, tileHolder);
                         at = go.GetComponent<AddableTile>();
-                        at.ChooseBoostedStat(at.BoostedStatType);
+                        at.ChooseBoostedStat(booster.StatToBoost);
                         at.BoostedAmount = booster.AmountBoosted;
                         at.SetSprite(booster.SpriteID, AddableType.BOOSTER);
                         break;

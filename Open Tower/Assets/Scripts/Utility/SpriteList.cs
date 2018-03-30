@@ -8,6 +8,7 @@ public static class SpriteList {
     private static readonly IDictionary<int, Sprite> enemyIDs = new Dictionary<int, Sprite>();
     private static readonly IDictionary<int, Sprite> boosterIDs = new Dictionary<int, Sprite>();
     private static readonly IDictionary<TileType, Sprite> staticSprites = new Dictionary<TileType, Sprite>();
+    private static readonly IDictionary<PathType, Sprite[]> pathSprites = new Dictionary<PathType, Sprite[]>();
 
     public static Sprite GetEnemy(int id) {
         LazyInit();
@@ -47,6 +48,10 @@ public static class SpriteList {
                 boosterIDs.Add(id++, s);
             }
 
+            AddPathSprite(PathType.CLASSIC, null);
+            AddPathSprite(PathType.GRASS, loader.Life);
+            AddPathSprite(PathType.TOWER, loader.Tower);
+
             AddStaticSprite(TileType.WALL, loader.Wall);
             AddStaticSprite(TileType.UP_STAIRS, loader.UpStairs);
             AddStaticSprite(TileType.DOWN_STAIRS, loader.DownStairs);
@@ -60,6 +65,15 @@ public static class SpriteList {
             AddStaticSprite(TileType.RED_DOOR, loader.RedDoor);
             Util.Assert(staticSprites.Count == SerializationUtil.StaticTypeCount);
         }
+    }
+
+    public static void AddPathSprite(PathType type, Sprite[] sprites) {
+        pathSprites.Add(type, sprites);
+    }
+
+    public static Sprite[] GetPathSprite(PathType type) {
+        LazyInit();
+        return pathSprites[type];
     }
 
     private static void AddStaticSprite(TileType type, Sprite sprite) {
