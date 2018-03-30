@@ -6,6 +6,16 @@ public class Movement : MonoBehaviour {
     private const float AUTOFIRE_DELAY = 0.5f;
     private const float AUTOFIRE_COOLDOWN = 0.1f;
     private static DungeonManager dungeon;
+
+    [SerializeField]
+    private SpriteAnimator animator;
+
+    [SerializeField]
+    private Sprite[] standing;
+
+    [SerializeField]
+    private Sprite[] moving;
+
     private float autofireTimer;
     private float cooldown;
     private HashSet<KeyCode> keysDown;

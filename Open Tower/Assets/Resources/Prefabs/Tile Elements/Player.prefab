@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114397710177882568}
   - component: {fileID: 114583422401881760}
   - component: {fileID: 114815182626964110}
+  - component: {fileID: 114895299787173348}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -116,6 +117,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8909dc677623c44b06bdb21d86b707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 114895299787173348}
+  standing:
+  - {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
+  moving:
+  - {fileID: 21300000, guid: 1a918e0a095521e41a0ad6246cbbbdee, type: 3}
+  - {fileID: 21300002, guid: 1a918e0a095521e41a0ad6246cbbbdee, type: 3}
+  - {fileID: 21300004, guid: 1a918e0a095521e41a0ad6246cbbbdee, type: 3}
+  - {fileID: 21300006, guid: 1a918e0a095521e41a0ad6246cbbbdee, type: 3}
 --- !u!114 &114583422401881760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,6 +154,21 @@ MonoBehaviour:
   yellow: 0
   blue: 0
   red: 0
+--- !u!114 &114895299787173348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1371039601793280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1fac03b9c666141889f02d67c5dc56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  secondsPerFrame: 0.5
+  isReverse: 0
+  sprites: []
 --- !u!114 &114898650057349016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3610,7 +3634,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1520752811
-  m_SortingLayer: -3
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
