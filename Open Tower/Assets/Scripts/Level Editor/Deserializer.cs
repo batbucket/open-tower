@@ -103,5 +103,6 @@ public class Deserializer : MonoBehaviour {
             redDoorPrefab,
             enemyPrefab,
             boosterPrefab);
+        Debug.Log("deserialized");
     }
 }

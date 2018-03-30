@@ -18,24 +18,26 @@ public class FloorManager : MonoBehaviour {
 
     public int Rows {
         get {
+            if (rows == 0) {
+                int cellWidth = Mathf.RoundToInt(grid.cellSize.x);
+                this.rows = Mathf.RoundToInt(rt.rect.width) / cellWidth;
+            }
             return rows;
         }
     }
 
     public int Columns {
         get {
+            if (columns == 0) {
+                int cellHeight = Mathf.RoundToInt(grid.cellSize.y);
+                this.columns = Mathf.RoundToInt(rt.rect.height) / cellHeight;
+            }
             return columns;
         }
     }
 
-    private void Start() {
-        int cellWidth = Mathf.RoundToInt(grid.cellSize.x);
-        int cellHeight = Mathf.RoundToInt(grid.cellSize.y);
-
-        this.rows = Mathf.RoundToInt(rt.rect.width) / cellWidth;
-        this.columns = Mathf.RoundToInt(rt.rect.height) / cellHeight;
-
-        this.children = GetComponentsInChildren<Tile>();
+    private void Awake() {
+        this.children = GetComponentsInChildren<Tile>(true);
     }
 
     public Tile GetTileAtIndex(int index) {

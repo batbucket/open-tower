@@ -35,14 +35,10 @@ public class DungeonManager : MonoBehaviour {
         return current;
     }
 
-    private void Awake() {
-        this.floors = GetComponentsInChildren<FloorManager>(true);
-    }
-
-    private void Start() {
+    private void SetPathSprites() {
         Sprite[] tiles = SpriteList.GetPathSprite(path);
-
         if (path != PathType.CLASSIC) {
+            Debug.Log(floors.Length);
             foreach (FloorManager floor in floors) {
                 for (int i = 0; i < floor.Rows; i++) {
                     for (int j = 0; j < floor.Columns; j++) {
@@ -67,6 +63,14 @@ public class DungeonManager : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private void Start() {
+        SetPathSprites();
+    }
+
+    private void Awake() {
+        this.floors = GetComponentsInChildren<FloorManager>(true);
     }
 
     private void SetTileSprite(FloorManager floor, Sprite sprite, int row, int column) {

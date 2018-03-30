@@ -26,6 +26,13 @@ public class MainMenuManager : MonoBehaviour {
           });
     }
 
+    private void Start() {
+        LevelInfo info = FindObjectOfType<LevelInfo>();
+        if (info != null) {
+            Destroy(info.gameObject);
+        }
+    }
+
     private void Update() {
         bool isUserAuthenticated = GameJolt.API.Manager.Instance.CurrentUser != null
             && GameJolt.API.Manager.Instance.CurrentUser.IsAuthenticated;

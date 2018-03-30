@@ -83,6 +83,7 @@ public class Textbox : MonoBehaviour {
             icon.transform.localPosition = Vector3.Lerp(iconDisplacedPos, iconOriginalPos, timer / iconMoveInDuration);
             yield return null;
         }
+        icon.transform.localPosition = iconOriginalPos;
 
         for (int i = 0; i < messages.Length; i++) {
             isDone = false;
@@ -100,7 +101,7 @@ public class Textbox : MonoBehaviour {
             }
             shadow.text = message;
 
-            text.text += " ";   
+            text.text += " ";
 
             while (!isDone) {
                 text.text += BLOCK_CHARACTER;

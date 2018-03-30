@@ -21,8 +21,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_Browser.unity
     guid: d2cb450367d957642b0f9900f4ca086d
   - enabled: 1
-    path: Assets/Scenes/Tutorial/Tutorial_0.unity
-    guid: 44b97a79b3d4493419ae6e82e6ad079a
+    path: Assets/Scenes/Story_0.unity
+    guid: 63bf545d163b38849970398d3cff8708
   - enabled: 1
-    path: Assets/Scenes/Tutorial/Tutorial_1.unity
-    guid: 920baeb457ed4124291270c46d18d19c
+    path: Assets/Scenes/Tutorial/Tutorial 0.unity
+    guid: 4114ae1c767d74d4d88b06186518f133
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Tutorial 1.unity
+    guid: 8dd7b949e8d88ee44b515bdb28d59e29
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Tutorial 2.unity
+    guid: 8aa6c2ee9f4d58e43a1d1d1474599811
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Tutorial 4.unity
+    guid: 123500e017cb5934ab2962f4b801f924

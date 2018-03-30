@@ -10,12 +10,6 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     private SpriteAnimator animator;
 
-    [SerializeField]
-    private Sprite[] standing;
-
-    [SerializeField]
-    private Sprite[] moving;
-
     private float autofireTimer;
     private float cooldown;
     private HashSet<KeyCode> keysDown;
