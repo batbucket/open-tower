@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Scripts.LevelEditor.Serialization {
 
@@ -112,7 +109,7 @@ namespace Scripts.LevelEditor.Serialization {
                 if (possible == null) { // nothing here
                     IDs[i] = NO_ELEMENT;
                 } else { // store index
-                    IDs[i] = ArrayUtility.FindIndex(addables, a => possible.IsSource(a));
+                    IDs[i] = addables.IndexOf(a => possible.IsSource(a));
                 }
             }
             return new Floor(IDs);

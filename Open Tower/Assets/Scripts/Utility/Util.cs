@@ -117,6 +117,15 @@ public static class Util {
 
 public static class Extensions {
 
+    public static int IndexOf<T>(this IList<T> list, Func<T, bool> predicate) {
+        for (int i = 0; i < list.Count; i++) {
+            if (predicate(list[i])) {
+                return i;
+            }
+        }
+        throw new KeyNotFoundException();
+    }
+
     public static T Next<T>(this T src) where T : struct {
         if (!typeof(T).IsEnum) throw new ArgumentException(String.Format("Argumnent {0} is not an Enum", typeof(T).FullName));
 
