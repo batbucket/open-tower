@@ -50,8 +50,20 @@ MonoBehaviour:
   - {fileID: 21300006, guid: dcfec1cc82454b34586af33d2d282366, type: 3}
   enemies:
   - {fileID: 21300000, guid: 84a14ee79b82da34999de91455a8f71b, type: 3}
+  - {fileID: 21300000, guid: e3d5e387817cd3049beaa27f1ebcf7d9, type: 3}
+  - {fileID: 21300000, guid: ec05e65e8c8a0c44686569acd821064c, type: 3}
+  - {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
+  - {fileID: 21300000, guid: 07ed8b75a0cb8974a9e5a6406e59b0d8, type: 3}
+  - {fileID: 21300000, guid: ba27c8b019b762b4083b6dc095ee07e3, type: 3}
+  - {fileID: 21300000, guid: c712484cf848f114db9aa23fa6382b9c, type: 3}
+  - {fileID: 21300000, guid: d113fca2d35f88440b453d89bf615550, type: 3}
+  - {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
+  - {fileID: 21300000, guid: 87f59f48a2188c2489d351ac20eb2859, type: 3}
+  - {fileID: 21300000, guid: bf0a8bc940e11504788dec19ce3c7f0a, type: 3}
+  - {fileID: 21300000, guid: 87f59f48a2188c2489d351ac20eb2859, type: 3}
   - {fileID: 21300016, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
   - {fileID: 21300014, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
+  - {fileID: 21300012, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
   boosters:
   - {fileID: 21300000, guid: a54f2975e47fd394f86347958cb8db7f, type: 3}
   - {fileID: 21300000, guid: 23890bef4332edf418fce65849240a5d, type: 3}
