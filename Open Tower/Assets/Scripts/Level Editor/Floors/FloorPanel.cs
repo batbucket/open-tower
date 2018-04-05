@@ -115,6 +115,8 @@ public class FloorPanel : Panel {
         b.Index = temp;
         a.transform.SetSiblingIndex(item2);
         b.transform.SetSiblingIndex(item1);
+        a.Associated.transform.SetSiblingIndex(item2);
+        b.Associated.transform.SetSiblingIndex(item1);
     }
 
     private EditableFloor GetFloorAtIndex(int index) {
