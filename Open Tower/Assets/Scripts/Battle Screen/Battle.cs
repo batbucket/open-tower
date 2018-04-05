@@ -45,7 +45,7 @@ public class Battle : MonoBehaviour {
     }
 
     public IEnumerator Init(Player player, Sprite enemySprite, Stats enemyStats, Action callback) {
-        this.hero.Init(player.Sprite.sprite, player.Stats.Life, player.Stats.Power, player.Stats.Experience);
+        this.hero.Init(player.Sprite.sprite, player.Stats.Life, player.Stats.Power, player.Stats.Defense);
         this.enemy.Init(enemySprite, enemyStats.Life, enemyStats.Power, enemyStats.Defense);
         window.gameObject.SetActive(true);
         yield return Util.Lerp(transitionDuration, t => {
