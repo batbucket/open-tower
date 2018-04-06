@@ -10,6 +10,8 @@ public class SceneController : MonoBehaviour {
 
     private Process[] processes;
 
+    private bool isSkipping;
+
     // Use this for initialization
     private void Start() {
         this.processes = GetComponentsInChildren<Process>();
@@ -17,10 +19,16 @@ public class SceneController : MonoBehaviour {
     }
 
     private IEnumerator DoProcesses() {
-        for (int i = 0; i < processes.Length; i++) {
+        for (int i = 0; i < processes.Length && !isSkipping; i++) {
             Process current = processes[i];
             yield return current.Play();
         }
         SceneManager.LoadScene(destinationScene);
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            isSkipping = true;
+        }
     }
 }
