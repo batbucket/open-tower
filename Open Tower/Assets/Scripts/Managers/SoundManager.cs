@@ -11,6 +11,11 @@ public class SoundManager : MonoBehaviour {
     [SerializeField]
     private GameObject oneshots;
 
+    [SerializeField]
+    private MusicPersistence persistencePrefab;
+
+    private MusicPersistence persistence;
+
     public static SoundManager Instance {
         get {
             if (_instance == null) {
@@ -26,6 +31,23 @@ public class SoundManager : MonoBehaviour {
 
     public void Play(AudioClip clip) {
         StartCoroutine(PlayThenDestroy(clip));
+    }
+
+    private void Start() {
+        persistence = FindObjectOfType<MusicPersistence>();
+        if (persistence != null) {
+            if (persistence.loop == this.loop.clip) {
+                this.loop.time = persistence.time;
+            }
+        } else {
+            persistence = Instantiate(persistencePrefab);
+            DontDestroyOnLoad(persistence);
+        }
+    }
+
+    private void Update() {
+        persistence.loop = this.loop.clip;
+        persistence.time = this.loop.time;
     }
 
     private IEnumerator PlayThenDestroy(AudioClip clip) {

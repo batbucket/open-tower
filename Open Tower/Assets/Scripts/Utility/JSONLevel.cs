@@ -10,6 +10,9 @@ public class JSONLevel : MonoBehaviour {
     private TextAsset levelJson; // NOT upload
 
     [SerializeField]
+    private int scoreID = 0;
+
+    [SerializeField]
     private string stage;
 
     [SerializeField]
@@ -22,6 +25,12 @@ public class JSONLevel : MonoBehaviour {
     private string sceneOnExit = "Main_Menu";
 
     private Upload _upload;
+
+    public int ScoreID {
+        get {
+            return scoreID;
+        }
+    }
 
     public string SceneOnVictory {
         get {
