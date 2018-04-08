@@ -61,6 +61,9 @@ public class ResultsManager : MonoBehaviour {
     [SerializeField]
     private Text pastRankingLabel;
 
+    [SerializeField]
+    private int customScoreID = 0;
+
     private string destination;
 
     private int scoreIDOverride;
@@ -82,8 +85,8 @@ public class ResultsManager : MonoBehaviour {
     private void Start() {
         JSONLevel level = FindObjectOfType<JSONLevel>();
         if (level != null) {
-            Util.Assert(level.ScoreID != 0, "Score ID was not set.");
-            scoreIDOverride = level.ScoreID;
+            Util.Assert(level.ScoreID != 0 || scoreIDOverride != 0, "Score ID was not set.");
+            scoreIDOverride = level.ScoreID + scoreIDOverride;
         }
     }
 

@@ -72,6 +72,7 @@ public class Textbox : MonoBehaviour {
     public IEnumerator LoadContent(Sprite sprite, string[] messages, string charName = "") {
         // move in sprite
         icon.sprite = sprite;
+        icon.enabled = (sprite != null);
         Vector3 iconOriginalPos = icon.transform.localPosition;
         Vector3 iconDisplacedPos = new Vector3(-iconRt.rect.width, 0, 0);
         float timer = 0;
