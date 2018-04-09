@@ -4,10 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour {
-
-    [SerializeField]
-    private string destinationScene;
-
     private Process[] processes;
 
     private bool isSkipping;
@@ -23,7 +19,7 @@ public class SceneController : MonoBehaviour {
             Process current = processes[i];
             yield return current.Play();
         }
-        SceneManager.LoadScene(destinationScene);
+        SceneManager.LoadScene(SceneUtil.GetNextSceneIndex());
     }
 
     private void Update() {

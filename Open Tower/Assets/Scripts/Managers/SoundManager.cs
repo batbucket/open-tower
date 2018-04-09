@@ -1,8 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
+    private const float MIN_PITCH = 0.5f;
+    private const float MAX_PITCH = 1.5f;
     private static SoundManager _instance;
 
     [SerializeField]
@@ -53,6 +54,7 @@ public class SoundManager : MonoBehaviour {
     private IEnumerator PlayThenDestroy(AudioClip clip) {
         GameObject go = new GameObject();
         AudioSource source = go.AddComponent<AudioSource>();
+        source.pitch = Util.Random(MIN_PITCH, MAX_PITCH);
         source.PlayOneShot(clip);
         source.transform.SetParent(oneshots.transform);
         yield return new WaitWhile(() => source.isPlaying);

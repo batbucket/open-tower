@@ -52,11 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e220e36e191bf4db691c830f0562d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelJson: {fileID: 4900000, guid: fc414f826f284b649aa26c7678781a97, type: 3}
-  stage: T-1
-  levelName: Combat
-  sceneOnVictory: Main_Menu
-  sceneOnExit: Main_Menu
+  levelJson: {fileID: 0}
+  scoreID: 0
+  stage: 
+  levelName: 
+  sceneOnVictory: 
+  sceneOnExit: 
 --- !u!114 &114813171045306534
 MonoBehaviour:
   m_ObjectHideFlags: 1

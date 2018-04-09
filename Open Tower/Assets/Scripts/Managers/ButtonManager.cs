@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour {
-    private string backScene;
+    private int backScene;
 
-    public void Init(string backScene) {
+    public void Init(int backScene) {
         this.backScene = backScene;
     }
 
@@ -16,9 +16,6 @@ public class ButtonManager : MonoBehaviour {
     }
 
     public void GoBack() {
-        if (string.IsNullOrEmpty(backScene)) {
-            backScene = "Main_Menu";
-        }
         SceneManager.LoadScene(backScene);
     }
 }

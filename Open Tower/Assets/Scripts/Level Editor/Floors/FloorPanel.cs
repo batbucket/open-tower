@@ -104,7 +104,10 @@ public class FloorPanel : Panel {
     public void Delete(FloorListing item) {
         Destroy(item.Associated.gameObject);
         Destroy(item.gameObject);
-        StartCoroutine(UpdateFloorIndices());
+        foreach (FloorListing listing in Listings) {
+            listing.Index = listing.transform.GetSiblingIndex();
+        }
+        //StartCoroutine(UpdateFloorIndices());
     }
 
     public void Swap(int item1, int item2) {

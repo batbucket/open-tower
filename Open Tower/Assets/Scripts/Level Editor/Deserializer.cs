@@ -64,7 +64,18 @@ public class Deserializer : MonoBehaviour {
 
     public void CreateLevelFromJson() {
         this.upload = jsonLevel.Upload;
-        Init(upload, jsonLevel.Stage, jsonLevel.SceneOnVictory, jsonLevel.SceneOnExit);
+
+        // check play type
+        int victoryScene = -1;
+        int exitScene = -1;
+        if (SceneUtil.Play == PlayType.STORY_MODE) {
+            victoryScene = SceneUtil.GetNextSceneIndex();
+            exitScene = SceneUtil.MAIN_MENU_INDEX;
+        } else { // mode won't ever be level editor playtesting because it uses LevelInfo instead to init
+            victoryScene = SceneUtil.LEVEL_SELECT_INDEX;
+            exitScene = victoryScene;
+        }
+        Init(upload, jsonLevel.Stage, victoryScene, exitScene);
     }
 
     private void Awake() {
@@ -77,7 +88,7 @@ public class Deserializer : MonoBehaviour {
         }
     }
 
-    private void Init(Upload upload, string stage, string sceneOnVictory, string sceneOnExit) {
+    private void Init(Upload upload, string stage, int sceneOnVictory, int sceneOnExit) {
         DontDestroyOnLoad(this.gameObject);
         DungeonManager dungeon = DungeonManager.Instance;
         DungeonInfo info = DungeonInfo.Instance;

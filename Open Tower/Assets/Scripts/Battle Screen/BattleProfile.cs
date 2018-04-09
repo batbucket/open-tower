@@ -33,7 +33,7 @@ public class BattleProfile : MonoBehaviour {
         this.defense.Init(defenseCount);
     }
 
-    public IEnumerator Attack(BattleProfile other, int damageTaken, float shakeIntensity, float scaleIntensity, float duration) {
+    public IEnumerator Attack(BattleProfile other, int damageTaken, float shakeIntensity, float scaleIntensity, float duration, AudioClip hit) {
         Transform ourSprite = this.renderer.transform;
         Transform theirSprite = other.renderer.transform;
 
@@ -42,6 +42,7 @@ public class BattleProfile : MonoBehaviour {
 
         yield return Approach(ourSprite, startPosition, endPosition, duration, NEXT_TO_PORTRAIT);
         other.ps.Play();
+        SoundManager.Instance.Play(hit);
         StartCoroutine(other.life.ChangeCount(shakeIntensity, scaleIntensity, other.life.Count - damageTaken, duration));
         StartCoroutine(Util.ShakeItem(shakeIntensity, scaleIntensity, duration, () => { }, theirSprite));
         yield return new WaitForSeconds(duration);

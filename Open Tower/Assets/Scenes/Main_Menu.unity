@@ -120,6 +120,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1312716428}
     m_Modifications:
+    - target: {fileID: 114813413889493496, guid: 4c6dc45b93a5f4b409238245f86d36f9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 224897970395091888, guid: 4c6dc45b93a5f4b409238245f86d36f9,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -253,6 +258,31 @@ Prefab:
         type: 2}
       propertyPath: m_Navigation.m_Mode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813413889493496, guid: 4c6dc45b93a5f4b409238245f86d36f9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813413889493496, guid: 4c6dc45b93a5f4b409238245f86d36f9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813413889493496, guid: 4c6dc45b93a5f4b409238245f86d36f9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2109910553}
+    - target: {fileID: 114813413889493496, guid: 4c6dc45b93a5f4b409238245f86d36f9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetStoryMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813413889493496, guid: 4c6dc45b93a5f4b409238245f86d36f9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -520,7 +550,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1637368354016310, guid: 4c6dc45b93a5f4b409238245f86d36f9, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114939099850644636, guid: 4c6dc45b93a5f4b409238245f86d36f9,
         type: 2}
@@ -908,7 +938,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

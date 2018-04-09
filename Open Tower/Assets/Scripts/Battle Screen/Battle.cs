@@ -33,7 +33,11 @@ public class Battle : MonoBehaviour {
     [SerializeField]
     private BattleProfile enemy;
 
+    [SerializeField]
+    private AudioClip[] hitSounds;
+
     private bool isSkipped;
+    private float timeOpen;
 
     public static Battle Instance {
         get {
@@ -51,6 +55,8 @@ public class Battle : MonoBehaviour {
         yield return Util.Lerp(transitionDuration, t => {
             window.localScale = Vector3.Lerp(new Vector3(0, 1, 1), new Vector3(1, 1, 1), t);
         });
+        isSkipped = false;
+        timeOpen = 0;
         int playerNetDamage = 0;
         int enemyNetDamage = 0;
         Enemy.GetNetDamages(player.Stats, enemyStats, out playerNetDamage, out enemyNetDamage);
@@ -58,9 +64,9 @@ public class Battle : MonoBehaviour {
         while (enemy.IsAlive && !isSkipped) {
             currentShakeDuration *= shakeDurationDecay;
             currentShakeDuration = Math.Max(currentShakeDuration, minShakeDuration);
-            yield return hero.Attack(enemy, playerNetDamage, shakeIntensity, scaleIntensity, currentShakeDuration);
+            yield return hero.Attack(enemy, playerNetDamage, shakeIntensity, scaleIntensity, currentShakeDuration, hitSounds.PickRandom());
             if (enemy.IsAlive) {
-                yield return enemy.Attack(hero, enemyNetDamage, shakeIntensity, scaleIntensity, currentShakeDuration);
+                yield return enemy.Attack(hero, enemyNetDamage, shakeIntensity, scaleIntensity, currentShakeDuration, hitSounds.PickRandom());
             }
         }
         yield return new WaitForSeconds(transitionDuration);
@@ -69,7 +75,8 @@ public class Battle : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.anyKey) {
+        timeOpen += Time.deltaTime;
+        if (Input.anyKey && timeOpen > transitionDuration) {
             isSkipped = true;
         }
     }

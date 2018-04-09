@@ -6,10 +6,13 @@ using UnityEngine.UI;
 public class CurrentFloorDisplay : MonoBehaviour {
 
     [SerializeField]
+    private Text text;
+
     private DungeonManager dungeon;
 
-    [SerializeField]
-    private Text text;
+    private void Start() {
+        dungeon = DungeonManager.Instance;
+    }
 
     private void Update() {
         text.text = string.Format("{0}F", dungeon.GetCurrentFloor().transform.GetSiblingIndex());

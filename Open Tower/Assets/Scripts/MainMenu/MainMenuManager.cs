@@ -12,6 +12,10 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField]
     private Button[] requiresSignIn;
 
+    public void SetStoryMode() {
+        SceneUtil.Play = PlayType.STORY_MODE;
+    }
+
     public void GoToLevel(string levelName) {
         SceneManager.LoadScene(levelName);
     }

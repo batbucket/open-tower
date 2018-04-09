@@ -18,29 +18,11 @@ public class JSONLevel : MonoBehaviour {
     [SerializeField]
     private string levelName;
 
-    [SerializeField]
-    private string sceneOnVictory;
-
-    [SerializeField]
-    private string sceneOnExit = "Main_Menu";
-
     private Upload _upload;
 
     public int ScoreID {
         get {
             return scoreID;
-        }
-    }
-
-    public string SceneOnVictory {
-        get {
-            return sceneOnVictory;
-        }
-    }
-
-    public string SceneOnExit {
-        get {
-            return sceneOnExit;
         }
     }
 
@@ -53,6 +35,12 @@ public class JSONLevel : MonoBehaviour {
     public string Stage {
         get {
             return stage;
+        }
+    }
+
+    public string LevelName {
+        get {
+            return levelName;
         }
     }
 }

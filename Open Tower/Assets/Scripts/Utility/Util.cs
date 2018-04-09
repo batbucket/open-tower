@@ -14,6 +14,10 @@ public static class Util {
         }
     }
 
+    public static int Random(int min, int max) {
+        return UnityEngine.Random.Range(min, max);
+    }
+
     public static float Random(float min, float max) {
         return UnityEngine.Random.Range(min, max);
     }
@@ -116,6 +120,10 @@ public static class Util {
 }
 
 public static class Extensions {
+
+    public static T PickRandom<T>(this IList<T> list) {
+        return list[Util.Random(0, list.Count)];
+    }
 
     public static int IndexOf<T>(this IList<T> list, Func<T, bool> predicate) {
         for (int i = 0; i < list.Count; i++) {

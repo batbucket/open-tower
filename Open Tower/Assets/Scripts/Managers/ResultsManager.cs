@@ -64,17 +64,17 @@ public class ResultsManager : MonoBehaviour {
     [SerializeField]
     private int customScoreID = 0;
 
-    private string destination;
+    private int destinationScene;
 
     private int scoreIDOverride;
 
-    public void ShowResults(string destination) {
+    public void ShowResults(int destinationScene) {
         StartCoroutine(ResultsAnim());
-        this.destination = destination;
+        this.destinationScene = destinationScene;
     }
 
     public void ChangeScene() {
-        SceneManager.LoadScene(destination);
+        SceneManager.LoadScene(destinationScene);
 
         LevelInfo info = LevelInfo.Instance;
         if (info != null) {
