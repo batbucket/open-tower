@@ -12,6 +12,10 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField]
     private Button[] requiresSignIn;
 
+    public void SetStoryMode() {
+        SceneUtil.Play = PlayType.STORY_MODE;
+    }
+
     public void GoToLevel(string levelName) {
         SceneManager.LoadScene(levelName);
     }
@@ -26,12 +30,19 @@ public class MainMenuManager : MonoBehaviour {
           });
     }
 
+    private void Start() {
+        LevelInfo info = FindObjectOfType<LevelInfo>();
+        if (info != null) {
+            Destroy(info.gameObject);
+        }
+    }
+
     private void Update() {
         bool isUserAuthenticated = GameJolt.API.Manager.Instance.CurrentUser != null
             && GameJolt.API.Manager.Instance.CurrentUser.IsAuthenticated;
-        signIn.interactable = !isUserAuthenticated;
+        signIn.gameObject.SetActive(!isUserAuthenticated);
         foreach (Button button in requiresSignIn) {
-            button.interactable = isUserAuthenticated;
+            button.gameObject.SetActive(isUserAuthenticated);
         }
     }
 }

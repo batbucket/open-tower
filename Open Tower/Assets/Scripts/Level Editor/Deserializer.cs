@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Deserializer : MonoBehaviour {
-    private string json;
+    private static Deserializer _instance;
+
+    [SerializeField]
+    private JSONLevel jsonLevel;
 
     [SerializeField]
     private GameObject floorPrefab;
@@ -50,20 +53,51 @@ public class Deserializer : MonoBehaviour {
 
     private Upload upload;
 
-    private void Awake() {
-        LevelInfo info = LevelInfo.Instance;
-        this.upload = info.Upload;
-        Init(upload.LevelJson, info.ExitScene);
+    public static Deserializer Instance {
+        get {
+            if (_instance == null) {
+                _instance = FindObjectOfType<Deserializer>();
+            }
+            return _instance;
+        }
     }
 
-    private void Init(string json, string exitScene) {
+    public void CreateLevelFromJson() {
+        this.upload = jsonLevel.Upload;
+
+        // check play type
+        int victoryScene = -1;
+        int exitScene = -1;
+        if (SceneUtil.Play == PlayType.STORY_MODE) {
+            victoryScene = SceneUtil.GetNextSceneIndex();
+            exitScene = SceneUtil.MAIN_MENU_INDEX;
+        } else { // mode won't ever be level editor playtesting because it uses LevelInfo instead to init
+            victoryScene = SceneUtil.LEVEL_SELECT_INDEX;
+            exitScene = victoryScene;
+        }
+        Init(upload, jsonLevel.Stage, victoryScene, exitScene);
+    }
+
+    private void Awake() {
+        LevelInfo info = LevelInfo.Instance;
+        if (jsonLevel == null) {
+            this.upload = info.Upload;
+            Init(upload, "N/A", info.ExitScene, info.ExitScene);
+        } else {
+            CreateLevelFromJson();
+        }
+    }
+
+    private void Init(Upload upload, string stage, int sceneOnVictory, int sceneOnExit) {
         DontDestroyOnLoad(this.gameObject);
         DungeonManager dungeon = DungeonManager.Instance;
         DungeonInfo info = DungeonInfo.Instance;
 
         SerializationUtil.DeserializeDungeonToPlayable(
-            json,
-            exitScene,
+            upload,
+            stage,
+            sceneOnVictory,
+            sceneOnExit,
             info,
             dungeon.gameObject,
             floorPrefab,
@@ -80,5 +114,6 @@ public class Deserializer : MonoBehaviour {
             redDoorPrefab,
             enemyPrefab,
             boosterPrefab);
+        Debug.Log("deserialized");
     }
 }

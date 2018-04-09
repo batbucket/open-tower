@@ -3,14 +3,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Exit : Entity {
-
-    [SerializeField]
-    private string destinationScene;
+    private int destinationScene;
 
     [SerializeField]
     private int trophyID = int.MinValue;
 
-    public void Init(string destination) {
+    public void Init(int destination) {
         this.destinationScene = destination;
     }
 

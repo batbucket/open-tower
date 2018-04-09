@@ -766,6 +766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  resultPrefab: {fileID: 114523506891852370, guid: 3659337d1a83c0f4887cf416aeed9385,
+    type: 2}
   tip: {fileID: 114895400633438444}
   stats: {fileID: 114087849573090588}
   shakePs: {fileID: 198720095417864462}
@@ -799,6 +801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f0e141710967d4f9392aa384820ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  font: {fileID: 12800000, guid: 416ea1b94ca64df468f0577ccc502ecd, type: 3}
   enemy: {fileID: 114087849573090588}
   life: {fileID: 114514453607359360}
   power: {fileID: 114450480481317958}
@@ -7937,7 +7940,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 90a6e001dad621e4a9f926eedba9c864, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7957,7 +7960,7 @@ SpriteRenderer:
   m_SortingLayerID: 550587821
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 84a14ee79b82da34999de91455a8f71b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e3d5e387817cd3049beaa27f1ebcf7d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

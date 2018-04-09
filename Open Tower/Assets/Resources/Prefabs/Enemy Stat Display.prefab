@@ -622,9 +622,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   life: {fileID: 114741331919076942}
-  power: {fileID: 0}
-  defense: {fileID: 0}
-  experience: {fileID: 0}
+  power: {fileID: 114004911369393600}
+  defense: {fileID: 114204059140753230}
+  experience: {fileID: 114940867693455524}
   wrapper: {fileID: 1457770951024672}
 --- !u!114 &114631947654852442
 MonoBehaviour:

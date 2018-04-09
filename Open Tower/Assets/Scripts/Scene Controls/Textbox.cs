@@ -36,6 +36,9 @@ public class Textbox : MonoBehaviour {
     private Text shadow;
 
     [SerializeField]
+    private Text nameBox;
+
+    [SerializeField]
     private float iconMoveInDuration;
 
     [SerializeField]
@@ -66,15 +69,22 @@ public class Textbox : MonoBehaviour {
     }
 
     // magic happens here
-    public IEnumerator LoadContent(Sprite sprite, string[] messages) {
+    public IEnumerator LoadContent(Sprite sprite, string[] messages, string charName = "") {
         // move in sprite
+        icon.sprite = sprite;
+        icon.enabled = (sprite != null);
         Vector3 iconOriginalPos = icon.transform.localPosition;
         Vector3 iconDisplacedPos = new Vector3(-iconRt.rect.width, 0, 0);
         float timer = 0;
+        nameBox.text = charName;
+        text.text = string.Empty;
+        shadow.text = string.Empty;
+
         while ((timer += Time.deltaTime) < iconMoveInDuration) {
             icon.transform.localPosition = Vector3.Lerp(iconDisplacedPos, iconOriginalPos, timer / iconMoveInDuration);
             yield return null;
         }
+        icon.transform.localPosition = iconOriginalPos;
 
         for (int i = 0; i < messages.Length; i++) {
             isDone = false;
@@ -91,6 +101,8 @@ public class Textbox : MonoBehaviour {
                 yield return new WaitForSeconds(secondsPerCharacter);
             }
             shadow.text = message;
+
+            text.text += " ";
 
             while (!isDone) {
                 text.text += BLOCK_CHARACTER;

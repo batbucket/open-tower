@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -52,7 +53,9 @@ public class FloorPanel : Panel {
             foreach (EditableFloor ef in Floors) {
                 ef.gameObject.SetActive(false);
             }
-            _selected.Associated.gameObject.SetActive(true);
+            if (value != null) {
+                _selected.Associated.gameObject.SetActive(true);
+            }
         }
         get {
             return _selected;
@@ -101,7 +104,10 @@ public class FloorPanel : Panel {
     public void Delete(FloorListing item) {
         Destroy(item.Associated.gameObject);
         Destroy(item.gameObject);
-        StartCoroutine(UpdateFloorIndices());
+        foreach (FloorListing listing in Listings) {
+            listing.Index = listing.transform.GetSiblingIndex();
+        }
+        //StartCoroutine(UpdateFloorIndices());
     }
 
     public void Swap(int item1, int item2) {
@@ -112,6 +118,8 @@ public class FloorPanel : Panel {
         b.Index = temp;
         a.transform.SetSiblingIndex(item2);
         b.transform.SetSiblingIndex(item1);
+        a.Associated.transform.SetSiblingIndex(item2);
+        b.Associated.transform.SetSiblingIndex(item1);
     }
 
     private EditableFloor GetFloorAtIndex(int index) {
@@ -123,5 +131,12 @@ public class FloorPanel : Panel {
         foreach (FloorListing listing in Listings) {
             listing.Index = listing.transform.GetSiblingIndex();
         }
+    }
+
+    public override void Clear() {
+        foreach (FloorListing listing in floorListingParent.GetComponentsInChildren<FloorListing>(true)) {
+            Delete(listing);
+        }
+        _selected = null;
     }
 }

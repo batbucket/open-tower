@@ -54,19 +54,20 @@ public class LevelSubmissionManager : MonoBehaviour {
         GameJolt.API.DataStore.GetKeys(true, keys => {
             CheckName(() => {
                 submit.interactable = false; // prevent button spam
+                nameField.interactable = false;
                 SetWarning("Attempting to upload...", true);
                 GameJolt.API.Misc.GetTime(dateTime => {
                     User user = GameJolt.API.Manager.Instance.CurrentUser;
                     Upload upload = new Upload(
                         LevelInfo.Instance.Upload.LevelJson,
                         nameToCheck,
-                        user.Name,
                         user.ID,
                         dateTime.ToString());
                     GameJolt.API.DataStore.Set(nameToCheck, JsonUtility.ToJson(upload, true), true, isSuccess => {
                         if (isSuccess) {
                             ReturnToEditor();
                         } else {
+                            nameField.interactable = true;
                             submit.interactable = true;
                             SetWarning("Unknown error occurred.", false);
                         }
@@ -77,12 +78,10 @@ public class LevelSubmissionManager : MonoBehaviour {
     }
 
     public void OpenWindow() {
-        floor.SetFloorEditability(false);
         window.SetActive(true);
     }
 
     public void ReturnToEditor() {
-        floor.SetFloorEditability(true);
         window.SetActive(false);
     }
 

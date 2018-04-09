@@ -31,7 +31,13 @@ public class SpritePicker : MonoBehaviour {
         }
     }
 
-    public void Activate(TileType type, Action<PickableSprite> callback) {
+    public bool IsOpen {
+        get {
+            return boosterHolder.gameObject.activeInHierarchy || enemyHolder.gameObject.activeInHierarchy;
+        }
+    }
+
+    public void Activate(AddableTile current, TileType type, Action<PickableSprite> callback) {
         boosterHolder.gameObject.SetActive(false);
         enemyHolder.gameObject.SetActive(false);
         switch (type) {
@@ -55,6 +61,11 @@ public class SpritePicker : MonoBehaviour {
                 }
                 break;
         }
+    }
+
+    public void Deactivate() {
+        boosterHolder.gameObject.SetActive(false);
+        enemyHolder.gameObject.SetActive(false);
     }
 
     private void Start() {

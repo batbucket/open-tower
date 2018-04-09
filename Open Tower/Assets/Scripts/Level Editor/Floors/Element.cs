@@ -34,4 +34,9 @@ public class Element : MonoBehaviour {
         this.source = source;
         Sprite = source.Sprite;
     }
+
+    private void Update() {
+        if (source.TileType == TileType.ENEMY) {
+        }
+    }
 }

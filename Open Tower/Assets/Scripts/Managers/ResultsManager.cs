@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Scripts.LevelEditor.Serialization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -53,15 +55,26 @@ public class ResultsManager : MonoBehaviour {
     [SerializeField]
     private AudioClip scoreSound;
 
-    private string destination;
+    [SerializeField]
+    private Text pastStepsLabel;
 
-    public void ShowResults(string destination) {
+    [SerializeField]
+    private Text pastRankingLabel;
+
+    [SerializeField]
+    private int customScoreID = 0;
+
+    private int destinationScene;
+
+    private int scoreIDOverride;
+
+    public void ShowResults(int destinationScene) {
         StartCoroutine(ResultsAnim());
-        this.destination = destination;
+        this.destinationScene = destinationScene;
     }
 
     public void ChangeScene() {
-        SceneManager.LoadScene(destination);
+        SceneManager.LoadScene(destinationScene);
 
         LevelInfo info = LevelInfo.Instance;
         if (info != null) {
@@ -69,7 +82,21 @@ public class ResultsManager : MonoBehaviour {
         }
     }
 
+    private void Start() {
+        JSONLevel level = FindObjectOfType<JSONLevel>();
+        if (level != null) {
+            Util.Assert(level.ScoreID != 0 || scoreIDOverride != 0, "Score ID was not set.");
+            scoreIDOverride = level.ScoreID + scoreIDOverride;
+        }
+    }
+
     private IEnumerator ResultsAnim() {
+        foreach (TutorialBoard tb in FindObjectsOfType<TutorialBoard>()) {
+            Destroy(tb.gameObject);
+        }
+        DungeonInfo info = DungeonInfo.Instance;
+
+        success.text = string.Format("<color=yellow>{0}</color>\nwas cleared!", info.LevelName);
         success.gameObject.SetActive(true);
         yield return Util.Lerp(successFadeInDuration, t => success.color = Color.Lerp(Color.clear, Color.white, t));
         window.gameObject.SetActive(true);
@@ -79,10 +106,12 @@ public class ResultsManager : MonoBehaviour {
         foreach (GameObject display in stats) {
             yield return WaitThenDisplay(0.25f, display);
         }
-        yield return AnimateScore(time, (int)Time.timeSinceLevelLoad, 0.25f);
-        yield return AnimateScore(steps, Player.Instance.Stats.StepCount, 0.25f);
-        yield return AnimateScore(rank, 100, 0.25f);
-        exit.gameObject.SetActive(true);
+        yield return Util.AnimateScore(time, 0, (int)Time.timeSinceLevelLoad, 0.25f, scoreSound);
+        int stepCount = Player.Instance.Stats.StepCount;
+        yield return Util.AnimateScore(steps, 0, stepCount, 0.25f, scoreSound);
+
+        // Ranking and leaderboard
+        yield return AnimateRank(stepCount);
     }
 
     private IEnumerator WaitThenDisplay(float waitTime, GameObject go) {
@@ -91,13 +120,40 @@ public class ResultsManager : MonoBehaviour {
         SoundManager.Instance.Play(displaySound);
     }
 
-    private IEnumerator AnimateScore(Text target, int endScore, float duration) {
-        float timer = 0;
-        while ((timer += Time.deltaTime) < duration) {
-            target.text = Mathf.CeilToInt(Mathf.Lerp(-999, endScore, timer / duration)).ToString();
-            yield return null;
+    private IEnumerator AnimateRank(int stepCount) {
+        int calculatedRank = -1;
+        Score previousBestScore = null;
+        int previousBestRank = -1;
+        bool isRankLoaded = false;
+        GameJolt.API.Misc.GetTime(dateTime => {
+            if (scoreIDOverride == 0) {
+                Upload upload = LevelInfo.Instance.Upload;
+                List<Score> leaderboard = upload.Leaderboards;
+                GameJolt.API.Objects.User currentUser = GameJolt.API.Manager.Instance.CurrentUser;
+
+                bool isUserAuthor = (currentUser.ID == upload.AuthorID);
+                upload.AddToLeaderboard(currentUser, stepCount, dateTime, out calculatedRank, out previousBestScore, out previousBestRank, isSuccess => {
+                    isRankLoaded = true;
+                });
+            } else {
+                GameJolt.API.Scores.GetRank(stepCount, scoreIDOverride, rank => {
+                    Debug.Log("Rank load successful: " + rank);
+                    calculatedRank = rank - 1;
+                    GameJolt.API.Scores.Add(stepCount, stepCount.ToString(), scoreIDOverride);
+                    isRankLoaded = true;
+                });
+            }
+        });
+        yield return new WaitUntil(() => isRankLoaded);
+        yield return Util.AnimateScore(rank, 0, calculatedRank, 0.35f, scoreSound);
+
+        if (previousBestScore != null) {
+            pastStepsLabel.gameObject.SetActive(true);
+            pastStepsLabel.color = Color.yellow;
+            pastStepsLabel.text = string.Format("Old steps: {0}", previousBestScore.Steps);
+            pastRankingLabel.gameObject.SetActive(true);
+            pastRankingLabel.color = Color.yellow;
+            pastRankingLabel.text = string.Format("Old rank: {0}", previousBestRank);
         }
-        target.text = endScore.ToString();
-        SoundManager.Instance.Play(scoreSound);
     }
 }

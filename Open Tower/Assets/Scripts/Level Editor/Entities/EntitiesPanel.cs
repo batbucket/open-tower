@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +7,11 @@ using UnityEngine.UI;
 public class EntitiesPanel : Panel {
     private static EntitiesPanel _instance;
 
-    /// <summary>
-    /// The prefabs. Should be parallel to the dropdown!
-    /// </summary>
     [SerializeField]
-    private AddableTile[] prefabs;
+    private AddableTile enemyPrefab;
 
     [SerializeField]
-    private Dropdown dropdown;
+    private AddableTile pickupPrefab;
 
     [SerializeField]
     private Transform tileHolder;
@@ -41,8 +39,29 @@ public class EntitiesPanel : Panel {
         }
     }
 
-    public void AddTile() {
-        Instantiate(prefabs[dropdown.value], tileHolder);
+    public void AddEnemy() {
+        AddTile(enemyPrefab.gameObject);
+    }
+
+    public void AddPickup() {
+        AddTile(pickupPrefab.gameObject);
+    }
+
+    public override void Clear() {
+        foreach (AddableTile tile in tileHolder.GetComponentsInChildren<AddableTile>(true)) {
+            if (!tile.IsStaticTileType) {
+                Destroy(tile.gameObject);
+            }
+        }
+        LastSelected = null;
+    }
+
+    public override void OnEnter() {
+        FloorPanel.Instance.SetFloorEditability(true);
+    }
+
+    private void AddTile(GameObject prefab) {
+        Instantiate(prefab, tileHolder);
         if (current != null) {
             StopCoroutine(current);
         }

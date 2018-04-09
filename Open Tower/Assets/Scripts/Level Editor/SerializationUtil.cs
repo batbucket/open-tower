@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Scripts.LevelEditor.Serialization {
 
@@ -112,7 +109,7 @@ namespace Scripts.LevelEditor.Serialization {
                 if (possible == null) { // nothing here
                     IDs[i] = NO_ELEMENT;
                 } else { // store index
-                    IDs[i] = ArrayUtility.FindIndex(addables, a => possible.IsSource(a));
+                    IDs[i] = addables.IndexOf(a => possible.IsSource(a));
                 }
             }
             return new Floor(IDs);
@@ -156,9 +153,7 @@ namespace Scripts.LevelEditor.Serialization {
                         BoosterData booster = addable.BoosterData;
                         go = GameObject.Instantiate(boosterPrefab, tileHolder);
                         at = go.GetComponent<AddableTile>();
-                        while (at.BoostedStatType != booster.StatToBoost) {
-                            at.IterateBoosterStat();
-                        }
+                        at.ChooseBoostedStat(booster.StatToBoost);
                         at.BoostedAmount = booster.AmountBoosted;
                         at.SetSprite(booster.SpriteID, AddableType.BOOSTER);
                         break;
@@ -174,6 +169,7 @@ namespace Scripts.LevelEditor.Serialization {
             }
 
             AddableTile[] addableTiles = tileHolder.GetComponentsInChildren<AddableTile>();
+            FloorListing firstFloorListing = null;
 
             // setup floors
             Floor[] floors = dungeon.Floors;
@@ -186,7 +182,7 @@ namespace Scripts.LevelEditor.Serialization {
                 floorListing.Init(i, editableFloor);
 
                 if (i == 0) { // first floor
-                    floorPanel.Selected = floorListing;
+                    firstFloorListing = floorListing;
                 }
 
                 EditableTile[] tiles = floorGo.GetComponentsInChildren<EditableTile>(true);
@@ -212,12 +208,15 @@ namespace Scripts.LevelEditor.Serialization {
                     }
                 }
             }
+            floorPanel.Selected = firstFloorListing; // do this last so the other floors are properly disabled
         }
 
         // Loading into game
         public static void DeserializeDungeonToPlayable(
-            string json,
-            string exitScene,
+            Upload upload,
+            string stage,
+            int sceneOnVictory,
+            int sceneOnExit,
             DungeonInfo infoTarget,
             GameObject floorsParent,
             GameObject floorPrefab,
@@ -235,14 +234,14 @@ namespace Scripts.LevelEditor.Serialization {
             GameObject enemyPrefab,
             GameObject boosterPrefab
             ) {
-            Debug.Log(json);
+            string json = upload.LevelJson.Replace("\\", "");
             Dungeon dungeon = JsonUtility.FromJson<Dungeon>(json);
 
             Addable[] addables = dungeon.Addables;
             Floor[] floors = dungeon.Floors;
             StartingValues startingValues = dungeon.StartingValues;
 
-            infoTarget.Init("?-?", "Custom", exitScene);
+            infoTarget.Init(stage, upload.LevelName, sceneOnExit);
 
             for (int i = 0; i < floors.Length; i++) {
                 GameObject floor = GameObject.Instantiate(floorPrefab, floorsParent.transform);
@@ -293,7 +292,7 @@ namespace Scripts.LevelEditor.Serialization {
 
                                 case TileType.EXIT:
                                     instantiated = GameObject.Instantiate(exitPrefab, current.transform);
-                                    instantiated.GetComponent<Exit>().Init(exitScene);
+                                    instantiated.GetComponent<Exit>().Init(sceneOnVictory);
                                     break;
 
                                 case TileType.GOLD_DOOR:

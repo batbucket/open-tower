@@ -15,6 +15,7 @@ public class AddableTile : MonoBehaviour {
         { 3, StatType.EXPERIENCE }
     };
 
+    private static AddableTile currentPickingSprite;
     private static EntitiesPanel _parentPanel;
     private static FloorPanel _floorPanel;
 
@@ -59,6 +60,9 @@ public class AddableTile : MonoBehaviour {
 
     [SerializeField]
     private Image image;
+
+    [SerializeField]
+    private Button[] boosterStatChooserButtons;
 
     [SerializeField]
     private Element elementPrefab;
@@ -187,13 +191,23 @@ public class AddableTile : MonoBehaviour {
         this.spriteID = id;
     }
 
-    // Toggle through all boostable stats
-    public void IterateBoosterStat() {
-        boostedStatType = boostedStatType.Next();
-        boosterStatIcon.sprite = boosterStatIcons[(int)BoostedStatType];
+    public void ChooseBoostedStat(StatType stat) {
+        ChooseBoostedStat((int)stat);
     }
 
-    // TODO
+    public void ChooseBoostedStat(int index) {
+        boosterStatIcon.sprite = boosterStatIcons[index];
+        boostedStatType = MAPPING[index];
+        for (int i = 0; i < boosterStatChooserButtons.Length; i++) {
+            Button button = boosterStatChooserButtons[i];
+            if (i == index) {
+                button.interactable = false;
+            } else {
+                button.interactable = true;
+            }
+        }
+    }
+
     public void Delete() {
         Destroy(gameObject);
         if (EntitiesPanel.Instance.LastSelected == this) {
@@ -201,6 +215,9 @@ public class AddableTile : MonoBehaviour {
         }
         foreach (Element e in AllAssociatedElementsInLevel) {
             Destroy(e.gameObject);
+        }
+        if (currentPickingSprite == this) {
+            SpritePicker.Instance.Deactivate();
         }
     }
 
@@ -293,13 +310,20 @@ public class AddableTile : MonoBehaviour {
         if (changeSprite != null) {
             changeSprite.onClick.AddListener(new UnityEngine.Events.UnityAction(
                 () => {
-                    SpritePicker.Instance.Activate(this.TileType, pickable => {
-                        image.sprite = pickable.Sprite;
-                        spriteID = pickable.ID;
-                        foreach (Element e in AllAssociatedElementsInLevel) {
-                            e.Sprite = pickable.Sprite;
-                        }
-                    });
+                    SelectThisTile();
+                    if (!SpritePicker.Instance.IsOpen || currentPickingSprite != this) {
+                        currentPickingSprite = this;
+                        SpritePicker.Instance.Activate(this, this.TileType, pickable => {
+                            image.sprite = pickable.Sprite;
+                            spriteID = pickable.ID;
+                            foreach (Element e in AllAssociatedElementsInLevel) {
+                                e.Sprite = pickable.Sprite;
+                            }
+                        });
+                    } else {
+                        SpritePicker.Instance.Deactivate();
+                        currentPickingSprite = null;
+                    }
                 }
                 ));
         }

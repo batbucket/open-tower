@@ -15,6 +15,12 @@ public class DungeonInfo : MonoBehaviour {
     [SerializeField]
     private ButtonManager buttons;
 
+    public string LevelName {
+        get {
+            return location.text;
+        }
+    }
+
     public static DungeonInfo Instance {
         get {
             if (_instance == null) {
@@ -24,7 +30,7 @@ public class DungeonInfo : MonoBehaviour {
         }
     }
 
-    public void Init(string stage, string location, string backScene) {
+    public void Init(string stage, string location, int backScene) {
         this.stage.text = stage;
         this.location.text = location;
         this.buttons.Init(backScene);
