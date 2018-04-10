@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,9 @@ public class Stats : MonoBehaviour {
 
     [SerializeField]
     private int experience;
+
+    [SerializeField]
+    private Splat prefab;
 
     private int steps;
 
@@ -58,18 +62,42 @@ public class Stats : MonoBehaviour {
 
     public void AddToLife(int amount) {
         this.life += amount;
+        StartCoroutine(Util.ValueChange(
+            amount,
+            new Transform[] { PlayerStatsDisplay.Instance.Life.transform },
+            new Action<Color>[] { t => PlayerStatsDisplay.Instance.Life.color = t })
+            );
+        Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Life.transform);
     }
 
     public void AddToPower(int amount) {
         this.power += amount;
+        StartCoroutine(Util.ValueChange(
+            amount,
+            new Transform[] { PlayerStatsDisplay.Instance.Power.transform },
+            new Action<Color>[] { t => PlayerStatsDisplay.Instance.Power.color = t })
+            );
+        Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Power.transform);
     }
 
     public void AddToDefense(int amount) {
         this.defense += amount;
+        StartCoroutine(Util.ValueChange(
+            amount,
+            new Transform[] { PlayerStatsDisplay.Instance.Defense.transform },
+            new Action<Color>[] { t => PlayerStatsDisplay.Instance.Defense.color = t })
+            );
+        Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Defense.transform);
     }
 
     public void AddToExperience(int amount) {
         this.experience += amount;
+        StartCoroutine(Util.ValueChange(
+            amount,
+            new Transform[] { PlayerStatsDisplay.Instance.Experience.transform },
+            new Action<Color>[] { t => PlayerStatsDisplay.Instance.Experience.color = t })
+            );
+        Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Experience.transform);
     }
 
     public void IncrementSteps() {

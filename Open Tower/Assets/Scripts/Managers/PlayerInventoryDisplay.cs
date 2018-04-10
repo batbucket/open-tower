@@ -53,6 +53,24 @@ public class PlayerInventoryDisplay : MonoBehaviour {
         }
     }
 
+    public Text Yellow {
+        get {
+            return yellow;
+        }
+    }
+
+    public Text Blue {
+        get {
+            return blue;
+        }
+    }
+
+    public Text Red {
+        get {
+            return red;
+        }
+    }
+
     private void Start() {
         player = Player.Instance.Keys;
     }

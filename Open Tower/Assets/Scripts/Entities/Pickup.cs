@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Pickup : Entity {
-    private static AudioClip sound;
 
     [SerializeField]
     private PickupType pickup;
@@ -14,6 +13,8 @@ public class Pickup : Entity {
     private int amount;
 
     private new SpriteRenderer renderer;
+
+    private bool isUsed;
 
     public PickupType Type {
         get {
@@ -51,10 +52,11 @@ public class Pickup : Entity {
     }
 
     protected override bool IsActionPossible(Player player) {
-        return true;
+        return !isUsed;
     }
 
     protected override void DoAction(Player player) {
+        isUsed = true;
         PlayerStatsDisplay display = PlayerStatsDisplay.Instance;
         PlayerInventoryDisplay inv = PlayerInventoryDisplay.Instance;
         switch (pickup) {
@@ -96,17 +98,12 @@ public class Pickup : Entity {
     }
 
     private void Start() {
-        if (sound == null) {
-            sound = Resources.Load<AudioClip>("Sounds/Coin01");
-        }
         renderer = GetComponentInChildren<SpriteRenderer>(true);
     }
 
     private IEnumerator FlyTo(Image destination) {
         renderer.sortingOrder = 1;
         renderer.sortingLayerName = "Default";
-
-        SoundManager.Instance.Play(sound);
 
         Vector3 start = transform.position;
         Vector3 end = destination.transform.position + new Vector3(16, 0, 0);

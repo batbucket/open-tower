@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,12 +15,16 @@ public class Inventory : MonoBehaviour {
     [SerializeField]
     private int red;
 
+    [SerializeField]
+    private Splat prefab;
+
     public int Yellow {
         get {
             return yellow;
         }
         set {
             AssertKeyParameterIsValid(value);
+            ChangeEffect(yellow, value, PlayerInventoryDisplay.Instance.Yellow);
             this.yellow = value;
         }
     }
@@ -30,6 +35,7 @@ public class Inventory : MonoBehaviour {
         }
         set {
             AssertKeyParameterIsValid(value);
+            ChangeEffect(blue, value, PlayerInventoryDisplay.Instance.Blue);
             this.blue = value;
         }
     }
@@ -40,6 +46,7 @@ public class Inventory : MonoBehaviour {
         }
         set {
             AssertKeyParameterIsValid(value);
+            ChangeEffect(red, value, PlayerInventoryDisplay.Instance.Red);
             this.red = value;
         }
     }
@@ -63,5 +70,15 @@ public class Inventory : MonoBehaviour {
         AssertKeyParameterIsValid(yellow);
         AssertKeyParameterIsValid(blue);
         AssertKeyParameterIsValid(red);
+    }
+
+    private void ChangeEffect(int current, int value, Text text) {
+        int amount = value - current;
+        StartCoroutine(Util.ValueChange(
+            amount,
+            new Transform[] { text.transform },
+            new Action<Color>[] { t => text.color = t })
+            );
+        Instantiate(prefab).Init(amount, text.transform);
     }
 }

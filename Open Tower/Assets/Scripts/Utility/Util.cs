@@ -80,6 +80,31 @@ public static class Util {
         scroll.value = 0;
     }
 
+    public static IEnumerator ValueChange(int amount, Transform[] items, Action<Color>[] setColors) {
+        Color initial = Color.white;
+        if (amount < 0) {
+            initial = Color.red;
+        } else if (amount > 0) {
+            initial = Color.green;
+        } else {
+            initial = Color.grey;
+        }
+        yield return Lerp(0.10f, t => {
+            foreach (Transform item in items) {
+                item.localScale = Vector3.Lerp(new Vector3(1.5f, 1.5f, 1.5f), Vector3.one, t);
+            }
+            foreach (Action<Color> setColor in setColors) {
+                setColor(Color.Lerp(initial, Color.white, t));
+            }
+        });
+        foreach (Transform item in items) {
+            item.localScale = Vector3.one;
+        }
+        foreach (Action<Color> setColor in setColors) {
+            setColor(Color.white);
+        }
+    }
+
     // assumes scales are initially 1,1,1
     public static IEnumerator ShakeItem(float shakeIntensity, float scaleIntensity, float duration, Action callback, params Transform[] targets) {
         Vector3[] originalPos = new Vector3[targets.Length];
