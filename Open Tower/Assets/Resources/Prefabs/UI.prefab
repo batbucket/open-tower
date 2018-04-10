@@ -7025,6 +7025,7 @@ MonoBehaviour:
   addLife: {fileID: 114673451349283050}
   addPower: {fileID: 114158234934547202}
   addDefense: {fileID: 114619994338940010}
+  boostSound: {fileID: 8300000, guid: 1017abfa40ccd3f46a39e82a9cbcca12, type: 3}
 --- !u!114 &114725738362361032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8206,7 +8207,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 3718032a7f8ed0d4d92085200c21257b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 084a95fa19d6ae548b74ce132d1c2f9a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

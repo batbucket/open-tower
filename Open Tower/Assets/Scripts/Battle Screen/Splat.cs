@@ -28,8 +28,11 @@ public class Splat : MonoBehaviour {
 
     private IEnumerator Animate() {
         text.transform.localScale = Vector3.zero;
+        yield return Util.Lerp(0.05f, t => {
+            text.transform.localScale = Vector3.Slerp(Vector3.zero, new Vector3(1.5f, 1.5f, 1.5f), t);
+        });
         yield return Util.Lerp(0.10f, t => {
-            text.transform.localScale = Vector3.Slerp(Vector3.zero, Vector3.one, t);
+            text.transform.localScale = Vector3.Slerp(new Vector3(1.5f, 1.5f, 1.5f), Vector3.one, t);
         });
         yield return new WaitForSeconds(2f);
         yield return Util.Lerp(0.10f, t => {

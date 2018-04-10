@@ -12,6 +12,9 @@ public class Door : Entity {
     [SerializeField]
     private Animator anim;
 
+    [SerializeField]
+    private AudioClip opening;
+
     protected override void DoAction(Player player) {
         switch (key) {
             case KeyType.YELLOW:
@@ -27,6 +30,7 @@ public class Door : Entity {
                 break;
         }
         Player.Instance.IsMovementEnabled = false;
+        SoundManager.Instance.Play(opening);
         anim.SetTrigger(ANIM_START_TRIGGER);
     }
 

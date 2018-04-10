@@ -133,6 +133,7 @@ MonoBehaviour:
   power: 1
   defense: 1
   experience: 0
+  prefab: {fileID: 114826133410798508, guid: c45985f3293bfd2469d05769640ff55a, type: 2}
 --- !u!114 &114815182626964110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,6 +148,7 @@ MonoBehaviour:
   yellow: 0
   blue: 0
   red: 0
+  prefab: {fileID: 114826133410798508, guid: c45985f3293bfd2469d05769640ff55a, type: 2}
 --- !u!114 &114895299787173348
 MonoBehaviour:
   m_ObjectHideFlags: 1
