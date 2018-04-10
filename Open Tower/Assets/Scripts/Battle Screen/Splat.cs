@@ -21,7 +21,7 @@ public class Splat : MonoBehaviour {
         }
         text.text = amount.ToString("+#;-#;0");
         transform.SetParent(parent);
-        transform.localPosition = new Vector3(25, 0, 0);
+        transform.localPosition = new Vector3(5, 0, 0);
         SoundManager.Instance.Play(sound);
         StartCoroutine(Animate());
     }
