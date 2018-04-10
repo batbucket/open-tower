@@ -2,6 +2,9 @@
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
+    public const string BGM_KEY = "bgm";
+    public const string SFX_KEY = "sfx";
+
     private const float MIN_PITCH = 0.5f;
     private const float MAX_PITCH = 1.5f;
     private static SoundManager _instance;
@@ -47,6 +50,7 @@ public class SoundManager : MonoBehaviour {
     }
 
     private void Update() {
+        loop.volume = Setting.GetBGM();
         persistence.loop = this.loop.clip;
         persistence.time = this.loop.time;
     }
@@ -54,6 +58,7 @@ public class SoundManager : MonoBehaviour {
     private IEnumerator PlayThenDestroy(AudioClip clip) {
         GameObject go = new GameObject();
         AudioSource source = go.AddComponent<AudioSource>();
+        source.volume = Setting.GetSFX();
         source.pitch = Util.Random(MIN_PITCH, MAX_PITCH);
         source.PlayOneShot(clip);
         source.transform.SetParent(oneshots.transform);

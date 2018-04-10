@@ -8,9 +8,13 @@ public class LevelSelectManager : MonoBehaviour {
     [SerializeField]
     private GameObject levelParent;
 
+    [SerializeField]
+    private SelectableLevel prefab;
+
     private void Start() {
-        int numberOfLevels = levelParent.GetComponentsInChildren<SelectableLevel>().Length;
-        Util.Assert(numberOfLevels == SceneUtil.NUMBER_OF_LEVELS, "Expected {0} levels, got {1} instead", SceneUtil.NUMBER_OF_LEVELS, numberOfLevels);
+        for (int i = SceneUtil.LEVEL_START_INDEX; i <= SceneUtil.LEVEL_END_INDEX; i++) {
+            Instantiate(prefab, levelParent.transform).Init();
+        }
     }
 
     public void ShowLeaderboards() {

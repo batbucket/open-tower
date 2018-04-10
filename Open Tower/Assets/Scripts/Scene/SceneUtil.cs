@@ -12,6 +12,31 @@ public static class SceneUtil {
 
     public static PlayType Play;
 
+    private static readonly LevelParams[] levels = new LevelParams[] {
+        new LevelParams(0, "Gestation"), // story
+        new LevelParams(0, 0, "Movement"), // tute begin
+        new LevelParams(0, 1, "Keys I"),
+        new LevelParams(0, 2, "Keys II"),
+        new LevelParams(0, 3, "Combat I"),
+        new LevelParams(0, 4, "Combat II"),
+        new LevelParams(0, "Friendship"), // story
+        new LevelParams(1, 0, "Imitation"), // life begin
+        new LevelParams(1, 1, "Enterprise"),
+        new LevelParams(1, 2, "Dedication"),
+        new LevelParams(1, 3, "Renunciation"),
+        new LevelParams(2, 0, "Event Horizon"), // maze tower
+        new LevelParams(3, 0, "Shock"), // death begin
+        new LevelParams(3, 1, "Denial"),
+        new LevelParams(3, 2, "Anger"),
+        new LevelParams(3, 3, "Bargaining"),
+        new LevelParams(4, 0, "Grief"), // finale begin
+        new LevelParams(4, 1, "Acceptance")
+    };
+
+    public static LevelParams GetParams(int levelIndex) {
+        return levels[levelIndex];
+    }
+
     public static int GetNextSceneIndex() {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         Debug.Log("Playtype: " + Play.ToString());
