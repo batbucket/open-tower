@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerStatsDisplay : MonoBehaviour {
+    private static PlayerStatsDisplay _instance;
 
     [SerializeField]
     private Color lerpMin;
@@ -19,6 +20,18 @@ public class PlayerStatsDisplay : MonoBehaviour {
 
     [SerializeField]
     private int powerAndDefenseIncreaseAmount;
+
+    [SerializeField]
+    private Image lifeIcon;
+
+    [SerializeField]
+    private Image powerIcon;
+
+    [SerializeField]
+    private Image defenseIcon;
+
+    [SerializeField]
+    private Image experienceIcon;
 
     [SerializeField]
     private Text life;
@@ -46,6 +59,39 @@ public class PlayerStatsDisplay : MonoBehaviour {
     private Coroutine buttonEnableRoutine;
 
     private Button[] addButtons;
+
+    public static PlayerStatsDisplay Instance {
+        get {
+            if (_instance == null) {
+                _instance = FindObjectOfType<PlayerStatsDisplay>();
+            }
+            return _instance;
+        }
+    }
+
+    public Image LifeIcon {
+        get {
+            return lifeIcon;
+        }
+    }
+
+    public Image PowerIcon {
+        get {
+            return powerIcon;
+        }
+    }
+
+    public Image DefenseIcon {
+        get {
+            return defenseIcon;
+        }
+    }
+
+    public Image ExperienceIcon {
+        get {
+            return experienceIcon;
+        }
+    }
 
     public void IncreaseLife() {
         if (player.Experience > 0) {

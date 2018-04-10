@@ -58,6 +58,11 @@ MonoBehaviour:
   - {fileID: 21300002, guid: af7aa2c0bd522d846a57efd797ce6fde, type: 3}
   - {fileID: 21300004, guid: af7aa2c0bd522d846a57efd797ce6fde, type: 3}
   - {fileID: 21300006, guid: af7aa2c0bd522d846a57efd797ce6fde, type: 3}
+  lifeMusic: {fileID: 8300000, guid: 2903b3f840421fa4383d6120d6c6a1b3, type: 3}
+  towerMusic: {fileID: 8300000, guid: 5b2b82b3fece2414487c8ec2fd4ec8fa, type: 3}
+  deathMusic: {fileID: 8300000, guid: 3cdb6f1742f9bc64f89edc8630ca6877, type: 3}
+  voidMusic: {fileID: 8300000, guid: 8dcee85980b8ddf4fb4eede018ff3405, type: 3}
+  classicMusic: {fileID: 8300000, guid: daf0f9049860835479e64d48b2f98647, type: 3}
   enemies:
   - {fileID: 21300000, guid: 84a14ee79b82da34999de91455a8f71b, type: 3}
   - {fileID: 21300000, guid: e3d5e387817cd3049beaa27f1ebcf7d9, type: 3}

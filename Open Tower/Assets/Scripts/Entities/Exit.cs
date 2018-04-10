@@ -5,20 +5,12 @@ using UnityEngine.SceneManagement;
 public class Exit : Entity {
     private int destinationScene;
 
-    [SerializeField]
-    private int trophyID = int.MinValue;
-
     public void Init(int destination) {
         this.destinationScene = destination;
     }
 
     protected override void DoAction(Player player) {
         player.IsMovementEnabled = false;
-        if (trophyID != int.MinValue) {
-            GameJolt.API.Trophies.Unlock(trophyID, isSuccess => {
-                Debug.Log(isSuccess);
-            });
-        }
         StartCoroutine(TeleportAway(player));
     }
 

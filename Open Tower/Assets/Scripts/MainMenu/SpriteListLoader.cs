@@ -19,6 +19,21 @@ public class SpriteListLoader : MonoBehaviour {
     private Sprite[] voidTiles;
 
     [SerializeField]
+    private AudioClip lifeMusic;
+
+    [SerializeField]
+    private AudioClip towerMusic;
+
+    [SerializeField]
+    private AudioClip deathMusic;
+
+    [SerializeField]
+    private AudioClip voidMusic;
+
+    [SerializeField]
+    private AudioClip classicMusic;
+
+    [SerializeField]
     private Sprite[] enemies;
 
     [SerializeField]

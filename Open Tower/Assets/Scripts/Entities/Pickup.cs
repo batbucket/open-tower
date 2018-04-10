@@ -2,14 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pickup : Entity {
+    private static AudioClip sound;
 
     [SerializeField]
     private PickupType pickup;
 
     [SerializeField]
     private int amount;
+
+    private new SpriteRenderer renderer;
 
     public PickupType Type {
         get {
@@ -51,35 +55,66 @@ public class Pickup : Entity {
     }
 
     protected override void DoAction(Player player) {
+        PlayerStatsDisplay display = PlayerStatsDisplay.Instance;
+        PlayerInventoryDisplay inv = PlayerInventoryDisplay.Instance;
         switch (pickup) {
             case PickupType.LIFE:
                 player.Stats.AddToLife(amount);
+                StartCoroutine(FlyTo(display.LifeIcon));
                 break;
 
             case PickupType.POWER:
                 player.Stats.AddToPower(amount);
+                StartCoroutine(FlyTo(display.PowerIcon));
                 break;
 
             case PickupType.DEFENSE:
                 player.Stats.AddToDefense(amount);
+                StartCoroutine(FlyTo(display.DefenseIcon));
                 break;
 
             case PickupType.EXPERIENCE:
                 player.Stats.AddToExperience(amount);
+                StartCoroutine(FlyTo(display.ExperienceIcon));
                 break;
 
             case PickupType.YELLOW_KEY:
                 player.Keys.Yellow += amount;
+                StartCoroutine(FlyTo(inv.GoldIcon));
                 break;
 
             case PickupType.BLUE_KEY:
                 player.Keys.Blue += amount;
+                StartCoroutine(FlyTo(inv.BlueIcon));
                 break;
 
             case PickupType.RED_KEY:
                 player.Keys.Red += amount;
+                StartCoroutine(FlyTo(inv.RedIcon));
                 break;
         }
+    }
+
+    private void Start() {
+        if (sound == null) {
+            sound = Resources.Load<AudioClip>("Sounds/Coin01");
+        }
+        renderer = GetComponentInChildren<SpriteRenderer>(true);
+    }
+
+    private IEnumerator FlyTo(Image destination) {
+        renderer.sortingOrder = 1;
+        renderer.sortingLayerName = "Default";
+
+        SoundManager.Instance.Play(sound);
+
+        Vector3 start = transform.position;
+        Vector3 end = destination.transform.position + new Vector3(16, 0, 0);
+        yield return Util.Lerp(0.25f, t => {
+            transform.position = Vector3.Lerp(start, end, t);
+            transform.localScale = Vector3.Lerp(Vector3.one, new Vector3(0.5f, 0.5f, 0.5f), t);
+        });
+        transform.position = end;
         this.gameObject.SetActive(false);
     }
 }

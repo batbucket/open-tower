@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 224768802224072432}
   - component: {fileID: 222087939937342028}
   - component: {fileID: 114111197481347148}
+  - component: {fileID: 114961669656402686}
   m_Layer: 0
   m_Name: Header
   m_TagString: Untagged
@@ -1404,6 +1405,7 @@ GameObject:
   - component: {fileID: 224796772051753304}
   - component: {fileID: 222661833105660906}
   - component: {fileID: 114515054259317616}
+  - component: {fileID: 114578764279995894}
   m_Layer: 0
   m_Name: Header
   m_TagString: Untagged
@@ -4051,6 +4053,9 @@ MonoBehaviour:
   yellow: {fileID: 114634247107780886}
   blue: {fileID: 114979558779323538}
   red: {fileID: 114725738362361032}
+  goldIcon: {fileID: 114097752425615612}
+  blueIcon: {fileID: 114732057371045656}
+  redIcon: {fileID: 114019570491244802}
 --- !u!114 &114196840239489108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6047,6 +6052,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114578764279995894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1600494978649160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114579204778178284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6995,6 +7014,10 @@ MonoBehaviour:
   lerpInterval: 0.5
   lifeIncreaseAmount: 1
   powerAndDefenseIncreaseAmount: 1
+  lifeIcon: {fileID: 114619244544281282}
+  powerIcon: {fileID: 114125617001264876}
+  defenseIcon: {fileID: 114057266498870038}
+  experienceIcon: {fileID: 114131384894836738}
   life: {fileID: 114056346579958370}
   power: {fileID: 114695770052750834}
   defense: {fileID: 114080230066886924}
@@ -7184,7 +7207,6 @@ MonoBehaviour:
   scoreSound: {fileID: 8300000, guid: 1017abfa40ccd3f46a39e82a9cbcca12, type: 3}
   pastStepsLabel: {fileID: 114384573878397006}
   pastRankingLabel: {fileID: 114067514637392512}
-  customScoreID: 337759
 --- !u!114 &114737053770557994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8118,6 +8140,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114961669656402686
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1197175054179260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114979558779323538
 MonoBehaviour:
   m_ObjectHideFlags: 1

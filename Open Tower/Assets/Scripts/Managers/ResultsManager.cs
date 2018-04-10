@@ -61,9 +61,6 @@ public class ResultsManager : MonoBehaviour {
     [SerializeField]
     private Text pastRankingLabel;
 
-    [SerializeField]
-    private int customScoreID = 0;
-
     private int destinationScene;
 
     private int scoreIDOverride;
@@ -83,10 +80,10 @@ public class ResultsManager : MonoBehaviour {
     }
 
     private void Start() {
-        JSONLevel level = FindObjectOfType<JSONLevel>();
-        if (level != null) {
-            Util.Assert(level.ScoreID != 0 || scoreIDOverride != 0, "Score ID was not set.");
-            scoreIDOverride = level.ScoreID + scoreIDOverride;
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        if (SceneUtil.IsLevelIndex(buildIndex)) {
+            scoreIDOverride = SceneUtil.GetParams(buildIndex - SceneUtil.LEVEL_START_INDEX).ScoresID;
+            Debug.Log("Using score ID: " + scoreIDOverride);
         }
     }
 
