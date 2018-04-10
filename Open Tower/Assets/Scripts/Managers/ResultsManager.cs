@@ -139,7 +139,11 @@ public class ResultsManager : MonoBehaviour {
                 GameJolt.API.Scores.GetRank(stepCount, scoreIDOverride, rank => {
                     Debug.Log("Rank load successful: " + rank);
                     calculatedRank = rank - 1;
-                    GameJolt.API.Scores.Add(stepCount, stepCount.ToString(), scoreIDOverride);
+
+                    // passing in null means there's a user
+                    string guestName = (GameJolt.API.Manager.Instance.CurrentUser == null) ? "Guest" : string.Empty;
+
+                    GameJolt.API.Scores.Add(stepCount, stepCount.ToString(), guestName, scoreIDOverride);
                     isRankLoaded = true;
                 });
             }

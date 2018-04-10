@@ -8,7 +8,7 @@ public static class SceneUtil {
     public const int EDITOR_INDEX = 3;
     public const int LEVEL_START_INDEX = 7;
     public static readonly int LEVEL_END_INDEX = SceneManager.sceneCountInBuildSettings - 1;
-    public static int NUMBER_OF_LEVELS = LEVEL_END_INDEX - LEVEL_START_INDEX + 1;
+    public static readonly int NUMBER_OF_LEVELS = LEVEL_END_INDEX - LEVEL_START_INDEX + 1;
 
     public static PlayType Play;
 

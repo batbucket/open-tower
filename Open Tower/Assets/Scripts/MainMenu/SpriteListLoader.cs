@@ -13,6 +13,9 @@ public class SpriteListLoader : MonoBehaviour {
     private Sprite[] towerTiles;
 
     [SerializeField]
+    private Sprite[] deathTiles;
+
+    [SerializeField]
     private Sprite[] enemies;
 
     [SerializeField]
@@ -160,6 +163,12 @@ public class SpriteListLoader : MonoBehaviour {
     public Sprite RedDoor {
         get {
             return redDoor;
+        }
+    }
+
+    public Sprite[] Death {
+        get {
+            return deathTiles;
         }
     }
 }
