@@ -33,6 +33,10 @@ public static class SceneUtil {
         new LevelParams(4, 1, "Acceptance")
     };
 
+    public static bool IsLevelIndex(int sceneIndex) {
+        return sceneIndex >= LEVEL_START_INDEX && sceneIndex <= LEVEL_END_INDEX;
+    }
+
     public static LevelParams GetParams(int levelIndex) {
         return levels[levelIndex];
     }

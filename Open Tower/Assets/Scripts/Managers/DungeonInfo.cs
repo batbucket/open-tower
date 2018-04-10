@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DungeonInfo : MonoBehaviour {
@@ -34,5 +35,19 @@ public class DungeonInfo : MonoBehaviour {
         this.stage.text = stage;
         this.location.text = location;
         this.buttons.Init(backScene);
+        SetupIfIsOfficialLevel();
+    }
+
+    private void Start() {
+        SetupIfIsOfficialLevel();
+    }
+
+    private void SetupIfIsOfficialLevel() {
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        if (SceneUtil.IsLevelIndex(buildIndex)) {
+            LevelParams level = SceneUtil.GetParams(buildIndex - SceneUtil.LEVEL_START_INDEX);
+            this.stage.text = string.Format("{0}-{1}", level.WorldIndex, level.StageIndex);
+            this.location.text = level.Name;
+        }
     }
 }

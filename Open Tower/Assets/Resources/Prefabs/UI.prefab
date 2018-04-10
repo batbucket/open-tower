@@ -3018,7 +3018,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1-1
+  m_Text: 1-0
 --- !u!114 &114034714801012858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6079,7 +6079,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Short Name
+  m_Text: ???
 --- !u!114 &114584042472358174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7184,7 +7184,7 @@ MonoBehaviour:
   scoreSound: {fileID: 8300000, guid: 1017abfa40ccd3f46a39e82a9cbcca12, type: 3}
   pastStepsLabel: {fileID: 114384573878397006}
   pastRankingLabel: {fileID: 114067514637392512}
-  customScoreID: 0
+  customScoreID: 337759
 --- !u!114 &114737053770557994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9374,11 +9374,11 @@ ParticleSystem:
     sprites:
     - sprite: {fileID: 0}
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 150
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -12780,11 +12780,11 @@ ParticleSystem:
     sprites:
     - sprite: {fileID: 0}
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -150
       minScalar: 0
       maxCurve:
         serializedVersion: 2

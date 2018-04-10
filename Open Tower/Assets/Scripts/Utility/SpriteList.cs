@@ -52,6 +52,7 @@ public static class SpriteList {
             AddPathSprite(PathType.GRASS, loader.Life);
             AddPathSprite(PathType.TOWER, loader.Tower);
             AddPathSprite(PathType.DEATH, loader.Death);
+            AddPathSprite(PathType.VOID, loader.Void);
 
             AddStaticSprite(TileType.WALL, loader.Wall);
             AddStaticSprite(TileType.UP_STAIRS, loader.UpStairs);

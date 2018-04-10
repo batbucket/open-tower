@@ -25,6 +25,8 @@ public class SceneController : MonoBehaviour {
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             isSkipping = true;
+            StopAllCoroutines();
+            SceneManager.LoadScene(SceneUtil.GetNextSceneIndex());
         }
     }
 }
