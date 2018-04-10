@@ -74,11 +74,13 @@ public class Inventory : MonoBehaviour {
 
     private void ChangeEffect(int current, int value, Text text) {
         int amount = value - current;
-        StartCoroutine(Util.ValueChange(
-            amount,
-            new Transform[] { text.transform },
-            new Action<Color>[] { t => text.color = t })
-            );
-        Instantiate(prefab).Init(amount, text.transform);
+        if (amount != 0) {
+            StartCoroutine(Util.ValueChange(
+                amount,
+                new Transform[] { text.transform },
+                new Action<Color>[] { t => text.color = t })
+                );
+            Instantiate(prefab).Init(amount, text.transform);
+        }
     }
 }

@@ -34,6 +34,7 @@ public class Splat : MonoBehaviour {
         yield return Util.Lerp(0.10f, t => {
             text.transform.localScale = Vector3.Slerp(new Vector3(1.5f, 1.5f, 1.5f), Vector3.one, t);
         });
+        text.transform.localScale = Vector3.one;
         yield return new WaitForSeconds(2f);
         yield return Util.Lerp(0.10f, t => {
             text.transform.localScale = Vector3.Slerp(Vector3.one, Vector3.zero, t);

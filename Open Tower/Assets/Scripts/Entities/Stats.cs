@@ -67,7 +67,9 @@ public class Stats : MonoBehaviour {
             new Transform[] { PlayerStatsDisplay.Instance.Life.transform },
             new Action<Color>[] { t => PlayerStatsDisplay.Instance.Life.color = t })
             );
-        Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Life.transform);
+        if (amount != 0) {
+            Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Life.transform);
+        }
     }
 
     public void AddToPower(int amount) {
@@ -77,7 +79,9 @@ public class Stats : MonoBehaviour {
             new Transform[] { PlayerStatsDisplay.Instance.Power.transform },
             new Action<Color>[] { t => PlayerStatsDisplay.Instance.Power.color = t })
             );
-        Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Power.transform);
+        if (amount != 0) {
+            Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Power.transform);
+        }
     }
 
     public void AddToDefense(int amount) {
@@ -87,7 +91,9 @@ public class Stats : MonoBehaviour {
             new Transform[] { PlayerStatsDisplay.Instance.Defense.transform },
             new Action<Color>[] { t => PlayerStatsDisplay.Instance.Defense.color = t })
             );
-        Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Defense.transform);
+        if (amount != 0) {
+            Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Defense.transform);
+        }
     }
 
     public void AddToExperience(int amount) {
@@ -97,7 +103,9 @@ public class Stats : MonoBehaviour {
             new Transform[] { PlayerStatsDisplay.Instance.Experience.transform },
             new Action<Color>[] { t => PlayerStatsDisplay.Instance.Experience.color = t })
             );
-        Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Experience.transform);
+        if (amount != 0) {
+            Instantiate(prefab).Init(amount, PlayerStatsDisplay.Instance.Experience.transform);
+        }
     }
 
     public void IncrementSteps() {
