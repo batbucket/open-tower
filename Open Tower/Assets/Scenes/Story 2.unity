@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 1304139761}
-  isRendererEnabled: 0
+  isRendererEnabled: 1
   waitTime: 0
 --- !u!4 &31771861
 Transform:
@@ -175,6 +175,54 @@ MonoBehaviour:
   renderer: {fileID: 1705891807}
   isRendererEnabled: 1
   waitTime: 0
+--- !u!1 &44099775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 44099776}
+  - component: {fileID: 44099777}
+  m_Layer: 0
+  m_Name: Text_Rikki (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &44099776
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44099775}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &44099777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44099775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Rikki
+  icon: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
+  texts:
+  - "Relic? What\u2019s that?"
+  waitTime: 0
 --- !u!1 &72117267
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +252,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1528888522}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &72117269
 MonoBehaviour:
@@ -221,9 +269,202 @@ MonoBehaviour:
   charName: Soma
   icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
   texts:
-  - Soma Hein...
-  - Tis... a pleasure... to make. . .  the acquaintance...  of another human.
-  - Why... have you come... to this monolith?
+  - Your . . . continued existence.
+  waitTime: 0
+--- !u!1 &119670346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 119670347}
+  - component: {fileID: 119670348}
+  m_Layer: 0
+  m_Name: Text_Rikki (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &119670347
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119670346}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &119670348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119670346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Rikki
+  icon: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
+  texts:
+  - 'Oh, that? It just seemed to . . . come naturally. '
+  waitTime: 0
+--- !u!1 &233887433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 233887434}
+  - component: {fileID: 233887435}
+  m_Layer: 0
+  m_Name: Text_Soma (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &233887434
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 233887433}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &233887435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 233887433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Soma
+  icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
+  texts:
+  - "Your relic . . . is an \u201CEnigma\u201D."
+  waitTime: 0
+--- !u!1 &277953661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 277953662}
+  - component: {fileID: 277953663}
+  m_Layer: 0
+  m_Name: Text_Soma (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &277953662
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277953661}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &277953663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277953661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Soma
+  icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
+  texts:
+  - "I was . . . referring to . . . the type of relic . . . whereas I . . . have this
+    cube . . . your relic . . . an \u201CEnigma\u201D"
+  - an embodiment . . . of the type of puzzle . . . that is . . . the most difficult
+    for you.
+  waitTime: 0
+--- !u!1 &283993900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 283993901}
+  - component: {fileID: 283993902}
+  m_Layer: 0
+  m_Name: Text_Rikki (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &283993901
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 283993900}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &283993902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 283993900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Rikki
+  icon: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
+  texts:
+  - "Oh? So, you don\u2019t know what it is?"
   waitTime: 0
 --- !u!1 &345480055
 GameObject:
@@ -406,7 +647,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1528888522}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &482037739
 MonoBehaviour:
@@ -423,12 +664,7 @@ MonoBehaviour:
   charName: Soma
   icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
   texts:
-  - 'Is that so . . . '
-  - However . . . there are many things. . . one must understand . . .
-  - before beginning . . . lest that beginning . . .
-  - be an end . . .
-  - "I don\u2019t mind . . . being your ally . . . "
-  - ' if you prove yourself capable . . . of surmounting this puzzle.'
+  - Then how . . . did you know . . . to use your relic . . . to fight?
   waitTime: 0
 --- !u!1 &517728099
 GameObject:
@@ -459,7 +695,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1528888522}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &517728101
 MonoBehaviour:
@@ -476,9 +712,9 @@ MonoBehaviour:
   charName: Soma
   icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
   texts:
-  - It is... fairly presumtuous of you... is it not...
-  - to assume... one would embark... on a journey... with a person... they had just
-    met?
+  - 'The power of your mind . . . is what sustains you here . . . '
+  - 'once you complete a puzzle . . . it is replenished . . . '
+  - have you not . . . read the sign?
   waitTime: 0
 --- !u!1 &529509660
 GameObject:
@@ -611,11 +847,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charName: ???
-  icon: {fileID: 21300014, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
+  charName: Soma
+  icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
   texts:
-  - Who. . . art thou?
-  waitTime: 2
+  - 'An admirable performance . . '
+  waitTime: 0
 --- !u!1 &591725928
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,44 +1064,44 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 650348818}
---- !u!1 &665065354
+--- !u!1 &662364248
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1469965249056894, guid: c722a8de011fdde4483a0ac941d6b35e,
+  m_PrefabParentObject: {fileID: 1998792164313996, guid: c722a8de011fdde4483a0ac941d6b35e,
     type: 2}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 665065355}
-  - component: {fileID: 665065357}
-  - component: {fileID: 665065356}
+  - component: {fileID: 662364249}
+  - component: {fileID: 662364250}
   m_Layer: 0
-  m_Name: Despawn
+  m_Name: Despawn Rikki
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &665065355
+--- !u!4 &662364249
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4376077287952154, guid: c722a8de011fdde4483a0ac941d6b35e,
+  m_PrefabParentObject: {fileID: 4294311324008172, guid: c722a8de011fdde4483a0ac941d6b35e,
     type: 2}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 665065354}
+  m_GameObject: {fileID: 662364248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1528888522}
-  m_RootOrder: 9
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &665065356
+--- !u!114 &662364250
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114427103114668352, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 665065354}
+  m_GameObject: {fileID: 662364248}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4820dbcd775cf704c91c4444ae9e9cf4, type: 3}
@@ -874,20 +1110,53 @@ MonoBehaviour:
   renderer: {fileID: 1705891807}
   isRendererEnabled: 0
   waitTime: 0
---- !u!114 &665065357
-MonoBehaviour:
+--- !u!1 &665750862
+GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114012394363893346, guid: c722a8de011fdde4483a0ac941d6b35e,
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
     type: 2}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 665065354}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 665750863}
+  - component: {fileID: 665750864}
+  m_Layer: 0
+  m_Name: Text_Rikki (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &665750863
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665750862}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &665750864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665750862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4820dbcd775cf704c91c4444ae9e9cf4, type: 3}
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 1304139761}
-  isRendererEnabled: 0
+  charName: Rikki
+  icon: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
+  texts:
+  - "Well, let\u2019s keep going."
   waitTime: 0
 --- !u!1 &695937632
 GameObject:
@@ -918,7 +1187,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1528888522}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &695937634
 MonoBehaviour:
@@ -935,8 +1204,8 @@ MonoBehaviour:
   charName: Rikki
   icon: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
   texts:
-  - I am Rikki Rogi! Who are you?
-  waitTime: 2
+  - Well, it's like I said. Speaking of which, what's my reward for beating this puzzle?
+  waitTime: 0
 --- !u!1 &715310387
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,7 +1235,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1528888522}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &715310389
 MonoBehaviour:
@@ -983,55 +1252,9 @@ MonoBehaviour:
   charName: Rikki
   icon: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
   texts:
-  - Well, you on't seem to be trying to kill me.
-  - And besides, the hero must win the gild in the end!
+  - 'Sign? '
+  - " What sign? I didn\u2019t see a sign on the way here!"
   waitTime: 0
---- !u!1 &746062928
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1469965249056894, guid: c722a8de011fdde4483a0ac941d6b35e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 746062929}
-  - component: {fileID: 746062930}
-  m_Layer: 0
-  m_Name: Spawn Soma
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &746062929
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4376077287952154, guid: c722a8de011fdde4483a0ac941d6b35e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 746062928}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1528888522}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &746062930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114012394363893346, guid: c722a8de011fdde4483a0ac941d6b35e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 746062928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4820dbcd775cf704c91c4444ae9e9cf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderer: {fileID: 1304139761}
-  isRendererEnabled: 1
-  waitTime: 1
 --- !u!1 &792415631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,6 +1315,54 @@ MonoBehaviour:
   iconMoveInDuration: 0.2
   secondsPerCharacter: 0.02
   secondsPerBlink: 0.2
+--- !u!1 &837466042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 837466043}
+  - component: {fileID: 837466044}
+  m_Layer: 0
+  m_Name: Text_Soma (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &837466043
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 837466042}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &837466044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 837466042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Soma
+  icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
+  texts:
+  - I believe so.
+  waitTime: 0
 --- !u!1 &894261624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1392,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1528888522}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &894261626
 MonoBehaviour:
@@ -1138,8 +1409,7 @@ MonoBehaviour:
   charName: Rikki
   icon: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
   texts:
-  - That is exactly what I am trying to find out.
-  - Would you care to join me?
+  - "Huh? That doesn\u2019t sound like something that should be a reward!"
   waitTime: 0
 --- !u!1 &924203385
 GameObject:
@@ -1313,6 +1583,54 @@ Tilemap:
     m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
+--- !u!1 &965049832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 965049833}
+  - component: {fileID: 965049834}
+  m_Layer: 0
+  m_Name: Narrator (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &965049833
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 965049832}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &965049834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 965049832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: 
+  icon: {fileID: 21300014, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
+  texts:
+  - 'Rikki takes a single step and falls into a hole. '
+  waitTime: 0
 --- !u!1 &1032429029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,6 +1669,201 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -40, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1072660613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1072660614}
+  - component: {fileID: 1072660615}
+  m_Layer: 0
+  m_Name: Narrator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1072660614
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1072660613}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1072660615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1072660613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: 
+  icon: {fileID: 21300014, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
+  texts:
+  - Rikki hands Soma the relic.
+  - Soma carefully looks over it then returns it.
+  waitTime: 0
+--- !u!1 &1091089331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1091089332}
+  - component: {fileID: 1091089333}
+  m_Layer: 0
+  m_Name: Text_Soma (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1091089332
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1091089331}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1091089333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1091089331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Soma
+  icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
+  texts:
+  - Might you . . . be holding an item . . .
+  - ' that was previously . . . a black orb . . . ?'
+  - That . . . would be . . . your relic.
+  waitTime: 0
+--- !u!1 &1132858814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1132858815}
+  - component: {fileID: 1132858816}
+  m_Layer: 0
+  m_Name: Text_Rikki (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1132858815
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1132858814}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1132858816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1132858814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Rikki
+  icon: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
+  texts:
+  - So, a figurine can actually be a type of puzzle?
+  waitTime: 0
+--- !u!1 &1246065324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1246065325}
+  - component: {fileID: 1246065326}
+  m_Layer: 0
+  m_Name: Text_Rikki (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1246065325
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1246065324}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1246065326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1246065324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Rikki
+  icon: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
+  texts:
+  - What, this action-figure replica of myself
+  waitTime: 0
 --- !u!1 &1247164843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,7 +1969,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 136.69904, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1304139761
@@ -1595,6 +2108,54 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &1367228484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1367228485}
+  - component: {fileID: 1367228486}
+  m_Layer: 0
+  m_Name: Text_Soma (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1367228485
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1367228484}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367228486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1367228484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Soma
+  icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
+  texts:
+  - Well . . . yes . . . in a way.
+  waitTime: 0
 --- !u!1 &1415298510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,14 +2224,29 @@ Transform:
   m_Children:
   - {fileID: 31771861}
   - {fileID: 541309156}
-  - {fileID: 746062929}
   - {fileID: 695937633}
   - {fileID: 72117268}
   - {fileID: 894261625}
   - {fileID: 517728100}
   - {fileID: 715310388}
   - {fileID: 482037738}
-  - {fileID: 665065355}
+  - {fileID: 119670347}
+  - {fileID: 1712572471}
+  - {fileID: 44099776}
+  - {fileID: 1091089332}
+  - {fileID: 1246065325}
+  - {fileID: 837466043}
+  - {fileID: 1072660614}
+  - {fileID: 233887434}
+  - {fileID: 283993901}
+  - {fileID: 277953662}
+  - {fileID: 1132858815}
+  - {fileID: 1367228485}
+  - {fileID: 2013055807}
+  - {fileID: 665750863}
+  - {fileID: 662364249}
+  - {fileID: 965049833}
+  - {fileID: 1781109173}
   m_Father: {fileID: 2075916000}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1686,7 +2262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6f050b18e026146b7e5cfa8836438e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationScene: Story 2
+  destinationScene: Tutorial 0
 --- !u!1 &1600686280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,9 +2518,105 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -323, y: 0}
+  m_AnchoredPosition: {x: -164, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1712572470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1712572471}
+  - component: {fileID: 1712572472}
+  m_Layer: 0
+  m_Name: Text_Soma (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1712572471
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1712572470}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1712572472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1712572470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Soma
+  icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
+  texts:
+  - Is that so . . . ? May I . . . see your relic?
+  waitTime: 0
+--- !u!1 &1781109172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1781109173}
+  - component: {fileID: 1781109174}
+  m_Layer: 0
+  m_Name: Text_Soma (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1781109173
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1781109172}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1781109174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1781109172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Soma
+  icon: {fileID: 21300000, guid: d751187e738e0e2419cf6486ad92dc7f, type: 3}
+  texts:
+  - (Ah . . . did he not . . . see the hole?)
+  waitTime: 0
 --- !u!1 &1794358116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,6 +2711,54 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1794358116}
+--- !u!1 &2013055806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1964992761556326, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2013055807}
+  - component: {fileID: 2013055808}
+  m_Layer: 0
+  m_Name: Narrator (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2013055807
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4698993018885722, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2013055806}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528888522}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2013055808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114022145119275816, guid: c722a8de011fdde4483a0ac941d6b35e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2013055806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7621acec82ce419154d1594069c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: 
+  icon: {fileID: 21300014, guid: 35f855281d9b1154b87f3e314a4e961e, type: 3}
+  texts:
+  - ' . . .'
+  waitTime: 0
 --- !u!1 &2043592484
 GameObject:
   m_ObjectHideFlags: 0
