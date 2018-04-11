@@ -390,6 +390,7 @@ MonoBehaviour:
   power: 1
   defense: 0
   experience: 1
+  prefab: {fileID: 0}
 --- !u!114 &114097270942120740
 MonoBehaviour:
   m_ObjectHideFlags: 1

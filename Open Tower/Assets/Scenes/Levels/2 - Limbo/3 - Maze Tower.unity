@@ -30367,7 +30367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce49c85014821c4dad80e0f396a10ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: 0
 --- !u!1001 &1052159945
 Prefab:
   m_ObjectHideFlags: 0
@@ -46655,7 +46654,7 @@ Prefab:
     - target: {fileID: 224204361639930450, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224204361639930450, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
@@ -61366,7 +61365,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4324602736334496, guid: b6dffbdf559aa1f41910ebce43859c39, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 82758153290776486, guid: b6dffbdf559aa1f41910ebce43859c39,
         type: 2}

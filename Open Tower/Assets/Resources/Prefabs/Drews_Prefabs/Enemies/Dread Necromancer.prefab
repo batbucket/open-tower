@@ -390,6 +390,7 @@ MonoBehaviour:
   power: 10
   defense: 8
   experience: 1
+  prefab: {fileID: 0}
 --- !u!114 &114097270942120740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7961,7 +7962,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec05e65e8c8a0c44686569acd821064c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
