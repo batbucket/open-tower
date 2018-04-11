@@ -171,9 +171,9 @@ public class Enemy : Entity {
             { StatType.DEFENSE, stats.Defense }
         };
 
-        int max = dict.Max(entry => entry.Value);
-        var highestValues = dict.Where(entry => entry.Value == max).Select(entry => colors[entry.Key]).ToArray();
-        return CombineColors(highestValues);
+        int total = dict.Sum(entry => entry.Value);
+        var highestValues = dict.Select(entry => colors[entry.Key] * (entry.Value / (float)total)).ToArray();
+        return highestValues.Aggregate((c1, c2) => c1 + c2);
     }
 
     private static Color CombineColors(ICollection<Color> colors) {
