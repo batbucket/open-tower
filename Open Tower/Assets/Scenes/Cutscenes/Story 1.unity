@@ -667,8 +667,8 @@ MonoBehaviour:
   charName: Rikki
   icon: {fileID: 21300000, guid: 3383978a21df955468fb960c7a35b5fb, type: 3}
   texts:
-  - Well, you on't seem to be trying to kill me.
-  - And besides, the hero must win the gild in the end!
+  - Well, you don't seem to be trying to kill me.
+  - And besides, the hero must win the girl in the end!
   waitTime: 0
 --- !u!1 &746062928
 GameObject:
