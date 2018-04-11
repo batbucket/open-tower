@@ -95,9 +95,11 @@ public class Enemy : Entity {
             player.Stats.AddToLife(GetDamageToPlayer(player));
             player.Stats.AddToExperience(this.stats.Experience);
 
-            SpriteRenderer star = Instantiate<SpriteRenderer>(flyingStar);
-            star.transform.position = this.transform.position;
-            StartCoroutine(Util.FlyTo(star, star.gameObject, PlayerStatsDisplay.Instance.ExperienceIcon));
+            if (this.stats.Experience > 0) {
+                SpriteRenderer star = Instantiate<SpriteRenderer>(flyingStar);
+                star.transform.position = this.transform.position;
+                StartCoroutine(Util.FlyTo(star, star.gameObject, PlayerStatsDisplay.Instance.ExperienceIcon));
+            }
         }));
     }
 
