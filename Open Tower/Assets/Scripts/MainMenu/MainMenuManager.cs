@@ -30,6 +30,10 @@ public class MainMenuManager : MonoBehaviour {
           });
     }
 
+    public void Quit() {
+        Application.Quit();
+    }
+
     private void Start() {
         LevelInfo info = FindObjectOfType<LevelInfo>();
         if (info != null) {

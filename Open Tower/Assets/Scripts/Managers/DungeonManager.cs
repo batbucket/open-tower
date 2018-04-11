@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DungeonManager : MonoBehaviour {
     private const int TOP_LEFT = 0;
@@ -8,9 +9,6 @@ public class DungeonManager : MonoBehaviour {
     private const int BOT_LEFT = 2;
     private const int BOT_RIGHT = 3;
     private static DungeonManager _instance;
-
-    [SerializeField]
-    private PathType path;
 
     private FloorManager[] floors;
     private FloorManager current;
@@ -36,30 +34,36 @@ public class DungeonManager : MonoBehaviour {
     }
 
     private void SetPathSprites() {
-        Sprite[] tiles = SpriteList.GetPathSprite(path);
-        if (path != PathType.CLASSIC) {
-            Debug.Log(floors.Length);
-            foreach (FloorManager floor in floors) {
-                for (int i = 0; i < floor.Rows; i++) {
-                    for (int j = 0; j < floor.Columns; j++) {
-                        bool isRowEven = (i % 2 == 0);
-                        bool isColEven = (j % 2 == 0);
-                        Sprite tile = null;
-                        if (isRowEven) {
-                            if (isColEven) {
-                                tile = tiles[TOP_LEFT];
-                            } else {
-                                tile = tiles[TOP_RIGHT];
-                            }
+        DungeonSet set;
+        if (SceneUtil.IsLevelIndex) {
+            Debug.Log("loading dungeon set from world index");
+            set = SceneUtil.GetSet(SceneUtil.LevelIndex);
+        } else {
+            Debug.Log("picking a random dungeon set");
+            set = SpriteList.GetRandomDungeonSet();
+        }
+        SoundManager.Instance.Loop(set.Music);
+        Sprite[] tiles = set.PathTiles;
+        foreach (FloorManager floor in floors) {
+            for (int i = 0; i < floor.Rows; i++) {
+                for (int j = 0; j < floor.Columns; j++) {
+                    bool isRowEven = (i % 2 == 0);
+                    bool isColEven = (j % 2 == 0);
+                    Sprite tile = null;
+                    if (isRowEven) {
+                        if (isColEven) {
+                            tile = tiles[TOP_LEFT];
                         } else {
-                            if (isColEven) {
-                                tile = tiles[BOT_LEFT];
-                            } else {
-                                tile = tiles[BOT_RIGHT];
-                            }
+                            tile = tiles[TOP_RIGHT];
                         }
-                        SetTileSprite(floor, tile, i, j);
+                    } else {
+                        if (isColEven) {
+                            tile = tiles[BOT_LEFT];
+                        } else {
+                            tile = tiles[BOT_RIGHT];
+                        }
                     }
+                    SetTileSprite(floor, tile, i, j);
                 }
             }
         }

@@ -31,6 +31,7 @@ public class SoundManager : MonoBehaviour {
 
     public void Loop(AudioClip clip) {
         loop.clip = clip;
+        loop.Play();
     }
 
     public void Play(AudioClip clip) {

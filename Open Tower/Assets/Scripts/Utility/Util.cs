@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -141,6 +142,24 @@ public static class Util {
         if (callback != null) {
             callback();
         }
+    }
+
+    public static T[] GetValues<T>() {
+        return Enum.GetValues(typeof(T)).Cast<T>().ToArray();
+    }
+
+    public static IEnumerator FlyTo(SpriteRenderer renderer, GameObject flier, Image destination) {
+        renderer.sortingOrder = 1;
+        renderer.sortingLayerName = "Default";
+
+        Vector3 start = flier.transform.position;
+        Vector3 end = destination.transform.position + new Vector3(16, 0, 0);
+        yield return Util.Lerp(0.25f, t => {
+            flier.transform.position = Vector3.Lerp(start, end, t);
+            flier.transform.localScale = Vector3.Lerp(Vector3.one, new Vector3(0.5f, 0.5f, 0.5f), t);
+        });
+        flier.transform.position = end;
+        flier.SetActive(false);
     }
 }
 

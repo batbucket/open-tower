@@ -2,9 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Battle : MonoBehaviour {
     private static Battle _instance;
+
+    private static readonly string[] headers = new string[] {
+        "It's a fight!",
+        "Let the battle begin!",
+        "Activating Combat Mode!",
+        "A brawl is surely brewing!",
+        "Engaging enemy!",
+        "The battle begins!",
+        "Who will emerge a champion?",
+        "Who will emerge victorious?",
+        "It's a battle!",
+        "A fight it is!",
+        "No escape!",
+        "Two enter, one leaves.",
+        "<color=red>Let none survive.</color>"
+    };
+
+    [SerializeField]
+    private Text header;
 
     [SerializeField]
     private float transitionDuration = 0.5f;
@@ -49,6 +69,7 @@ public class Battle : MonoBehaviour {
     }
 
     public IEnumerator Init(Player player, Sprite enemySprite, Stats enemyStats, Action callback) {
+        header.text = headers.PickRandom();
         this.hero.Init(player.Sprite.sprite, player.Stats.Life, player.Stats.Power, player.Stats.Defense);
         this.enemy.Init(enemySprite, enemyStats.Life, enemyStats.Power, enemyStats.Defense);
         window.gameObject.SetActive(true);

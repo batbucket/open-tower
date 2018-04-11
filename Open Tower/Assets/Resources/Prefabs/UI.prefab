@@ -8066,6 +8066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7c73e6b5372ee40a99d5fb42b1d217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  header: {fileID: 114124949799544880}
   transitionDuration: 0.2
   shakeIntensity: 5
   scaleIntensity: 0.1

@@ -60,7 +60,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/1 - Life/2 - Drews_Second_Level.unity
     guid: 5ac7a5433d7db3143aaed803432e88b6
   - enabled: 1
-    path: Assets/Scenes/Levels/2 - Maze Tower/0 - Maze_Tower.unity
+    path: Assets/Scenes/Levels/2 - Limbo/0 - Bare Necessities.unity
+    guid: 65384e442bc8c5246a14e8b81c690ca9
+  - enabled: 1
+    path: Assets/Scenes/Levels/2 - Limbo/1 - Nine Lives.unity
+    guid: 794732bceed4cd34ab8eda1c47ff0f02
+  - enabled: 1
+    path: Assets/Scenes/Levels/2 - Limbo/2 - Turning Tower.unity
+    guid: 9f1d92a9eb794e74da96ccd10004087b
+  - enabled: 1
+    path: Assets/Scenes/Levels/2 - Limbo/3 - Maze Tower.unity
     guid: 08b0e2038f3bc2f4f93336ff1ff23f0d
   - enabled: 1
     path: Assets/Scenes/Levels/3 - Death/0 - Choose Wisely.unity
@@ -75,8 +84,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/3 - Death/3 - Skeletower.unity
     guid: 795ba0901ac3c95408a10ac41a98070a
   - enabled: 1
-    path: Assets/Scenes/Levels/4 - Finale/0 - The Horde.unity
+    path: Assets/Scenes/Levels/4 - Finale/0 - The Morgue.unity
+    guid: 556137bb0d8ce56469d87d92989ac697
+  - enabled: 1
+    path: Assets/Scenes/Levels/4 - Finale/1 - The Horde.unity
     guid: ba2b69f8d71c0c64a90796885b0bf7da
   - enabled: 1
-    path: Assets/Scenes/Levels/4 - Finale/1 - Adapt or Die.unity
+    path: Assets/Scenes/Levels/4 - Finale/2 - Seal Chamber One.unity
+    guid: 0ac79bf7c30e1174c92015bd01f809e5
+  - enabled: 1
+    path: Assets/Scenes/Levels/4 - Finale/3 - Seal Chamber Two.unity
+    guid: c4df8aad04067d840af3577f24f779de
+  - enabled: 1
+    path: Assets/Scenes/Levels/4 - Finale/4 - Adapt or Die.unity
     guid: 7e0976b57c86dad48a739952e47aa097

@@ -62,56 +62,42 @@ public class Pickup : Entity {
         switch (pickup) {
             case PickupType.LIFE:
                 player.Stats.AddToLife(amount);
-                StartCoroutine(FlyTo(display.LifeIcon));
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, display.LifeIcon));
                 break;
 
             case PickupType.POWER:
                 player.Stats.AddToPower(amount);
-                StartCoroutine(FlyTo(display.PowerIcon));
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, display.PowerIcon));
                 break;
 
             case PickupType.DEFENSE:
                 player.Stats.AddToDefense(amount);
-                StartCoroutine(FlyTo(display.DefenseIcon));
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, display.DefenseIcon));
                 break;
 
             case PickupType.EXPERIENCE:
                 player.Stats.AddToExperience(amount);
-                StartCoroutine(FlyTo(display.ExperienceIcon));
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, display.ExperienceIcon));
                 break;
 
             case PickupType.YELLOW_KEY:
                 player.Keys.Yellow += amount;
-                StartCoroutine(FlyTo(inv.GoldIcon));
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, inv.GoldIcon));
                 break;
 
             case PickupType.BLUE_KEY:
                 player.Keys.Blue += amount;
-                StartCoroutine(FlyTo(inv.BlueIcon));
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, inv.BlueIcon));
                 break;
 
             case PickupType.RED_KEY:
                 player.Keys.Red += amount;
-                StartCoroutine(FlyTo(inv.RedIcon));
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, inv.RedIcon));
                 break;
         }
     }
 
     private void Start() {
         renderer = GetComponentInChildren<SpriteRenderer>(true);
-    }
-
-    private IEnumerator FlyTo(Image destination) {
-        renderer.sortingOrder = 1;
-        renderer.sortingLayerName = "Default";
-
-        Vector3 start = transform.position;
-        Vector3 end = destination.transform.position + new Vector3(16, 0, 0);
-        yield return Util.Lerp(0.25f, t => {
-            transform.position = Vector3.Lerp(start, end, t);
-            transform.localScale = Vector3.Lerp(Vector3.one, new Vector3(0.5f, 0.5f, 0.5f), t);
-        });
-        transform.position = end;
-        this.gameObject.SetActive(false);
     }
 }

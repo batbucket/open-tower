@@ -75,7 +75,7 @@ public class Deserializer : MonoBehaviour {
             victoryScene = SceneUtil.LEVEL_SELECT_INDEX;
             exitScene = victoryScene;
         }
-        Init(upload, jsonLevel.Stage, victoryScene, exitScene);
+        Init(upload, string.Empty, victoryScene, exitScene); // filled in by other script
     }
 
     private void Awake() {
