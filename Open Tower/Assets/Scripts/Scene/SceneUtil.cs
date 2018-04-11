@@ -73,6 +73,7 @@ public static class SceneUtil {
         return levels[levelIndex];
     }
 
+    // TODO figure it out
     public static int GetNextSceneIndex() {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         Debug.Log("Playtype: " + Play.ToString());
