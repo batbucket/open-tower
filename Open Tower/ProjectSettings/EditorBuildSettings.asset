@@ -54,11 +54,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/1 - Life/1 - Drews_Level.unity
     guid: dc90bab22d828d142b94218cb9cc1398
   - enabled: 1
-    path: Assets/Scenes/Levels/1 - Life/3 - Alex_Level_2.unity
-    guid: 47cedb907b2487b4283b249cd383384f
-  - enabled: 1
     path: Assets/Scenes/Levels/1 - Life/2 - Drews_Second_Level.unity
     guid: 5ac7a5433d7db3143aaed803432e88b6
+  - enabled: 1
+    path: Assets/Scenes/Levels/1 - Life/3 - Alex_Level_2.unity
+    guid: 47cedb907b2487b4283b249cd383384f
   - enabled: 1
     path: Assets/Scenes/Levels/2 - Limbo/0 - Bare Necessities.unity
     guid: 65384e442bc8c5246a14e8b81c690ca9
