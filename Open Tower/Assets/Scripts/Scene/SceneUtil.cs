@@ -19,7 +19,7 @@ public static class SceneUtil {
         new LevelParams(0, 2, 337516, "Keys II"),
         new LevelParams(0, 3, 337517, "Combat I"),
         new LevelParams(0, 4, 337518, "Combat II"),
-        new LevelParams(0, "Friendship"), // story
+        new LevelParams(1, "Friendship"), // story
         new LevelParams(1, 0, 337759, "Imitation"), // life begin
         new LevelParams(1, 1, 337760, "Enterprise"),
         new LevelParams(1, 2, 337761, "Dedication"),

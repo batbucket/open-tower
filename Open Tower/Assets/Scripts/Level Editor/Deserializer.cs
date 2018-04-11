@@ -89,7 +89,6 @@ public class Deserializer : MonoBehaviour {
     }
 
     private void Init(Upload upload, string stage, int sceneOnVictory, int sceneOnExit) {
-        DontDestroyOnLoad(this.gameObject);
         DungeonManager dungeon = DungeonManager.Instance;
         DungeonInfo info = DungeonInfo.Instance;
 
