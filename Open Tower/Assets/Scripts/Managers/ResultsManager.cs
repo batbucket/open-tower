@@ -61,17 +61,14 @@ public class ResultsManager : MonoBehaviour {
     [SerializeField]
     private Text pastRankingLabel;
 
-    private int destinationScene;
-
     private int scoreIDOverride;
 
-    public void ShowResults(int destinationScene) {
+    public void ShowResults() {
         StartCoroutine(ResultsAnim());
-        this.destinationScene = destinationScene;
     }
 
     public void ChangeScene() {
-        SceneManager.LoadScene(destinationScene);
+        SceneManager.LoadScene(SceneUtil.GetNextSceneIndex());
 
         LevelInfo info = LevelInfo.Instance;
         if (info != null) {

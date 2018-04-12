@@ -43,7 +43,6 @@ public class DungeonInfo : MonoBehaviour {
     }
 
     private void SetupIfIsOfficialLevel() {
-        int buildIndex = SceneManager.GetActiveScene().buildIndex;
         if (SceneUtil.IsLevelIndex) {
             LevelParams level = SceneUtil.GetParams(SceneUtil.LevelIndex);
             this.stage.text = string.Format("{0}-{1}", level.WorldIndex, level.StageIndex);

@@ -41,12 +41,6 @@ public class LevelInfo : MonoBehaviour {
         }
     }
 
-    public int ExitScene {
-        get {
-            return exitScene;
-        }
-    }
-
     public bool IsLevelCleared {
         get {
             return isLevelCleared;
@@ -57,16 +51,8 @@ public class LevelInfo : MonoBehaviour {
         }
     }
 
-    public int VictoryScene {
-        get {
-            return victoryScene;
-        }
-    }
-
-    public void Init(LevelInfoMode mode, Upload upload, int victoryScene, int exitScene) {
+    public void Init(LevelInfoMode mode, Upload upload) {
         this.mode = mode;
         this.upload = upload;
-        this.victoryScene = victoryScene;
-        this.exitScene = exitScene;
     }
 }

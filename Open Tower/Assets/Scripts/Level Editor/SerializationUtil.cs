@@ -292,7 +292,6 @@ namespace Scripts.LevelEditor.Serialization {
 
                                 case TileType.EXIT:
                                     instantiated = GameObject.Instantiate(exitPrefab, current.transform);
-                                    instantiated.GetComponent<Exit>().Init(sceneOnVictory);
                                     break;
 
                                 case TileType.GOLD_DOOR:

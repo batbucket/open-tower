@@ -64,9 +64,8 @@ public class MenuPanel : Panel {
                 json,
                 "Playtest",
                 GameJolt.API.Manager.Instance.CurrentUser.ID,
-                string.Empty),
-            SceneUtil.LEVEL_SELECT_INDEX,
-            SceneUtil.LEVEL_SELECT_INDEX);
+                string.Empty));
+        SceneUtil.Play = PlayType.PLAY_TEST;
         SceneManager.LoadScene("Custom_Level");
     }
 
