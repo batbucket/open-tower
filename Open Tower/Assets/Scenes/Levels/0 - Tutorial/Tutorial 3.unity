@@ -151,7 +151,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 596, y: 0}
-  m_SizeDelta: {x: 190, y: 220}
+  m_SizeDelta: {x: 190, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &182227599
 MonoBehaviour:
@@ -820,7 +820,7 @@ Prefab:
     - target: {fileID: 224003209811114654, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4504830348293238, guid: f970c731babf3ac489a4e41a84733a5e, type: 2}
       propertyPath: m_RootOrder
@@ -829,17 +829,17 @@ Prefab:
     - target: {fileID: 224977956891813392, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 224974502470877376, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224889826594013628, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224292624230839996, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
@@ -849,7 +849,7 @@ Prefab:
     - target: {fileID: 224530468348460568, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224784114937518312, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
@@ -988,7 +988,12 @@ MonoBehaviour:
 
     <color=yellow>VIEW LIFE LOST IF AN ENEMY IS FOUGHT:</color>
 
-    Left Shift or Right Mouse'
+    Left Shift or Right Mouse.
+
+
+    <color=yellow>SKIP BATTLE SCREEN:</color>
+
+    Hold down Spacebar/Left Mouse before engaging an enemy.'
 --- !u!222 &1790644460
 CanvasRenderer:
   m_ObjectHideFlags: 0
