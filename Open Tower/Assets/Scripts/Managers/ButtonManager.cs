@@ -18,4 +18,10 @@ public class ButtonManager : MonoBehaviour {
     public void GoBack() {
         SceneManager.LoadScene(backScene);
     }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            ResetScene();
+        }
+    }
 }
