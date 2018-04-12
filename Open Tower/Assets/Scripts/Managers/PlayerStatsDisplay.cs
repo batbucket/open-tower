@@ -16,9 +16,6 @@ public class PlayerStatsDisplay : MonoBehaviour {
     private float lerpInterval;
 
     [SerializeField]
-    private int lifeIncreaseAmount;
-
-    [SerializeField]
     private int powerAndDefenseIncreaseAmount;
 
     [SerializeField]
@@ -44,9 +41,6 @@ public class PlayerStatsDisplay : MonoBehaviour {
 
     [SerializeField]
     private Text experience;
-
-    [SerializeField]
-    private Button addLife;
 
     [SerializeField]
     private Button addPower;
@@ -120,14 +114,6 @@ public class PlayerStatsDisplay : MonoBehaviour {
         }
     }
 
-    public void IncreaseLife() {
-        if (player.Experience > 0) {
-            player.AddToLife(lifeIncreaseAmount);
-            player.AddToExperience(-1);
-            SoundManager.Instance.Play(boostSound);
-        }
-    }
-
     public void IncreasePower() {
         if (player.Experience > 0) {
             player.AddToPower(powerAndDefenseIncreaseAmount);
@@ -146,7 +132,6 @@ public class PlayerStatsDisplay : MonoBehaviour {
 
     private void Start() {
         addButtons = new Button[] {
-            addLife,
             addPower,
             addDefense
         };
