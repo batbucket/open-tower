@@ -132,6 +132,7 @@ public class Enemy : Entity {
     }
 
     private IEnumerator DeathEffect(float duration, Action callback) {
+        SoundManager.Instance.Play(hit);
         float lifetime = shakePs.main.startLifetime.constantMax;
         // Start PS
         shakePs.Play();
@@ -151,8 +152,10 @@ public class Enemy : Entity {
             sprite.transform.localScale = Vector3.Lerp(oldScales, target, timer / delayBeforeDisappear);
             yield return null;
         }
+        SoundManager.Instance.Play(steam);
         yield return new WaitForSeconds(delayBeforeDisappear);
         // Disappearance explosion
+
         vanishPs.Play();
         StopCoroutine(flicker);
         sprite.enabled = false;
