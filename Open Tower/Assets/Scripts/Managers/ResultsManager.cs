@@ -68,7 +68,7 @@ public class ResultsManager : MonoBehaviour {
     }
 
     public void ChangeScene() {
-        SceneManager.LoadScene(SceneUtil.GetNextSceneIndex());
+        SceneUtil.LoadScene(SceneUtil.GetNextSceneIndex());
 
         LevelInfo info = LevelInfo.Instance;
         if (info != null) {

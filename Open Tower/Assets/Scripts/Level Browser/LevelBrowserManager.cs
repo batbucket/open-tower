@@ -50,17 +50,19 @@ public class LevelBrowserManager : MonoBehaviour {
             selected.Upload.UpdateDataStore();
             SceneUtil.Play = PlayType.LEVEL_BROWSER;
             LevelInfo.Instance.Init(LevelInfoMode.USER_GENERATED_LEVEL, selected.Upload);
-            SceneManager.LoadScene("Custom_Level");
+            SceneUtil.LoadScene(SceneUtil.CUSTOM_INDEX);
         }
     }
 
-    public void GoToScene(string sceneName) {
-        SceneManager.LoadScene(sceneName);
+    public void GoToScene(int sceneIndex) {
+        SceneUtil.LoadScene(sceneIndex);
     }
 
     private void Start() {
         GameJolt.API.DataStore.GetKeys(true, keys => {
-            StartCoroutine(InitLevelListing(keys));
+            if (this != null) {
+                StartCoroutine(InitLevelListing(keys));
+            }
         });
         username.text = GameJolt.API.Manager.Instance.CurrentUser.Name;
     }

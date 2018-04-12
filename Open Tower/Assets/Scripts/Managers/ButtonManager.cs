@@ -12,11 +12,11 @@ public class ButtonManager : MonoBehaviour {
 
     public void ResetScene() {
         int scene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        SceneUtil.LoadScene(scene);
     }
 
     public void GoBack() {
-        SceneManager.LoadScene(backScene);
+        SceneUtil.LoadScene(backScene);
     }
 
     private void Update() {

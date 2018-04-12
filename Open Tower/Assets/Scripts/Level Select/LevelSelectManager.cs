@@ -63,6 +63,6 @@ public class LevelSelectManager : MonoBehaviour {
     }
 
     public void ReturnToMainMenu() {
-        SceneManager.LoadScene("Main_Menu");
+        SceneUtil.LoadScene(SceneUtil.MAIN_MENU_INDEX);
     }
 }

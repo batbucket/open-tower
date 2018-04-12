@@ -50,7 +50,9 @@ public class LevelListing : MonoBehaviour {
         }
 
         GameJolt.API.Users.Get(upload.AuthorID, user => {
-            authorAndLeader.text = string.Format("<color=yellow>{0}</color>\n{1}", user.Name, leader);
+            if (authorAndLeader != null) {
+                authorAndLeader.text = string.Format("<color=yellow>{0}</color>\n{1}", user.Name, leader);
+            }
         });
 
         DateTime date = DateTime.Parse(upload.DateCreated);

@@ -19,14 +19,14 @@ public class SceneController : MonoBehaviour {
             Process current = processes[i];
             yield return current.Play();
         }
-        SceneManager.LoadScene(SceneUtil.GetNextSceneIndex());
+        SceneUtil.LoadScene(SceneUtil.GetNextSceneIndex());
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             isSkipping = true;
             StopAllCoroutines();
-            SceneManager.LoadScene(SceneUtil.GetNextSceneIndex());
+            SceneUtil.LoadScene(SceneUtil.GetNextSceneIndex());
         }
     }
 }

@@ -16,8 +16,8 @@ public class MainMenuManager : MonoBehaviour {
         SceneUtil.Play = PlayType.STORY_MODE;
     }
 
-    public void GoToLevel(string levelName) {
-        SceneManager.LoadScene(levelName);
+    public void GoToLevel(int sceneIndex) {
+        SceneUtil.LoadScene(sceneIndex);
     }
 
     public void SignIntoGameJolt() {

@@ -66,7 +66,7 @@ public class MenuPanel : Panel {
                 GameJolt.API.Manager.Instance.CurrentUser.ID,
                 string.Empty));
         SceneUtil.Play = PlayType.PLAY_TEST;
-        SceneManager.LoadScene("Custom_Level");
+        SceneUtil.LoadScene(SceneUtil.CUSTOM_INDEX);
     }
 
     public void OpenImport() {
@@ -85,8 +85,8 @@ public class MenuPanel : Panel {
         load.DoEnter();
     }
 
-    public void GoToScene(string sceneName) {
-        SceneManager.LoadScene(sceneName);
+    public void GoToScene(int sceneIndex) {
+        SceneUtil.LoadScene(sceneIndex);
     }
 
     public override void OnEnter() {

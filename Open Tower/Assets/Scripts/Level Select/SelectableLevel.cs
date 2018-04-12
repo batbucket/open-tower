@@ -21,7 +21,7 @@ public class SelectableLevel : MonoBehaviour {
 
     public void GoToLevel() {
         SceneUtil.Play = PlayType.LEVEL_SELECT;
-        SceneManager.LoadScene(destination);
+        SceneUtil.LoadScene(destination);
     }
 
     public void Init() {

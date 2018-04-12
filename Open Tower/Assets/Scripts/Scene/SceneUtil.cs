@@ -1,15 +1,18 @@
-﻿using UnityEngine;
+﻿using Prime31.TransitionKit;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class SceneUtil {
     public const int MAIN_MENU_INDEX = 0;
     public const int LEVEL_SELECT_INDEX = 6;
+    public const int CUSTOM_INDEX = 4;
     public const int BROWSER_INDEX = 5;
     public const int EDITOR_INDEX = 3;
     public const int LEVEL_START_INDEX = 7;
     public const int LEVEL_BROWSER_INDEX = 5;
     public static readonly int LEVEL_END_INDEX = 34;
     public static readonly int NUMBER_OF_LEVELS = LEVEL_END_INDEX - LEVEL_START_INDEX + 1;
+    private static AudioClip transitionSound = Resources.Load<AudioClip>("Sounds/steam hiss");
 
     public static PlayType Play;
 
@@ -68,6 +71,16 @@ public static class SceneUtil {
         new LevelParams(4, 4, 337769, 91595, "Floored"),
         new LevelParams(4, "Balcony"), // an ending
     };
+
+    public static void LoadScene(int sceneIndex) {
+        var wind = new VerticalSlicesTransition() {
+            nextScene = sceneIndex,
+            duration = 0.50f,
+            divisions = 800
+        };
+        SoundManager.Instance.Play(transitionSound);
+        TransitionKit.instance.transitionWithDelegate(wind);
+    }
 
     public static DungeonSet GetSet(int levelIndex) {
         return dungeonSets[GetParams(levelIndex).WorldIndex];

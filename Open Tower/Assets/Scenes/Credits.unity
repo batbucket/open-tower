@@ -3234,6 +3234,7 @@ RectTransform:
   - {fileID: 312155840}
   - {fileID: 2070679453}
   - {fileID: 2003508138}
+  - {fileID: 1962760982}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3263,6 +3264,58 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 3
+--- !u!1001 &1962760981
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1946737647}
+    m_Modifications:
+    - target: {fileID: 4324602736334496, guid: b6dffbdf559aa1f41910ebce43859c39, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324602736334496, guid: b6dffbdf559aa1f41910ebce43859c39, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324602736334496, guid: b6dffbdf559aa1f41910ebce43859c39, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324602736334496, guid: b6dffbdf559aa1f41910ebce43859c39, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324602736334496, guid: b6dffbdf559aa1f41910ebce43859c39, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324602736334496, guid: b6dffbdf559aa1f41910ebce43859c39, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324602736334496, guid: b6dffbdf559aa1f41910ebce43859c39, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324602736334496, guid: b6dffbdf559aa1f41910ebce43859c39, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 82758153290776486, guid: b6dffbdf559aa1f41910ebce43859c39,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b6dffbdf559aa1f41910ebce43859c39, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1962760982 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4324602736334496, guid: b6dffbdf559aa1f41910ebce43859c39,
+    type: 2}
+  m_PrefabInternal: {fileID: 1962760981}
 --- !u!1 &2003508135
 GameObject:
   m_ObjectHideFlags: 0
