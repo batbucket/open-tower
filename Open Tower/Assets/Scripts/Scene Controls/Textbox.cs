@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Textbox : MonoBehaviour {
+    private const float FAST_TEXT_MULTIPLIER = 0f;
     private static Textbox _instance;
 
     private string TAG_START;
@@ -98,7 +99,7 @@ public class Textbox : MonoBehaviour {
                 if (j < message.Length && char.IsLetterOrDigit(message[j])) {
                     SoundManager.Instance.Play(sound);
                 }
-                yield return new WaitForSeconds(secondsPerCharacter);
+                yield return new WaitForSeconds(secondsPerCharacter * (Input.anyKey ? FAST_TEXT_MULTIPLIER : 1));
             }
             shadow.text = message;
 

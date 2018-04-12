@@ -8,7 +8,7 @@ public static class SceneUtil {
     public const int EDITOR_INDEX = 3;
     public const int LEVEL_START_INDEX = 7;
     public const int LEVEL_BROWSER_INDEX = 5;
-    public static readonly int LEVEL_END_INDEX = 30;
+    public static readonly int LEVEL_END_INDEX = 34;
     public static readonly int NUMBER_OF_LEVELS = LEVEL_END_INDEX - LEVEL_START_INDEX + 1;
 
     public static PlayType Play;
@@ -45,24 +45,28 @@ public static class SceneUtil {
         new LevelParams(0, 2, 337516, "Keys II"),
         new LevelParams(0, 3, 337517, "Combat I"),
         new LevelParams(0, 4, 337518, "Combat II"),
-        new LevelParams(1, "Friendship"), // story
+        new LevelParams(1, "Gravity"), // story
         new LevelParams(1, 0, 337759, "The Armory"), // life begin
         new LevelParams(1, 1, 337760, "Change"),
         new LevelParams(1, 2, 337761, 91600, "Positivity"),
         new LevelParams(1, 3, 337762, 91601, "Shift"),
-        new LevelParams(2, 0, 338158, "Bare Necessities"), // limbo begin
+        new LevelParams(2, "Safety"), // limbo begin
+        new LevelParams(2, 0, 338158, "Bare Necessities"),
         new LevelParams(2, 1, 338159, "Nine Lives"),
         new LevelParams(2, 2, 338160, "Turning Tower"),
         new LevelParams(2, 3, 337763, 91599, "Maze Monolith"),
-        new LevelParams(3, 0, 337764, "Decide I"), // death begin
+        new LevelParams(3, "Eyes of Flame"), // death begin
+        new LevelParams(3, 0, 337764, "Decide I"),
         new LevelParams(3, 1, 337765, "Decide II"),
         new LevelParams(3, 2, 337766, "Magic Tower"),
         new LevelParams(3, 3, 337767, "Skeletower"),
-        new LevelParams(4, 0, 338161, "The Morgue"), // void begin
+        new LevelParams(4, "Quiet"), // void
+        new LevelParams(4, 0, 338161, "The Morgue"),
         new LevelParams(4, 1, 337768, 91596, "The Horde"),
         new LevelParams(4, 2, 338162, 91597, "Seal Chamber I"),
         new LevelParams(4, 3, 338163, 91598, "Seal Chamber II"),
-        new LevelParams(4, 4, 337769, 91595, "Floored")
+        new LevelParams(4, 4, 337769, 91595, "Floored"),
+        new LevelParams(4, "Balcony"), // an ending
     };
 
     public static DungeonSet GetSet(int levelIndex) {

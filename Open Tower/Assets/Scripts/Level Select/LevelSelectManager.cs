@@ -26,7 +26,7 @@ public class LevelSelectManager : MonoBehaviour {
         if (lastUsedIndex == SELECT_ALL) {
             ShowAll(worldSelectors[0]);
         } else {
-            ShowWorld(worldSelectors[lastUsedIndex], lastUsedIndex - 1);
+            ShowWorld(worldSelectors[lastUsedIndex], lastUsedIndex);
         }
     }
 
