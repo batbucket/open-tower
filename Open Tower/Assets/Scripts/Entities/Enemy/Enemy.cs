@@ -9,6 +9,8 @@ public class Enemy : Entity {
     public const int ENEMY_CANNOT_BE_DEFEATED = 1;
     private const float DEATH_PLAYBACK_SPEED = 2;
 
+    private static AudioClip hit;
+    private static AudioClip steam;
     private static SpriteRenderer flyingStar;
     private static Material outline;
 
@@ -172,11 +174,11 @@ public class Enemy : Entity {
 
     private void Start() {
         Instantiate(resultPrefab, this.transform).Init(this.stats);
-        if (outline == null) {
+        if (outline == null) { // others are also null
             outline = Resources.Load<Material>("Materials/Red Sprite Outline");
-        }
-        if (flyingStar == null) {
             flyingStar = Resources.Load<SpriteRenderer>("Prefabs/Flying Star");
+            hit = Resources.Load<AudioClip>("Sounds/qubodupPunch01");
+            steam = Resources.Load<AudioClip>("Sounds/steam hiss");
         }
         this.sprite.material = outline;
         this.sprite.material.color = CalculateOutlineColor();

@@ -117,7 +117,7 @@ MonoBehaviour:
   type: 0
   key: 2
   anim: {fileID: 95064516819317658}
-  opening: {fileID: 8300000, guid: 18c15e4843b46ee409937cf8515b5379, type: 3}
+  opening: {fileID: 8300000, guid: 48058485eceebc246ab61d0cbedea644, type: 3}
 --- !u!114 &114867252351351202
 MonoBehaviour:
   m_ObjectHideFlags: 1
