@@ -15,6 +15,10 @@ public class SelectableLevel : MonoBehaviour {
 
     private int destination;
 
+    public int WorldIndex {
+        get; private set;
+    }
+
     public void GoToLevel() {
         SceneUtil.Play = PlayType.LEVEL_SELECT;
         SceneManager.LoadScene(destination);
@@ -25,7 +29,12 @@ public class SelectableLevel : MonoBehaviour {
         this.destination = index + SceneUtil.LEVEL_START_INDEX;
         LevelParams level = SceneUtil.GetParams(index);
 
+        WorldIndex = level.WorldIndex;
         levelNameText.text = level.Name;
         indexText.text = string.Format("{0}-{1}", level.WorldIndex, level.StageIndex);
+
+        if (level.HasTrophy) {
+            levelNameText.color = Color.yellow;
+        }
     }
 }

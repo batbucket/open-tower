@@ -195,6 +195,12 @@ public static class Extensions {
         return anim.IsPlaying() && anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
     }
 
+    public static void ForEach<T>(this IEnumerable<T> enumeration, Action<T> action) {
+        foreach (T item in enumeration) {
+            action(item);
+        }
+    }
+
     public static IEnumerator WaitForAnimation(this Animation anim) {
         do {
             yield return null;
