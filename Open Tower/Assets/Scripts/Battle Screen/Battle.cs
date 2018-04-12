@@ -20,7 +20,24 @@ public class Battle : MonoBehaviour {
         "A fight it is!",
         "No escape!",
         "Two enter, one leaves.",
-        "<color=red>Let none survive.</color>"
+        "Only one will survive.",
+        "Who will survive?",
+        "Survival of the fittest.",
+        "Fight or be fought.",
+        "Let there be fight.",
+        "The battle begins.",
+        "The duel begins.",
+        "A duel to the death.",
+        "Let's brawl!",
+        "Fight for your honor!",
+        "Victory is assured.",
+        "Overwhelming odds!",
+        "Care to dance?",
+        "It's on.",
+        "Place your bets!",
+        "One at a time!",
+        "Violence to end violence.",
+        "<color=red>KILL THEM ALL</color>"
     };
 
     [SerializeField]
