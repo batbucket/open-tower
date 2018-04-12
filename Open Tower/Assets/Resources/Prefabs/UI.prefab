@@ -8086,7 +8086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   header: {fileID: 114124949799544880}
-  transitionDuration: 0.2
+  transitionDuration: 0.1
   shakeIntensity: 5
   scaleIntensity: 0.1
   shakeDuration: 0.25

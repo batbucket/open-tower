@@ -13,7 +13,7 @@ public class Tile : MonoBehaviour {
 
         for (int i = 0; i < children.Length && !isInteractedWith; i++) {
             Entity entity = children[i];
-            if (entity.gameObject.activeInHierarchy) {
+            if (entity.gameObject.activeInHierarchy && entity.enabled) {
                 children[i].TryDoAction(player);
                 isInteractedWith = true;
             }

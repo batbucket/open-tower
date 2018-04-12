@@ -46,6 +46,7 @@ public class Enemy : Entity {
     private float delayBeforeDisappear;
 
     private Coroutine flicker;
+    private bool isDefeated;
 
     public static int GetDamageToPlayer(Stats enemy, Stats player) {
         int damageToPlayer = Mathf.Max(0, enemy.Power - player.Defense);
@@ -79,26 +80,49 @@ public class Enemy : Entity {
     }
 
     protected override void DoAction(Player player) {
+        isDefeated = true;
+
+        GetComponentInChildren<EnemyResultDisplay>(true).gameObject.SetActive(false);
+        GetComponentInChildren<EnemyStatsDisplay>(true).gameObject.SetActive(false);
+
         player.IsMovementEnabled = false;
         ParticleSystem.MainModule main = shakePs.main;
         main.simulationSpeed = DEATH_PLAYBACK_SPEED;
         float effectDuration = shakePs.main.startLifetime.constantMax / DEATH_PLAYBACK_SPEED;
-        StartCoroutine(Battle.Instance.Init(player, this.sprite, this.stats, () => {
-            StartCoroutine(DeathEffect(effectDuration, () => player.IsMovementEnabled = true));
-            flicker = StartCoroutine(Flicker(effectDuration));
-            player.Stats.AddToLife(GetDamageToPlayer(player));
-            player.Stats.AddToExperience(this.stats.Experience);
 
-            if (this.stats.Experience > 0) {
-                SpriteRenderer star = Instantiate<SpriteRenderer>(flyingStar);
-                star.transform.position = this.transform.position;
-                StartCoroutine(Util.FlyTo(star, star.gameObject, PlayerStatsDisplay.Instance.ExperienceIcon));
-            }
-        }));
+        if (!IsSkipKeyDown()) {
+            StartCoroutine(Battle.Instance.Init(player, this.sprite, this.stats, () => {
+                OnBattleEnd(player, effectDuration);
+            }));
+        } else {
+            OnBattleEnd(player, effectDuration);
+        }
     }
 
     protected override bool IsActionPossible(Player player) {
-        return (GetDamageToPlayer(player) != ENEMY_CANNOT_BE_DEFEATED);
+        return !isDefeated && (GetDamageToPlayer(player) != ENEMY_CANNOT_BE_DEFEATED);
+    }
+
+    private void OnBattleEnd(Player player, float effectDuration) {
+        StartCoroutine(DeathEffect(effectDuration, () => { }));
+        flicker = StartCoroutine(Flicker(effectDuration));
+        player.Stats.AddToLife(GetDamageToPlayer(player));
+        player.Stats.AddToExperience(this.stats.Experience);
+        player.IsMovementEnabled = true;
+        this.enabled = false;
+
+        if (this.stats.Experience > 0) {
+            SpriteRenderer star = Instantiate<SpriteRenderer>(flyingStar);
+            star.transform.position = this.transform.position;
+            StartCoroutine(Util.FlyTo(star, star.gameObject, PlayerStatsDisplay.Instance.ExperienceIcon));
+        }
+    }
+
+    private bool IsSkipKeyDown() {
+        return (Input.GetKey(KeyCode.Space)
+            || Input.GetKey(KeyCode.LeftShift)
+            || Input.GetKey(KeyCode.Mouse0)
+            || Input.GetKey(KeyCode.Mouse1));
     }
 
     private int GetDamageToPlayer(Player player) {
@@ -177,14 +201,5 @@ public class Enemy : Entity {
         }
         result /= colors.Count;
         return result;
-    }
-
-    private void Update() {
-        string result = string.Empty;
-        if (GetDamageToPlayer(Player.Instance) != ENEMY_CANNOT_BE_DEFEATED) {
-            result = string.Format("\nRES: {0} LIFE", GetDamageToPlayer(Player.Instance).ToString());
-        }
-        tip.Body = string.Format("LIFE: {0}\nPOW: {1}\nDEF: {2}\nEXP: {3}{4}",
-            stats.Life, stats.Power, stats.Defense, stats.Experience, result);
     }
 }

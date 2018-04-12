@@ -24,7 +24,6 @@ public static class SceneUtil {
     public static bool IsLevelIndex {
         get {
             int index = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log(index);
             return
                 index >= LEVEL_START_INDEX
                 && index <= LEVEL_END_INDEX;
@@ -99,7 +98,6 @@ public static class SceneUtil {
 
     public static int GetNextSceneIndex() {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("Current scene is: " + currentSceneIndex);
         Debug.Log("Playtype: " + Play.ToString());
         int nextSceneIndex = -1;
 
@@ -118,15 +116,12 @@ public static class SceneUtil {
 
             case PlayType.STORY_MODE:
                 if (currentSceneIndex < LEVEL_END_INDEX) {
-                    Debug.LogFormat("{0}<{1}", currentSceneIndex, LEVEL_END_INDEX);
                     nextSceneIndex = currentSceneIndex + 1;
                 } else {
-                    Debug.LogFormat("{0}>={1}", currentSceneIndex, LEVEL_END_INDEX);
                     nextSceneIndex = MAIN_MENU_INDEX;
                 }
                 break;
         }
-        Debug.Log("next index is: " + nextSceneIndex);
         return nextSceneIndex;
     }
 }
