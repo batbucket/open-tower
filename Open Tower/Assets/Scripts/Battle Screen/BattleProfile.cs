@@ -26,8 +26,10 @@ public class BattleProfile : MonoBehaviour {
         }
     }
 
-    public void Init(Sprite sprite, int lifeCount, int powerCount, int defenseCount) {
-        this.renderer.sprite = sprite;
+    public void Init(SpriteRenderer rendererToCopy, int lifeCount, int powerCount, int defenseCount) {
+        this.renderer.sprite = rendererToCopy.sprite;
+        this.renderer.material = rendererToCopy.material;
+        this.renderer.color = rendererToCopy.color;
         this.life.Init(lifeCount);
         this.power.Init(powerCount);
         this.defense.Init(defenseCount);

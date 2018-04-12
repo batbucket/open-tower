@@ -47,12 +47,6 @@ public class Enemy : Entity {
 
     private Coroutine flicker;
 
-    public Sprite Sprite {
-        get {
-            return sprite.sprite;
-        }
-    }
-
     public static int GetDamageToPlayer(Stats enemy, Stats player) {
         int damageToPlayer = Mathf.Max(0, enemy.Power - player.Defense);
         int damageToEnemy = Mathf.Max(0, player.Power - enemy.Defense);
@@ -89,7 +83,7 @@ public class Enemy : Entity {
         ParticleSystem.MainModule main = shakePs.main;
         main.simulationSpeed = DEATH_PLAYBACK_SPEED;
         float effectDuration = shakePs.main.startLifetime.constantMax / DEATH_PLAYBACK_SPEED;
-        StartCoroutine(Battle.Instance.Init(player, this.Sprite, this.stats, () => {
+        StartCoroutine(Battle.Instance.Init(player, this.sprite, this.stats, () => {
             StartCoroutine(DeathEffect(effectDuration, () => player.IsMovementEnabled = true));
             flicker = StartCoroutine(Flicker(effectDuration));
             player.Stats.AddToLife(GetDamageToPlayer(player));

@@ -85,10 +85,10 @@ public class Battle : MonoBehaviour {
         }
     }
 
-    public IEnumerator Init(Player player, Sprite enemySprite, Stats enemyStats, Action callback) {
+    public IEnumerator Init(Player player, SpriteRenderer enemyRenderer, Stats enemyStats, Action callback) {
         header.text = headers.PickRandom();
-        this.hero.Init(player.Sprite.sprite, player.Stats.Life, player.Stats.Power, player.Stats.Defense);
-        this.enemy.Init(enemySprite, enemyStats.Life, enemyStats.Power, enemyStats.Defense);
+        this.hero.Init(player.Sprite, player.Stats.Life, player.Stats.Power, player.Stats.Defense);
+        this.enemy.Init(enemyRenderer, enemyStats.Life, enemyStats.Power, enemyStats.Defense);
         window.gameObject.SetActive(true);
         yield return Util.Lerp(transitionDuration, t => {
             window.localScale = Vector3.Lerp(new Vector3(0, 1, 1), new Vector3(1, 1, 1), t);
