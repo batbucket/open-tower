@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class BoosterStatsDisplay : MonoBehaviour {
     private static readonly Color LIFE = Color.yellow;
-    private static readonly Color POWER = Color.magenta;
+    private static readonly Color POWER = Color.red;
     private static readonly Color DEFENSE = Color.cyan;
     private static readonly Color STARS = Color.white;
 
