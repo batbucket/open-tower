@@ -1075,6 +1075,12 @@ MonoBehaviour:
   window: {fileID: 224218539005040716}
   hero: {fileID: 114559219485892290}
   enemy: {fileID: 114877467285587418}
+  hitSounds:
+  - {fileID: 8300000, guid: 5aaa64b796ce3ee4a936d8fa0655a4cd, type: 3}
+  - {fileID: 8300000, guid: e92527f045c4f6146b0d1bf8c85a34d7, type: 3}
+  - {fileID: 8300000, guid: f959612499969b340858be1a24905404, type: 3}
+  - {fileID: 8300000, guid: f9e005e1db86b2e4dad804b8b283539f, type: 3}
+  - {fileID: 8300000, guid: b6215acd33a0648438b24746f1405d67, type: 3}
 --- !u!114 &114460487981540548
 MonoBehaviour:
   m_ObjectHideFlags: 1

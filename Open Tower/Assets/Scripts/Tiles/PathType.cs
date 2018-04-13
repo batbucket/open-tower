@@ -1,3 +1,3 @@
 ﻿public enum PathType {
-    CLASSIC, TOWER, GRASS
+    CLASSIC, TUTOR, GRASS, DEATH, VOID, TOWER
 }

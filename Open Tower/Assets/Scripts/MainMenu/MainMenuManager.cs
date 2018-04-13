@@ -12,6 +12,10 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField]
     private Button[] requiresSignIn;
 
+    public void SetStoryMode() {
+        SceneUtil.Play = PlayType.STORY_MODE;
+    }
+
     public void GoToLevel(string levelName) {
         SceneManager.LoadScene(levelName);
     }
@@ -24,6 +28,10 @@ public class MainMenuManager : MonoBehaviour {
           (bool userFetchedSuccess) => {
               Debug.Log(string.Format("User details fetched {0}", userFetchedSuccess ? "successfully" : "failed"));
           });
+    }
+
+    public void Quit() {
+        Application.Quit();
     }
 
     private void Start() {

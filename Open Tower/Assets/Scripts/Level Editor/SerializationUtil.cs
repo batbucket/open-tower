@@ -215,8 +215,8 @@ namespace Scripts.LevelEditor.Serialization {
         public static void DeserializeDungeonToPlayable(
             Upload upload,
             string stage,
-            string sceneOnVictory,
-            string sceneOnExit,
+            int sceneOnVictory,
+            int sceneOnExit,
             DungeonInfo infoTarget,
             GameObject floorsParent,
             GameObject floorPrefab,
@@ -234,7 +234,8 @@ namespace Scripts.LevelEditor.Serialization {
             GameObject enemyPrefab,
             GameObject boosterPrefab
             ) {
-            Dungeon dungeon = JsonUtility.FromJson<Dungeon>(upload.LevelJson);
+            string json = upload.LevelJson.Replace("\\", "");
+            Dungeon dungeon = JsonUtility.FromJson<Dungeon>(json);
 
             Addable[] addables = dungeon.Addables;
             Floor[] floors = dungeon.Floors;

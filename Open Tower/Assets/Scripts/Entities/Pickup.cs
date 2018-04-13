@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pickup : Entity {
 
@@ -10,6 +11,10 @@ public class Pickup : Entity {
 
     [SerializeField]
     private int amount;
+
+    private new SpriteRenderer renderer;
+
+    private bool isUsed;
 
     public PickupType Type {
         get {
@@ -47,39 +52,52 @@ public class Pickup : Entity {
     }
 
     protected override bool IsActionPossible(Player player) {
-        return true;
+        return !isUsed;
     }
 
     protected override void DoAction(Player player) {
+        isUsed = true;
+        PlayerStatsDisplay display = PlayerStatsDisplay.Instance;
+        PlayerInventoryDisplay inv = PlayerInventoryDisplay.Instance;
         switch (pickup) {
             case PickupType.LIFE:
                 player.Stats.AddToLife(amount);
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, display.LifeIcon));
                 break;
 
             case PickupType.POWER:
                 player.Stats.AddToPower(amount);
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, display.PowerIcon));
                 break;
 
             case PickupType.DEFENSE:
                 player.Stats.AddToDefense(amount);
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, display.DefenseIcon));
                 break;
 
             case PickupType.EXPERIENCE:
                 player.Stats.AddToExperience(amount);
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, display.ExperienceIcon));
                 break;
 
             case PickupType.YELLOW_KEY:
                 player.Keys.Yellow += amount;
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, inv.GoldIcon));
                 break;
 
             case PickupType.BLUE_KEY:
                 player.Keys.Blue += amount;
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, inv.BlueIcon));
                 break;
 
             case PickupType.RED_KEY:
                 player.Keys.Red += amount;
+                StartCoroutine(Util.FlyTo(renderer, this.gameObject, inv.RedIcon));
                 break;
         }
-        this.gameObject.SetActive(false);
+    }
+
+    private void Start() {
+        renderer = GetComponentInChildren<SpriteRenderer>(true);
     }
 }

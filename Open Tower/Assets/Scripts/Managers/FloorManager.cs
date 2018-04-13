@@ -14,7 +14,7 @@ public class FloorManager : MonoBehaviour {
     private int rows;
     private int columns;
 
-    private Tile[] children;
+    private Tile[] _children;
 
     public int Rows {
         get {
@@ -36,12 +36,20 @@ public class FloorManager : MonoBehaviour {
         }
     }
 
+    private Tile[] Children {
+        get {
+            if (_children == null) {
+                this._children = GetComponentsInChildren<Tile>(true);
+            }
+            return _children;
+        }
+    }
+
     private void Awake() {
-        this.children = GetComponentsInChildren<Tile>(true);
     }
 
     public Tile GetTileAtIndex(int index) {
-        return children[index];
+        return Children[index];
     }
 
     public bool IsRowColumnValid(int row, int column) {
@@ -53,18 +61,18 @@ public class FloorManager : MonoBehaviour {
     }
 
     public int GetRowOfIndex(int index) {
-        Util.Assert(0 <= index && index < children.Length, "Invalid index {0} for array of length={1}", index, children.Length);
+        Util.Assert(0 <= index && index < Children.Length, "Invalid index {0} for array of length={1}", index, Children.Length);
         return index / Columns;
     }
 
     public int GetColumnOfIndex(int index) {
-        Util.Assert(0 <= index && index < children.Length, "Invalid index {0} for array of length={1}", index, children.Length);
+        Util.Assert(0 <= index && index < Children.Length, "Invalid index {0} for array of length={1}", index, Children.Length);
         return index % Columns;
     }
 
     public Tile GetTileAtPosition(int row, int column) {
         Util.Assert(row < Rows, "Input row {0} is not in range [0, {1}]", row, Rows - 1);
         Util.Assert(column < Columns, "Input column {0} is not in range [0, {1}]", column, Columns - 1);
-        return children[row * Columns + column];
+        return Children[row * Columns + column];
     }
 }

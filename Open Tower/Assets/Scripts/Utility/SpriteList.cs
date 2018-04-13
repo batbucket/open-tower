@@ -1,5 +1,6 @@
 ﻿using Scripts.LevelEditor.Serialization;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class SpriteList {
@@ -8,7 +9,7 @@ public static class SpriteList {
     private static readonly IDictionary<int, Sprite> enemyIDs = new Dictionary<int, Sprite>();
     private static readonly IDictionary<int, Sprite> boosterIDs = new Dictionary<int, Sprite>();
     private static readonly IDictionary<TileType, Sprite> staticSprites = new Dictionary<TileType, Sprite>();
-    private static readonly IDictionary<PathType, Sprite[]> pathSprites = new Dictionary<PathType, Sprite[]>();
+    private static readonly IDictionary<PathType, DungeonSet> dungeonSets = new Dictionary<PathType, DungeonSet>();
 
     public static Sprite GetEnemy(int id) {
         LazyInit();
@@ -48,9 +49,9 @@ public static class SpriteList {
                 boosterIDs.Add(id++, s);
             }
 
-            AddPathSprite(PathType.CLASSIC, null);
-            AddPathSprite(PathType.GRASS, loader.Life);
-            AddPathSprite(PathType.TOWER, loader.Tower);
+            foreach (PathType type in Util.GetValues<PathType>()) {
+                AddPathSprite(type, loader.GetDungeonSet(type));
+            }
 
             AddStaticSprite(TileType.WALL, loader.Wall);
             AddStaticSprite(TileType.UP_STAIRS, loader.UpStairs);
@@ -67,13 +68,18 @@ public static class SpriteList {
         }
     }
 
-    public static void AddPathSprite(PathType type, Sprite[] sprites) {
-        pathSprites.Add(type, sprites);
+    public static void AddPathSprite(PathType type, DungeonSet set) {
+        dungeonSets.Add(type, set);
     }
 
-    public static Sprite[] GetPathSprite(PathType type) {
+    public static DungeonSet GetRandomDungeonSet() {
         LazyInit();
-        return pathSprites[type];
+        return dungeonSets.Values.ToArray()[Util.Random(0, dungeonSets.Count)];
+    }
+
+    public static DungeonSet GetDungeonSet(PathType type) {
+        LazyInit();
+        return dungeonSets[type];
     }
 
     private static void AddStaticSprite(TileType type, Sprite sprite) {

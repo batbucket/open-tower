@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,6 +13,10 @@ public static class Util {
         if (IS_DEBUG && !expression && !string.IsNullOrEmpty(format)) {
             throw new UnityException(string.Format(format, args));
         }
+    }
+
+    public static int Random(int min, int max) {
+        return UnityEngine.Random.Range(min, max);
     }
 
     public static float Random(float min, float max) {
@@ -76,6 +81,31 @@ public static class Util {
         scroll.value = 0;
     }
 
+    public static IEnumerator ValueChange(int amount, Transform[] items, Action<Color>[] setColors) {
+        Color initial = Color.white;
+        if (amount < 0) {
+            initial = Color.red;
+        } else if (amount > 0) {
+            initial = Color.green;
+        } else {
+            initial = Color.grey;
+        }
+        yield return Lerp(0.10f, t => {
+            foreach (Transform item in items) {
+                item.localScale = Vector3.Lerp(new Vector3(1.5f, 1.5f, 1.5f), Vector3.one, t);
+            }
+            foreach (Action<Color> setColor in setColors) {
+                setColor(Color.Lerp(initial, Color.white, t));
+            }
+        });
+        foreach (Transform item in items) {
+            item.localScale = Vector3.one;
+        }
+        foreach (Action<Color> setColor in setColors) {
+            setColor(Color.white);
+        }
+    }
+
     // assumes scales are initially 1,1,1
     public static IEnumerator ShakeItem(float shakeIntensity, float scaleIntensity, float duration, Action callback, params Transform[] targets) {
         Vector3[] originalPos = new Vector3[targets.Length];
@@ -113,9 +143,31 @@ public static class Util {
             callback();
         }
     }
+
+    public static T[] GetValues<T>() {
+        return Enum.GetValues(typeof(T)).Cast<T>().ToArray();
+    }
+
+    public static IEnumerator FlyTo(SpriteRenderer renderer, GameObject flier, Image destination) {
+        renderer.sortingOrder = 1;
+        renderer.sortingLayerName = "Default";
+
+        Vector3 start = flier.transform.position;
+        Vector3 end = destination.transform.position + new Vector3(16, 0, 0);
+        yield return Util.Lerp(0.25f, t => {
+            flier.transform.position = Vector3.Lerp(start, end, t);
+            flier.transform.localScale = Vector3.Lerp(Vector3.one, new Vector3(0.5f, 0.5f, 0.5f), t);
+        });
+        flier.transform.position = end;
+        flier.SetActive(false);
+    }
 }
 
 public static class Extensions {
+
+    public static T PickRandom<T>(this IList<T> list) {
+        return list[Util.Random(0, list.Count)];
+    }
 
     public static int IndexOf<T>(this IList<T> list, Func<T, bool> predicate) {
         for (int i = 0; i < list.Count; i++) {

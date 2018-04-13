@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerStatsDisplay : MonoBehaviour {
+    private static PlayerStatsDisplay _instance;
 
     [SerializeField]
     private Color lerpMin;
@@ -19,6 +20,18 @@ public class PlayerStatsDisplay : MonoBehaviour {
 
     [SerializeField]
     private int powerAndDefenseIncreaseAmount;
+
+    [SerializeField]
+    private Image lifeIcon;
+
+    [SerializeField]
+    private Image powerIcon;
+
+    [SerializeField]
+    private Image defenseIcon;
+
+    [SerializeField]
+    private Image experienceIcon;
 
     [SerializeField]
     private Text life;
@@ -41,16 +54,77 @@ public class PlayerStatsDisplay : MonoBehaviour {
     [SerializeField]
     private Button addDefense;
 
+    [SerializeField]
+    private AudioClip boostSound;
+
     private Stats player;
 
     private Coroutine buttonEnableRoutine;
 
     private Button[] addButtons;
 
+    public static PlayerStatsDisplay Instance {
+        get {
+            if (_instance == null) {
+                _instance = FindObjectOfType<PlayerStatsDisplay>();
+            }
+            return _instance;
+        }
+    }
+
+    public Image LifeIcon {
+        get {
+            return lifeIcon;
+        }
+    }
+
+    public Image PowerIcon {
+        get {
+            return powerIcon;
+        }
+    }
+
+    public Image DefenseIcon {
+        get {
+            return defenseIcon;
+        }
+    }
+
+    public Image ExperienceIcon {
+        get {
+            return experienceIcon;
+        }
+    }
+
+    public Text Life {
+        get {
+            return life;
+        }
+    }
+
+    public Text Power {
+        get {
+            return power;
+        }
+    }
+
+    public Text Defense {
+        get {
+            return defense;
+        }
+    }
+
+    public Text Experience {
+        get {
+            return experience;
+        }
+    }
+
     public void IncreaseLife() {
         if (player.Experience > 0) {
             player.AddToLife(lifeIncreaseAmount);
             player.AddToExperience(-1);
+            SoundManager.Instance.Play(boostSound);
         }
     }
 
@@ -58,6 +132,7 @@ public class PlayerStatsDisplay : MonoBehaviour {
         if (player.Experience > 0) {
             player.AddToPower(powerAndDefenseIncreaseAmount);
             player.AddToExperience(-1);
+            SoundManager.Instance.Play(boostSound);
         }
     }
 
@@ -65,6 +140,7 @@ public class PlayerStatsDisplay : MonoBehaviour {
         if (player.Experience > 0) {
             player.AddToDefense(powerAndDefenseIncreaseAmount);
             player.AddToExperience(-1);
+            SoundManager.Instance.Play(boostSound);
         }
     }
 
@@ -78,10 +154,10 @@ public class PlayerStatsDisplay : MonoBehaviour {
     }
 
     private void Update() {
-        this.life.text = player.Life.ToString();
-        this.power.text = player.Power.ToString();
-        this.defense.text = player.Defense.ToString();
-        this.experience.text = player.Experience.ToString();
+        this.Life.text = player.Life.ToString();
+        this.Power.text = player.Power.ToString();
+        this.Defense.text = player.Defense.ToString();
+        this.Experience.text = player.Experience.ToString();
 
         if (buttonEnableRoutine == null
             && player.Experience > 0) {

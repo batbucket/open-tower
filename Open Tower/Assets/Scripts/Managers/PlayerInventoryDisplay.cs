@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInventoryDisplay : MonoBehaviour {
+    private static PlayerInventoryDisplay _instance;
+
     private Inventory player;
 
     [SerializeField]
@@ -14,6 +16,60 @@ public class PlayerInventoryDisplay : MonoBehaviour {
 
     [SerializeField]
     private Text red;
+
+    [SerializeField]
+    private Image goldIcon;
+
+    [SerializeField]
+    private Image blueIcon;
+
+    [SerializeField]
+    private Image redIcon;
+
+    public Image GoldIcon {
+        get {
+            return goldIcon;
+        }
+    }
+
+    public Image BlueIcon {
+        get {
+            return blueIcon;
+        }
+    }
+
+    public Image RedIcon {
+        get {
+            return redIcon;
+        }
+    }
+
+    public static PlayerInventoryDisplay Instance {
+        get {
+            if (_instance == null) {
+                _instance = FindObjectOfType<PlayerInventoryDisplay>();
+            }
+            return _instance;
+        }
+    }
+
+    public Text Yellow {
+        get {
+            return yellow;
+        }
+    }
+
+    public Text Blue {
+        get {
+            return blue;
+        }
+    }
+
+    public Text Red {
+        get {
+            return red;
+        }
+    }
 
     private void Start() {
         player = Player.Instance.Keys;

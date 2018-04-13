@@ -61,19 +61,29 @@ public class ResultsManager : MonoBehaviour {
     [SerializeField]
     private Text pastRankingLabel;
 
-    private string destination;
+    private int destinationScene;
 
-    public void ShowResults(string destination) {
+    private int scoreIDOverride;
+
+    public void ShowResults(int destinationScene) {
         StartCoroutine(ResultsAnim());
-        this.destination = destination;
+        this.destinationScene = destinationScene;
     }
 
     public void ChangeScene() {
-        SceneManager.LoadScene(destination);
+        SceneManager.LoadScene(destinationScene);
 
         LevelInfo info = LevelInfo.Instance;
         if (info != null) {
             info.IsLevelCleared = true;
+        }
+    }
+
+    private void Start() {
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        if (SceneUtil.IsLevelIndex) {
+            scoreIDOverride = SceneUtil.GetParams(SceneUtil.LevelIndex).ScoresID;
+            Debug.Log("Using score ID: " + scoreIDOverride);
         }
     }
 
@@ -98,9 +108,7 @@ public class ResultsManager : MonoBehaviour {
         yield return Util.AnimateScore(steps, 0, stepCount, 0.25f, scoreSound);
 
         // Ranking and leaderboard
-        if (LevelInfo.Instance != null) {
-            yield return AnimateRank(LevelInfo.Instance.Upload, stepCount);
-        }
+        yield return AnimateRank(stepCount);
     }
 
     private IEnumerator WaitThenDisplay(float waitTime, GameObject go) {
@@ -109,20 +117,33 @@ public class ResultsManager : MonoBehaviour {
         SoundManager.Instance.Play(displaySound);
     }
 
-    private IEnumerator AnimateRank(Upload upload, int stepCount) {
+    private IEnumerator AnimateRank(int stepCount) {
         int calculatedRank = -1;
         Score previousBestScore = null;
         int previousBestRank = -1;
         bool isRankLoaded = false;
-        List<Score> leaderboard = upload.Leaderboards;
-        GameJolt.API.Objects.User currentUser = GameJolt.API.Manager.Instance.CurrentUser;
-
-        bool isUserAuthor = (currentUser.ID == upload.AuthorID);
         GameJolt.API.Misc.GetTime(dateTime => {
-            isRankLoaded = true;
-            upload.AddToLeaderboard(currentUser, stepCount, dateTime, out calculatedRank, out previousBestScore, out previousBestRank, isSuccess => {
-                isRankLoaded = true;
-            });
+            if (scoreIDOverride == 0 && !SceneUtil.IsLevelIndex) {
+                Upload upload = LevelInfo.Instance.Upload;
+                List<Score> leaderboard = upload.Leaderboards;
+                GameJolt.API.Objects.User currentUser = GameJolt.API.Manager.Instance.CurrentUser;
+
+                bool isUserAuthor = (currentUser.ID == upload.AuthorID);
+                upload.AddToLeaderboard(currentUser, stepCount, dateTime, out calculatedRank, out previousBestScore, out previousBestRank, isSuccess => {
+                    isRankLoaded = true;
+                });
+            } else {
+                GameJolt.API.Scores.GetRank(stepCount, scoreIDOverride, rank => {
+                    Debug.Log("Rank load successful: " + rank);
+                    calculatedRank = rank - 1;
+
+                    // passing in null means there's a user
+                    string guestName = (GameJolt.API.Manager.Instance.CurrentUser == null) ? "Guest" : string.Empty;
+
+                    GameJolt.API.Scores.Add(stepCount, stepCount.ToString(), guestName, scoreIDOverride);
+                    isRankLoaded = true;
+                });
+            }
         });
         yield return new WaitUntil(() => isRankLoaded);
         yield return Util.AnimateScore(rank, 0, calculatedRank, 0.35f, scoreSound);

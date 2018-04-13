@@ -91,6 +91,7 @@ MonoBehaviour:
   type: 0
   key: 1
   anim: {fileID: 95224920417592086}
+  opening: {fileID: 8300000, guid: 18c15e4843b46ee409937cf8515b5379, type: 3}
 --- !u!114 &114620667651708334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,7 +162,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1399894083
-  m_SortingLayer: -1
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f4f86449a323a1f4189c1e828926ac15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

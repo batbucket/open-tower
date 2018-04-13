@@ -7,10 +7,22 @@ public class SpriteListLoader : MonoBehaviour {
     private static SpriteListLoader _prefab;
 
     [SerializeField]
-    private Sprite[] lifeTiles;
+    private DungeonSet classic;
 
     [SerializeField]
-    private Sprite[] towerTiles;
+    private DungeonSet tutor;
+
+    [SerializeField]
+    private DungeonSet life;
+
+    [SerializeField]
+    private DungeonSet tower;
+
+    [SerializeField]
+    private DungeonSet death;
+
+    [SerializeField]
+    private DungeonSet theVoid;
 
     [SerializeField]
     private Sprite[] enemies;
@@ -70,18 +82,6 @@ public class SpriteListLoader : MonoBehaviour {
                 _prefab = Resources.Load<SpriteListLoader>("Prefabs/Level Editor/Sprite List Loader");
             }
             return _prefab;
-        }
-    }
-
-    public Sprite[] Life {
-        get {
-            return lifeTiles;
-        }
-    }
-
-    public Sprite[] Tower {
-        get {
-            return towerTiles;
         }
     }
 
@@ -160,6 +160,31 @@ public class SpriteListLoader : MonoBehaviour {
     public Sprite RedDoor {
         get {
             return redDoor;
+        }
+    }
+
+    public DungeonSet GetDungeonSet(PathType type) {
+        switch (type) {
+            case PathType.CLASSIC:
+                return classic;
+
+            case PathType.TUTOR:
+                return tutor;
+
+            case PathType.GRASS:
+                return life;
+
+            case PathType.DEATH:
+                return death;
+
+            case PathType.VOID:
+                return theVoid;
+
+            case PathType.TOWER:
+                return tower;
+
+            default:
+                throw new KeyNotFoundException("unhandled type");
         }
     }
 }

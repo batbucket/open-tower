@@ -87,9 +87,15 @@ public class LevelEditorManager : MonoBehaviour {
     }
 
     public void ImportLevel(string levelJson) {
+        levelJson = levelJson.Replace("\\", "");
         foreach (Panel panel in allPanels) {
             panel.Clear();
         }
+        StartCoroutine(DeserializationRoutine(levelJson));
+    }
+
+    private IEnumerator DeserializationRoutine(string levelJson) {
+        yield return new WaitForEndOfFrame();
         SerializationUtil.DeserializeDungeonToEditor(
             levelJson,
             entitiesPanel,

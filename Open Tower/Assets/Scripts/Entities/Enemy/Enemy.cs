@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Stats))]
 public class Enemy : Entity {
     public const int ENEMY_CANNOT_BE_DEFEATED = 1;
     private const float DEATH_PLAYBACK_SPEED = 2;
+
+    private static SpriteRenderer flyingStar;
+    private static Material outline;
+
+    private static IDictionary<StatType, Color> colors = new Dictionary<StatType, Color>() {
+            { StatType.LIFE, Color.yellow },
+            { StatType.POWER, Color.red },
+            { StatType.DEFENSE, Color.cyan }
+        };
 
     [SerializeField]
     private EnemyResultDisplay resultPrefab;
@@ -76,13 +86,18 @@ public class Enemy : Entity {
 
     protected override void DoAction(Player player) {
         player.IsMovementEnabled = false;
-        shakePs.playbackSpeed = DEATH_PLAYBACK_SPEED;
+        ParticleSystem.MainModule main = shakePs.main;
+        main.simulationSpeed = DEATH_PLAYBACK_SPEED;
         float effectDuration = shakePs.main.startLifetime.constantMax / DEATH_PLAYBACK_SPEED;
         StartCoroutine(Battle.Instance.Init(player, this.Sprite, this.stats, () => {
             StartCoroutine(DeathEffect(effectDuration, () => player.IsMovementEnabled = true));
             flicker = StartCoroutine(Flicker(effectDuration));
             player.Stats.AddToLife(GetDamageToPlayer(player));
             player.Stats.AddToExperience(this.stats.Experience);
+
+            SpriteRenderer star = Instantiate<SpriteRenderer>(flyingStar);
+            star.transform.position = this.transform.position;
+            StartCoroutine(Util.FlyTo(star, star.gameObject, PlayerStatsDisplay.Instance.ExperienceIcon));
         }));
     }
 
@@ -137,6 +152,35 @@ public class Enemy : Entity {
 
     private void Start() {
         Instantiate(resultPrefab, this.transform).Init(this.stats);
+        if (outline == null) {
+            outline = Resources.Load<Material>("Materials/Red Sprite Outline");
+        }
+        if (flyingStar == null) {
+            flyingStar = Resources.Load<SpriteRenderer>("Prefabs/Flying Star");
+        }
+        this.sprite.material = outline;
+        this.sprite.material.color = CalculateOutlineColor();
+    }
+
+    private Color CalculateOutlineColor() {
+        IDictionary<StatType, int> dict = new Dictionary<StatType, int>() {
+            { StatType.LIFE, stats.Life },
+            { StatType.POWER, stats.Power },
+            { StatType.DEFENSE, stats.Defense }
+        };
+
+        int max = dict.Max(entry => entry.Value);
+        var highestValues = dict.Where(entry => entry.Value == max).Select(entry => colors[entry.Key]).ToArray();
+        return CombineColors(highestValues);
+    }
+
+    private static Color CombineColors(ICollection<Color> colors) {
+        Color result = new Color(0, 0, 0, 0);
+        foreach (Color c in colors) {
+            result += c;
+        }
+        result /= colors.Count;
+        return result;
     }
 
     private void Update() {

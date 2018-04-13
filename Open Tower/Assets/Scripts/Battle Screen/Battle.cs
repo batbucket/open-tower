@@ -2,9 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Battle : MonoBehaviour {
     private static Battle _instance;
+
+    private static readonly string[] headers = new string[] {
+        "It's a fight!",
+        "Let the battle begin!",
+        "Activating Combat Mode!",
+        "A brawl is surely brewing!",
+        "Engaging enemy!",
+        "The battle begins!",
+        "Who will emerge a champion?",
+        "Who will emerge victorious?",
+        "It's a battle!",
+        "A fight it is!",
+        "No escape!",
+        "Two enter, one leaves.",
+        "<color=red>Let none survive.</color>"
+    };
+
+    [SerializeField]
+    private Text header;
 
     [SerializeField]
     private float transitionDuration = 0.5f;
@@ -33,7 +53,11 @@ public class Battle : MonoBehaviour {
     [SerializeField]
     private BattleProfile enemy;
 
+    [SerializeField]
+    private AudioClip[] hitSounds;
+
     private bool isSkipped;
+    private float timeOpen;
 
     public static Battle Instance {
         get {
@@ -45,6 +69,7 @@ public class Battle : MonoBehaviour {
     }
 
     public IEnumerator Init(Player player, Sprite enemySprite, Stats enemyStats, Action callback) {
+        header.text = headers.PickRandom();
         this.hero.Init(player.Sprite.sprite, player.Stats.Life, player.Stats.Power, player.Stats.Defense);
         this.enemy.Init(enemySprite, enemyStats.Life, enemyStats.Power, enemyStats.Defense);
         window.gameObject.SetActive(true);
@@ -52,6 +77,7 @@ public class Battle : MonoBehaviour {
             window.localScale = Vector3.Lerp(new Vector3(0, 1, 1), new Vector3(1, 1, 1), t);
         });
         isSkipped = false;
+        timeOpen = 0;
         int playerNetDamage = 0;
         int enemyNetDamage = 0;
         Enemy.GetNetDamages(player.Stats, enemyStats, out playerNetDamage, out enemyNetDamage);
@@ -59,9 +85,9 @@ public class Battle : MonoBehaviour {
         while (enemy.IsAlive && !isSkipped) {
             currentShakeDuration *= shakeDurationDecay;
             currentShakeDuration = Math.Max(currentShakeDuration, minShakeDuration);
-            yield return hero.Attack(enemy, playerNetDamage, shakeIntensity, scaleIntensity, currentShakeDuration);
+            yield return hero.Attack(enemy, playerNetDamage, shakeIntensity, scaleIntensity, currentShakeDuration, hitSounds.PickRandom());
             if (enemy.IsAlive) {
-                yield return enemy.Attack(hero, enemyNetDamage, shakeIntensity, scaleIntensity, currentShakeDuration);
+                yield return enemy.Attack(hero, enemyNetDamage, shakeIntensity, scaleIntensity, currentShakeDuration, hitSounds.PickRandom());
             }
         }
         yield return new WaitForSeconds(transitionDuration);
@@ -70,7 +96,8 @@ public class Battle : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.anyKey) {
+        timeOpen += Time.deltaTime;
+        if (Input.anyKey && timeOpen > transitionDuration) {
             isSkipped = true;
         }
     }
