@@ -14,9 +14,16 @@ public class SelectableLevel : MonoBehaviour {
     private Text indexText;
 
     private int destination;
+    private int levelIndex;
 
     public int WorldIndex {
         get; private set;
+    }
+
+    public bool IsStory {
+        get {
+            return SceneUtil.GetParams(levelIndex).IsStory;
+        }
     }
 
     public void GoToLevel() {
@@ -25,9 +32,9 @@ public class SelectableLevel : MonoBehaviour {
     }
 
     public void Init() {
-        int index = transform.GetSiblingIndex();
-        this.destination = index + SceneUtil.LEVEL_START_INDEX;
-        LevelParams level = SceneUtil.GetParams(index);
+        levelIndex = transform.GetSiblingIndex();
+        this.destination = levelIndex + SceneUtil.LEVEL_START_INDEX;
+        LevelParams level = SceneUtil.GetParams(levelIndex);
 
         WorldIndex = level.WorldIndex;
         levelNameText.text = level.Name;

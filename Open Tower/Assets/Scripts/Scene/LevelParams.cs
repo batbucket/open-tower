@@ -14,6 +14,8 @@
         }
     }
 
+    public readonly bool IsStory;
+
     public LevelParams(int worldIndex, int stageIndex, int scoresID, int trophyID, string name) : this(worldIndex, char.Parse(stageIndex.ToString()), name, scoresID, trophyID) {
     }
 
@@ -21,6 +23,7 @@
     }
 
     public LevelParams(int worldIndex, string name) : this(worldIndex, '*', name, NO_SCORES_ID, NO_TROPHY_ID) {
+        IsStory = true;
     }
 
     private LevelParams(int worldIndex, char stageIndex, string name, int scoresID, int trophyID) {

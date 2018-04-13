@@ -1,6 +1,7 @@
 ﻿using Prime31.TransitionKit;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public static class SceneUtil {
     public const int MAIN_MENU_INDEX = 0;
@@ -13,24 +14,31 @@ public static class SceneUtil {
     public static readonly int LEVEL_END_INDEX = 34;
     public static readonly int NUMBER_OF_LEVELS = LEVEL_END_INDEX - LEVEL_START_INDEX + 1;
     private static AudioClip transitionSound = Resources.Load<AudioClip>("Sounds/steam hiss");
+    private static TitleDrop titleDrop;
 
     public static PlayType Play;
 
     public static int LevelIndex {
         get {
             int index = SceneManager.GetActiveScene().buildIndex;
-            Util.Assert(IsLevelIndex, "Scene is not an official level!");
+            Util.Assert(IsLevelIndex(index), "Scene is not an official level!");
             return index - LEVEL_START_INDEX;
         }
     }
 
-    public static bool IsLevelIndex {
+    public static bool IsCurrentLevelIndex {
         get {
             int index = SceneManager.GetActiveScene().buildIndex;
             return
                 index >= LEVEL_START_INDEX
                 && index <= LEVEL_END_INDEX;
         }
+    }
+
+    public static bool IsLevelIndex(int index) {
+        return
+            index >= LEVEL_START_INDEX
+            && index <= LEVEL_END_INDEX;
     }
 
     private static readonly DungeonSet[] dungeonSets = new DungeonSet[] { // sets to use for each world
@@ -73,13 +81,25 @@ public static class SceneUtil {
     };
 
     public static void LoadScene(int sceneIndex) {
-        var wind = new VerticalSlicesTransition() {
+        if (titleDrop == null) {
+            titleDrop = GameObject.Instantiate(Resources.Load<TitleDrop>("Prefabs/Title Drop"));
+            GameObject.DontDestroyOnLoad(titleDrop.gameObject);
+            TransitionKit.onScreenObscured += () => SoundManager.Instance.Play(transitionSound);
+            TransitionKit.onTransitionComplete += () => {
+                if (IsCurrentLevelIndex) {
+                    titleDrop.Init(GetParams(LevelIndex).Name);
+                }
+            };
+        }
+
+        bool isPlayTransition = (Application.platform != RuntimePlatform.WebGLPlayer);
+
+        var transition = new VerticalSlicesTransition() {
             nextScene = sceneIndex,
-            duration = 0.50f,
+            duration = isPlayTransition ? 0.25f : 0f,
             divisions = 800
         };
-        SoundManager.Instance.Play(transitionSound);
-        TransitionKit.instance.transitionWithDelegate(wind);
+        TransitionKit.instance.transitionWithDelegate(transition);
     }
 
     public static DungeonSet GetSet(int levelIndex) {

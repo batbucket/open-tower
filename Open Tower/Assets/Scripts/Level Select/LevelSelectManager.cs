@@ -21,6 +21,11 @@ public class LevelSelectManager : MonoBehaviour {
         for (int i = SceneUtil.LEVEL_START_INDEX; i <= SceneUtil.LEVEL_END_INDEX; i++) {
             Instantiate(prefab, levelParent.transform).Init();
         }
+        levelParent.GetComponentsInChildren<SelectableLevel>().ForEach(g => {
+            if (g.IsStory) {
+                Destroy(g.gameObject);
+            }
+        });
         SetupButtons();
 
         if (lastUsedIndex == SELECT_ALL) {

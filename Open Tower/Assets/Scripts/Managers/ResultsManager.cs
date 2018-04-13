@@ -78,7 +78,7 @@ public class ResultsManager : MonoBehaviour {
 
     private void Start() {
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
-        if (SceneUtil.IsLevelIndex) {
+        if (SceneUtil.IsCurrentLevelIndex) {
             scoreIDOverride = SceneUtil.GetParams(SceneUtil.LevelIndex).ScoresID;
             Debug.Log("Using score ID: " + scoreIDOverride);
         }
@@ -125,7 +125,7 @@ public class ResultsManager : MonoBehaviour {
         int previousBestRank = -1;
         bool isRankLoaded = false;
         GameJolt.API.Misc.GetTime(dateTime => {
-            if (scoreIDOverride == 0 && !SceneUtil.IsLevelIndex) {
+            if (scoreIDOverride == 0 && !SceneUtil.IsCurrentLevelIndex) {
                 Upload upload = LevelInfo.Instance.Upload;
                 List<Score> leaderboard = upload.Leaderboards;
                 GameJolt.API.Objects.User currentUser = GameJolt.API.Manager.Instance.CurrentUser;

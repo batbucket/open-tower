@@ -35,7 +35,7 @@ public class DungeonManager : MonoBehaviour {
 
     private void SetPathSprites() {
         DungeonSet set;
-        if (SceneUtil.IsLevelIndex) {
+        if (SceneUtil.IsCurrentLevelIndex) {
             Debug.Log("loading dungeon set from world index");
             set = SceneUtil.GetSet(SceneUtil.LevelIndex);
         } else {
