@@ -1423,6 +1423,30 @@ Prefab:
       propertyPath: m_DynamicPixelsPerUnit
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 22439902, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22439902, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22439902, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22439902, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22439902, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 22439902, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 600
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
   m_IsPrefabParent: 0
