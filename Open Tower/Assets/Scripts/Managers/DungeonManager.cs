@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DungeonManager : MonoBehaviour {
     private const int TOP_LEFT = 0;
@@ -71,6 +72,8 @@ public class DungeonManager : MonoBehaviour {
 
     private void Start() {
         SetPathSprites();
+        gameObject.AddComponent<Canvas>().renderMode = RenderMode.WorldSpace;
+        gameObject.AddComponent<CanvasScaler>().dynamicPixelsPerUnit = 3;
     }
 
     private void Awake() {

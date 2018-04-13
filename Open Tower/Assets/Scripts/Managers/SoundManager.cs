@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour {
     public const string SFX_KEY = "sfx";
 
     private const float MIN_PITCH = 0.5f;
-    private const float MAX_PITCH = 1.5f;
+    private const float MAX_PITCH = 1.20f;
     private static SoundManager _instance;
 
     [SerializeField]

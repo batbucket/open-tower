@@ -13,7 +13,7 @@ public static class SceneUtil {
     public const int LEVEL_BROWSER_INDEX = 5;
     public static readonly int LEVEL_END_INDEX = 34;
     public static readonly int NUMBER_OF_LEVELS = LEVEL_END_INDEX - LEVEL_START_INDEX + 1;
-    private static AudioClip transitionSound = Resources.Load<AudioClip>("Sounds/steam hiss");
+    private static AudioClip transitionSound = Resources.Load<AudioClip>("Sounds/Plop");
 
     public static PlayType Play;
 
