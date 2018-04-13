@@ -18,6 +18,12 @@ public static class SceneUtil {
 
     public static PlayType Play;
 
+    public static int CurrentSceneIndex {
+        get {
+            return SceneManager.GetActiveScene().buildIndex;
+        }
+    }
+
     public static int LevelIndex {
         get {
             int index = SceneManager.GetActiveScene().buildIndex;

@@ -85,9 +85,11 @@ public class ResultsManager : MonoBehaviour {
     }
 
     private IEnumerator ResultsAnim() {
-        LevelParams level = SceneUtil.GetParams(SceneUtil.LevelIndex);
-        if (level.HasTrophy) {
-            GameJolt.API.Trophies.Unlock(level.TrophyID);
+        if (SceneUtil.IsCurrentLevelIndex) {
+            LevelParams level = SceneUtil.GetParams(SceneUtil.LevelIndex);
+            if (level.HasTrophy) {
+                GameJolt.API.Trophies.Unlock(level.TrophyID);
+            }
         }
 
         foreach (TutorialBoard tb in FindObjectsOfType<TutorialBoard>()) {

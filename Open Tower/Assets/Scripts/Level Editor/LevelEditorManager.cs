@@ -96,18 +96,24 @@ public class LevelEditorManager : MonoBehaviour {
 
     private IEnumerator DeserializationRoutine(string levelJson) {
         yield return new WaitForEndOfFrame();
-        SerializationUtil.DeserializeDungeonToEditor(
-            levelJson,
-            entitiesPanel,
-            boosterPrefab,
-            enemyPrefab,
-            playerPanel,
-            floorsPanel,
-            floorListingPrefab,
-            floorPrefab,
-            elementPrefab,
-            upStairsPrefab,
-            downStairsPrefab);
+        try {
+            SerializationUtil.DeserializeDungeonToEditor(
+                levelJson,
+                entitiesPanel,
+                boosterPrefab,
+                enemyPrefab,
+                playerPanel,
+                floorsPanel,
+                floorListingPrefab,
+                floorPrefab,
+                elementPrefab,
+                upStairsPrefab,
+                downStairsPrefab);
+        } catch (Exception e) {
+            SceneUtil.LoadScene(SceneUtil.CurrentSceneIndex);
+        }
+        yield return new WaitForEndOfFrame();
+        MenuPanel.Instance.OnEnter();
     }
 
     private void Start() {
