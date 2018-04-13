@@ -14,7 +14,6 @@ public static class SceneUtil {
     public static readonly int LEVEL_END_INDEX = 34;
     public static readonly int NUMBER_OF_LEVELS = LEVEL_END_INDEX - LEVEL_START_INDEX + 1;
     private static AudioClip transitionSound = Resources.Load<AudioClip>("Sounds/steam hiss");
-    private static TitleDrop titleDrop;
 
     public static PlayType Play;
 
@@ -81,25 +80,17 @@ public static class SceneUtil {
     };
 
     public static void LoadScene(int sceneIndex) {
-        if (titleDrop == null) {
-            titleDrop = GameObject.Instantiate(Resources.Load<TitleDrop>("Prefabs/Title Drop"));
-            GameObject.DontDestroyOnLoad(titleDrop.gameObject);
-            TransitionKit.onScreenObscured += () => SoundManager.Instance.Play(transitionSound);
-            TransitionKit.onTransitionComplete += () => {
-                if (IsCurrentLevelIndex) {
-                    titleDrop.Init(GetParams(LevelIndex).Name);
-                }
+        SoundManager.Instance.Play(transitionSound);
+        if (Application.platform != RuntimePlatform.WebGLPlayer) {
+            TransitionKitDelegate transition = new VerticalSlicesTransition() {
+                nextScene = sceneIndex,
+                duration = 0.25f,
+                divisions = 800
             };
+            TransitionKit.instance.transitionWithDelegate(transition);
+        } else {
+            SceneManager.LoadScene(sceneIndex);
         }
-
-        bool isPlayTransition = (Application.platform != RuntimePlatform.WebGLPlayer);
-
-        var transition = new VerticalSlicesTransition() {
-            nextScene = sceneIndex,
-            duration = isPlayTransition ? 0.25f : 0f,
-            divisions = 800
-        };
-        TransitionKit.instance.transitionWithDelegate(transition);
     }
 
     public static DungeonSet GetSet(int levelIndex) {

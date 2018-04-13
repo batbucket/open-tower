@@ -8,7 +8,13 @@ public class TitleDrop : MonoBehaviour {
     [SerializeField]
     private Text text;
 
-    public void Init(string title) {
+    private void Start() {
+        if (SceneUtil.IsCurrentLevelIndex) {
+            this.Init(SceneUtil.GetParams(SceneUtil.LevelIndex).Name);
+        }
+    }
+
+    private void Init(string title) {
         text.text = title;
         StartCoroutine(FadeInOut());
     }
@@ -24,5 +30,6 @@ public class TitleDrop : MonoBehaviour {
             text.color = Color.Lerp(Color.white, Color.clear, t);
         });
         text.color = Color.clear;
+        Destroy(this.gameObject);
     }
 }

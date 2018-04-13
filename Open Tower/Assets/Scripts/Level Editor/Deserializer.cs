@@ -85,7 +85,7 @@ public class Deserializer : MonoBehaviour {
             upload,
             stage,
             SceneUtil.GetNextSceneIndex(),
-            SceneUtil.GetNextSceneIndex(),
+            SceneUtil.GetExitSceneIndex(),
             info,
             dungeon.gameObject,
             floorPrefab,
