@@ -95,7 +95,7 @@ public class ResultsManager : MonoBehaviour {
         }
         DungeonInfo info = DungeonInfo.Instance;
 
-        success.text = string.Format("<color=yellow>{0}</color>\nwas cleared!", info.LevelName);
+        success.text = string.Format("<color=yellow>{0}</color>\ncleared", info.LevelName);
         success.gameObject.SetActive(true);
         yield return Util.Lerp(successFadeInDuration, t => success.color = Color.Lerp(Color.clear, Color.white, t));
         window.gameObject.SetActive(true);
@@ -139,10 +139,10 @@ public class ResultsManager : MonoBehaviour {
                     Debug.Log("Rank load successful: " + rank);
                     calculatedRank = rank - 1;
 
-                    // passing in null means there's a user
+                    // passing in null means there's a user TODO change back when not demo
                     string guestName = "Guest"; //(GameJolt.API.Manager.Instance.CurrentUser == null) ? "Guest" : string.Empty;
 
-                    GameJolt.API.Scores.Add(stepCount, stepCount.ToString(), guestName, scoreIDOverride);
+                    GameJolt.API.Scores.Add(stepCount, stepCount.ToString(), guestName, scoreIDOverride, ((int)Time.timeSinceLevelLoad).ToString());
                     isRankLoaded = true;
                 });
             }
