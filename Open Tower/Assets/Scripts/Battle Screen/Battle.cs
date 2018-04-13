@@ -93,6 +93,7 @@ public class Battle : MonoBehaviour {
         yield return Util.Lerp(transitionDuration, t => {
             window.localScale = Vector3.Lerp(new Vector3(0, 1, 1), new Vector3(1, 1, 1), t);
         });
+        window.localScale = Vector3.one;
         isSkipped = false;
         timeOpen = 0;
         int playerNetDamage = 0;
