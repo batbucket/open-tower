@@ -83,6 +83,7 @@ public class Enemy : Entity {
 
     protected override void DoAction(Player player) {
         isDefeated = true;
+        transform.SetParent(null);
 
         GetComponentInChildren<EnemyResultDisplay>(true).gameObject.SetActive(false);
         GetComponentInChildren<EnemyStatsDisplay>(true).gameObject.SetActive(false);

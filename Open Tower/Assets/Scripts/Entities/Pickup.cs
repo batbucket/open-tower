@@ -57,6 +57,7 @@ public class Pickup : Entity {
 
     protected override void DoAction(Player player) {
         isUsed = true;
+        transform.SetParent(null);
         PlayerStatsDisplay display = PlayerStatsDisplay.Instance;
         PlayerInventoryDisplay inv = PlayerInventoryDisplay.Instance;
         switch (pickup) {

@@ -16,6 +16,7 @@ public class Door : Entity {
     private AudioClip opening;
 
     protected override void DoAction(Player player) {
+        transform.SetParent(null);
         switch (key) {
             case KeyType.YELLOW:
                 player.Keys.Yellow--;
