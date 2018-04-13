@@ -115,7 +115,7 @@ public class Battle : MonoBehaviour {
 
     private void Update() {
         timeOpen += Time.deltaTime;
-        if (Input.anyKey && timeOpen > transitionDuration) {
+        if (Input.anyKey && timeOpen > transitionDuration * 2) {
             isSkipped = true;
         }
     }

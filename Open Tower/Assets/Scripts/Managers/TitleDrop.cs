@@ -12,6 +12,10 @@ public class TitleDrop : MonoBehaviour {
         if (SceneUtil.IsCurrentLevelIndex) {
             this.Init(SceneUtil.GetParams(SceneUtil.LevelIndex).Name);
         }
+        this.GetComponent<Canvas>().sortingOrder = 1;
+        Rect rect = this.GetComponent<RectTransform>().rect;
+        rect.width = 300;
+        rect.height = 300;
     }
 
     private void Init(string title) {
