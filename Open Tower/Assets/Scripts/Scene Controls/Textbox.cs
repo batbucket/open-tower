@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Textbox : MonoBehaviour {
-    private const float FAST_TEXT_MULTIPLIER = 0f;
+    private const float FAST_TEXT_MULTIPLIER = 0.05f;
     private static Textbox _instance;
 
     private string TAG_START;
@@ -20,9 +20,6 @@ public class Textbox : MonoBehaviour {
 
     [SerializeField]
     private Image icon;
-
-    [SerializeField]
-    private AudioClip sound;
 
     [SerializeField]
     private Image background;
@@ -96,9 +93,6 @@ public class Textbox : MonoBehaviour {
 
             for (int j = 0; j < message.Length + 1; j++) {
                 text.text = string.Format("{0}{1}", message.Insert(j, TAG_START), TAG_CLOSE);
-                if (j < message.Length && char.IsLetterOrDigit(message[j])) {
-                    SoundManager.Instance.Play(sound);
-                }
                 yield return new WaitForSeconds(secondsPerCharacter * (Input.anyKey ? FAST_TEXT_MULTIPLIER : 1));
             }
             shadow.text = message;

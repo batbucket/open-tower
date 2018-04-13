@@ -12,6 +12,7 @@ public class SceneController : MonoBehaviour {
     private void Start() {
         this.processes = GetComponentsInChildren<Process>();
         StartCoroutine(DoProcesses());
+        SoundManager.Instance.Loop(SceneUtil.GetSet(SceneUtil.LevelIndex).Music);
     }
 
     private IEnumerator DoProcesses() {

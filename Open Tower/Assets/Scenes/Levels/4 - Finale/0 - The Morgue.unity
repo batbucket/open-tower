@@ -564,7 +564,7 @@ Prefab:
     - target: {fileID: 224784114937518312, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224554413558072860, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
@@ -584,7 +584,7 @@ Prefab:
     - target: {fileID: 224554413558072860, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -54.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224919211975450390, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
@@ -604,7 +604,7 @@ Prefab:
     - target: {fileID: 224919211975450390, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224919211975450390, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
@@ -614,7 +614,7 @@ Prefab:
     - target: {fileID: 224919211975450390, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224020808517596106, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
@@ -634,7 +634,7 @@ Prefab:
     - target: {fileID: 224020808517596106, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224020808517596106, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
@@ -644,12 +644,12 @@ Prefab:
     - target: {fileID: 224020808517596106, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224606765667874644, guid: f970c731babf3ac489a4e41a84733a5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 44
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f970c731babf3ac489a4e41a84733a5e, type: 2}

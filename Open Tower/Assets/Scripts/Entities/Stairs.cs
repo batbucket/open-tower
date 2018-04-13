@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Prime31.TransitionKit;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Stairs : Entity {
     private static DungeonManager dungeon;
+    private const float CLIMB_DURATION = 0.10f;
+
+    [SerializeField]
+    private AudioClip transitionSound;
 
     [SerializeField]
     private StairType direction;
@@ -48,14 +53,33 @@ public class Stairs : Entity {
     }
 
     protected override void DoAction(Player player) {
+        StartCoroutine(ClimbStairs(player));
+    }
+
+    protected override bool IsActionPossible(Player player) {
+        return true;
+    }
+
+    private IEnumerator ClimbStairs(Player player) {
+        player.IsMovementEnabled = false;
+        TransitionKitDelegate transition = new FadeTransition() {
+            duration = CLIMB_DURATION,
+            fadeToColor = Color.black
+        };
+        TransitionKit.instance.isSceneTransition = false;
+        TransitionKit.instance.transitionWithDelegate(transition);
+        SoundManager.Instance.Play(transitionSound, true);
+        yield return new WaitForSeconds(CLIMB_DURATION / 2);
+        MovePlayer(player);
+        player.IsMovementEnabled = true;
+        yield return new WaitForSeconds(CLIMB_DURATION / 2);
+    }
+
+    private void MovePlayer(Player player) {
         player.gameObject.transform.SetParent(destination.transform.parent, false);
         player.transform.localPosition = Vector3.zero;
         GetComponentInParent<FloorManager>().gameObject.SetActive(false);
         destination.transform.parent.parent.GetComponent<FloorManager>().gameObject.SetActive(true);
         player.transform.localPosition = destination.transform.localPosition;
-    }
-
-    protected override bool IsActionPossible(Player player) {
-        return true;
     }
 }

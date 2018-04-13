@@ -13,7 +13,8 @@ public static class SceneUtil {
     public const int LEVEL_BROWSER_INDEX = 5;
     public static readonly int LEVEL_END_INDEX = 34;
     public static readonly int NUMBER_OF_LEVELS = LEVEL_END_INDEX - LEVEL_START_INDEX + 1;
-    private static AudioClip transitionSound = Resources.Load<AudioClip>("Sounds/Plop");
+    private static AudioClip transitionSound = Resources.Load<AudioClip>("Sounds/steam hiss");
+    private static bool isSetup;
 
     public static PlayType Play;
 
@@ -80,17 +81,22 @@ public static class SceneUtil {
     };
 
     public static void LoadScene(int sceneIndex) {
-        SoundManager.Instance.Play(transitionSound);
-        if (Application.platform != RuntimePlatform.WebGLPlayer) {
-            TransitionKitDelegate transition = new VerticalSlicesTransition() {
-                nextScene = sceneIndex,
-                duration = 0.25f,
-                divisions = 800
+        TransitionKit.instance.isSceneTransition = true;
+        if (!isSetup) {
+            isSetup = true;
+            TransitionKit.onTransitionComplete += () => {
+                if (TransitionKit.instance.isSceneTransition) {
+                    SoundManager.Instance.Play(transitionSound);
+                }
             };
-            TransitionKit.instance.transitionWithDelegate(transition);
-        } else {
-            SceneManager.LoadScene(sceneIndex);
         }
+        SoundManager.Instance.Play(transitionSound);
+        TransitionKitDelegate transition = new VerticalSlicesTransition() {
+            nextScene = sceneIndex,
+            duration = 0.25f,
+            divisions = 800
+        };
+        TransitionKit.instance.transitionWithDelegate(transition);
     }
 
     public static DungeonSet GetSet(int levelIndex) {

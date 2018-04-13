@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  transitionSound: {fileID: 8300000, guid: eca063ef7799a4a4ebbf4842a2c944db, type: 3}
   direction: 1
 --- !u!212 &212512975729498696
 SpriteRenderer:

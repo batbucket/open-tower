@@ -437,6 +437,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114824966108333816, guid: c722a8de011fdde4483a0ac941d6b35e,
+        type: 2}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901690938497454, guid: c722a8de011fdde4483a0ac941d6b35e,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 440
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901690938497454, guid: c722a8de011fdde4483a0ac941d6b35e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114824966108333816, guid: c722a8de011fdde4483a0ac941d6b35e,
+        type: 2}
+      propertyPath: secondsPerCharacter
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c722a8de011fdde4483a0ac941d6b35e, type: 2}
   m_IsPrefabParent: 0

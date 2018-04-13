@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour {
     public const string SFX_KEY = "sfx";
 
     private const float MIN_PITCH = 0.5f;
-    private const float MAX_PITCH = 1.20f;
+    private const float MAX_PITCH = 1.5f;
     private static SoundManager _instance;
 
     [SerializeField]
@@ -34,8 +34,8 @@ public class SoundManager : MonoBehaviour {
         loop.Play();
     }
 
-    public void Play(AudioClip clip) {
-        StartCoroutine(PlayThenDestroy(clip));
+    public void Play(AudioClip clip, bool isNormal = false) {
+        StartCoroutine(PlayThenDestroy(clip, isNormal));
     }
 
     private void Start() {
@@ -56,11 +56,12 @@ public class SoundManager : MonoBehaviour {
         persistence.time = this.loop.time;
     }
 
-    private IEnumerator PlayThenDestroy(AudioClip clip) {
+    private IEnumerator PlayThenDestroy(AudioClip clip, bool isNormal) {
         GameObject go = new GameObject();
         AudioSource source = go.AddComponent<AudioSource>();
         source.volume = Setting.GetSFX();
-        source.pitch = Util.Random(MIN_PITCH, MAX_PITCH);
+
+        source.pitch = isNormal ? 1 : Util.Random(MIN_PITCH, MAX_PITCH);
         source.PlayOneShot(clip);
         source.transform.SetParent(oneshots.transform);
         yield return new WaitWhile(() => source.isPlaying);
