@@ -108,6 +108,7 @@ public static class SceneUtil {
     }
 
     public static int GetExitSceneIndex() {
+        Debug.Log(Play.ToString());
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = -1;
         switch (Play) {

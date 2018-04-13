@@ -29,8 +29,8 @@ public class Door : Entity {
                 player.Keys.Red--;
                 break;
         }
-        Player.Instance.IsMovementEnabled = false;
         SoundManager.Instance.Play(opening);
+        enabled = false;
         anim.SetTrigger(ANIM_START_TRIGGER);
     }
 

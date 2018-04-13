@@ -14,6 +14,7 @@ public class Tile : MonoBehaviour {
         for (int i = 0; i < children.Length && !isInteractedWith; i++) {
             Entity entity = children[i];
             if (entity.gameObject.activeInHierarchy && entity.enabled) {
+                Debug.Log(entity.gameObject.name);
                 children[i].TryDoAction(player);
                 isInteractedWith = true;
             }

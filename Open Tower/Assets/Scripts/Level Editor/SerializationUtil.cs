@@ -215,8 +215,6 @@ namespace Scripts.LevelEditor.Serialization {
         public static void DeserializeDungeonToPlayable(
             Upload upload,
             string stage,
-            int sceneOnVictory,
-            int sceneOnExit,
             DungeonInfo infoTarget,
             GameObject floorsParent,
             GameObject floorPrefab,
@@ -241,7 +239,7 @@ namespace Scripts.LevelEditor.Serialization {
             Floor[] floors = dungeon.Floors;
             StartingValues startingValues = dungeon.StartingValues;
 
-            infoTarget.Init(stage, upload.LevelName, sceneOnExit);
+            infoTarget.Init(stage, upload.LevelName);
 
             for (int i = 0; i < floors.Length; i++) {
                 GameObject floor = GameObject.Instantiate(floorPrefab, floorsParent.transform);

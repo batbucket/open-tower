@@ -95,6 +95,7 @@ public class Pickup : Entity {
                 StartCoroutine(Util.FlyTo(renderer, this.gameObject, inv.RedIcon));
                 break;
         }
+        enabled = false;
     }
 
     private void Start() {
