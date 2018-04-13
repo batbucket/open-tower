@@ -26,6 +26,12 @@ public class EnemyStatsDisplay : MonoBehaviour {
     [SerializeField]
     private GameObject wrapper;
 
+    public static bool IsActive {
+        get {
+            return Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0);
+        }
+    }
+
     private void Start() {
         Util.Assert(font != null, "Font is null.");
         life.font = font;
@@ -43,6 +49,6 @@ public class EnemyStatsDisplay : MonoBehaviour {
     }
 
     private void Update() {
-        wrapper.SetActive(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0));
+        wrapper.SetActive(!EnemyResultDisplay.IsActive && IsActive);
     }
 }

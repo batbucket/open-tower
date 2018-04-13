@@ -17,6 +17,12 @@ public class EnemyResultDisplay : MonoBehaviour {
     private Stats enemy;
     private Stats player;
 
+    public static bool IsActive {
+        get {
+            return Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Mouse1);
+        }
+    }
+
     public void Init(Stats enemy) {
         this.enemy = enemy;
     }
@@ -28,7 +34,7 @@ public class EnemyResultDisplay : MonoBehaviour {
     }
 
     private void Update() {
-        wrapper.SetActive(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Mouse1));
+        wrapper.SetActive(!EnemyStatsDisplay.IsActive && IsActive);
         int damage = Enemy.GetDamageToPlayer(this.enemy, this.player);
         if (damage == Enemy.ENEMY_CANNOT_BE_DEFEATED) {
             damageTaken.text = "-???";
