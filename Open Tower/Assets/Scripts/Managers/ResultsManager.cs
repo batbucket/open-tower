@@ -63,8 +63,11 @@ public class ResultsManager : MonoBehaviour {
 
     private int scoreIDOverride;
 
+    private bool isShowingResults;
+
     public void ShowResults() {
         StartCoroutine(ResultsAnim());
+        isShowingResults = true;
     }
 
     public void ChangeScene() {
@@ -141,8 +144,7 @@ public class ResultsManager : MonoBehaviour {
                     Debug.Log("Rank load successful: " + rank);
                     calculatedRank = rank - 1;
 
-                    // passing in null means there's a user TODO change back when not demo
-                    string guestName = "Guest"; //(GameJolt.API.Manager.Instance.CurrentUser == null) ? "Guest" : string.Empty;
+                    string guestName = (GameJolt.API.Manager.Instance.CurrentUser == null) ? "Guest" : string.Empty;
 
                     GameJolt.API.Scores.Add(stepCount, stepCount.ToString(), guestName, scoreIDOverride, ((int)Time.timeSinceLevelLoad).ToString());
                     isRankLoaded = true;
@@ -159,6 +161,12 @@ public class ResultsManager : MonoBehaviour {
             pastRankingLabel.gameObject.SetActive(true);
             pastRankingLabel.color = Color.yellow;
             pastRankingLabel.text = string.Format("Old rank: {0}", previousBestRank);
+        }
+    }
+
+    private void Update() {
+        if (isShowingResults && Input.GetKeyDown(KeyCode.Space)) {
+            ChangeScene();
         }
     }
 }
