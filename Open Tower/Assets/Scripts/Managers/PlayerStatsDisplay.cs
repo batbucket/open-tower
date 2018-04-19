@@ -148,6 +148,15 @@ public class PlayerStatsDisplay : MonoBehaviour {
             && player.Experience > 0) {
             buttonEnableRoutine = StartCoroutine(EnableButtonEffects());
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Z)) {
+            IncreasePower();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.X)) {
+            IncreaseDefense();
+        }
+
         if (buttonEnableRoutine != null && player.Experience <= 0) {
             StopCoroutine(buttonEnableRoutine);
             foreach (Button button in addButtons) {
