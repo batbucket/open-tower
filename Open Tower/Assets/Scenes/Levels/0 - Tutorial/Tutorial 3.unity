@@ -974,7 +974,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 416ea1b94ca64df468f0577ccc502ecd, type: 3}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -993,6 +993,8 @@ MonoBehaviour:
     <color=yellow>VIEW LIFE LOST IF AN ENEMY IS FOUGHT:</color>
 
     Left Shift or Right Mouse.
+
+    (<color=magenta>-???</color> indicates deadlock)
 
 
     <color=yellow>SKIP BATTLE SCREEN:</color>
