@@ -93,7 +93,7 @@ public class Enemy : Entity {
         main.simulationSpeed = DEATH_PLAYBACK_SPEED;
         float effectDuration = shakePs.main.startLifetime.constantMax / DEATH_PLAYBACK_SPEED;
 
-        if (!IsSkipKeyDown()) {
+        if (!Util.GetBool(Toggle.BATTLE_KEY) && !IsSkipKeyDown()) {
             StartCoroutine(Battle.Instance.Init(player, this.sprite, this.stats, () => {
                 OnBattleEnd(player, effectDuration);
             }));

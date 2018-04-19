@@ -34,7 +34,7 @@ public class EnemyResultDisplay : MonoBehaviour {
     }
 
     private void Update() {
-        wrapper.SetActive(!EnemyStatsDisplay.IsActive && IsActive);
+        wrapper.SetActive(IsActive);
         int damage = Enemy.GetDamageToPlayer(this.enemy, this.player);
         if (damage == Enemy.ENEMY_CANNOT_BE_DEFEATED) {
             damageTaken.text = "-???";

@@ -9,6 +9,14 @@ using UnityEngine.UI;
 public static class Util {
     private static readonly bool IS_DEBUG = true && Application.isEditor;
 
+    public static void SetBool(string key, bool value) {
+        PlayerPrefs.SetInt(key, value ? 1 : 0);
+    }
+
+    public static bool GetBool(string key) {
+        return PlayerPrefs.GetInt(key) == 1;
+    }
+
     public static void Assert(bool expression, string format = null, params object[] args) {
         if (IS_DEBUG && !expression && !string.IsNullOrEmpty(format)) {
             throw new UnityException(string.Format(format, args));

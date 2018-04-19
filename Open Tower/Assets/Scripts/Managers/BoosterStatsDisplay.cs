@@ -4,7 +4,6 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
 public class BoosterStatsDisplay : MonoBehaviour {
     private static readonly Color LIFE = Color.yellow;
     private static readonly Color POWER = Color.red;
@@ -74,6 +73,6 @@ public class BoosterStatsDisplay : MonoBehaviour {
     }
 
     private void Update() {
-        wrapper.SetActive(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0));
+        wrapper.SetActive(Util.GetBool(Toggle.STATS_KEY) != (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)));
     }
 }
