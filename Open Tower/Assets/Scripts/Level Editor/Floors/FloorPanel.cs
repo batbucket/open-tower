@@ -107,7 +107,7 @@ public class FloorPanel : Panel {
         foreach (FloorListing listing in Listings) {
             listing.Index = listing.transform.GetSiblingIndex();
         }
-        //StartCoroutine(UpdateFloorIndices());
+        StartCoroutine(UpdateFloorIndices());
     }
 
     public void Swap(int item1, int item2) {
