@@ -12,7 +12,7 @@ public class CreditsGenerator : MonoBehaviour {
     private Sprite[] possibleSprites;
 
     private void Start() {
-        AddCredit("Win Godwin", "Writing", "Art");
+        AddCredit("WinaGodwin Anyanwu", "Writing", "Art");
         AddCredit("Kory Hunter", "Level Design");
         AddCredit("Alex Kochengin", "Level Design");
         AddCredit("James Lee", "Art", "Quality Assurance");
