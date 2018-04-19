@@ -63,11 +63,10 @@ public class ResultsManager : MonoBehaviour {
 
     private int scoreIDOverride;
 
-    private bool isShowingResults;
+    private bool isDoneShowingResults;
 
     public void ShowResults() {
         StartCoroutine(ResultsAnim());
-        isShowingResults = true;
     }
 
     public void ChangeScene() {
@@ -113,7 +112,7 @@ public class ResultsManager : MonoBehaviour {
         yield return Util.AnimateScore(time, 0, (int)Time.timeSinceLevelLoad, 0.25f, scoreSound);
         int stepCount = Player.Instance.Stats.StepCount;
         yield return Util.AnimateScore(steps, 0, stepCount, 0.25f, scoreSound);
-
+        isDoneShowingResults = true;
         // Ranking and leaderboard
         yield return AnimateRank(stepCount);
     }
@@ -165,7 +164,7 @@ public class ResultsManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (isShowingResults && Input.GetKeyDown(KeyCode.Space)) {
+        if (isDoneShowingResults && Input.anyKeyDown) {
             ChangeScene();
         }
     }
