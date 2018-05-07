@@ -73,6 +73,6 @@ public class BoosterStatsDisplay : MonoBehaviour {
     }
 
     private void Update() {
-        wrapper.SetActive(Util.GetBool(Toggle.STATS_KEY) != (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)));
+        wrapper.SetActive(!Battle.Instance.IsWindowOpen && (Util.GetBool(Toggle.STATS_KEY) != (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))));
     }
 }

@@ -85,6 +85,12 @@ public class Battle : MonoBehaviour {
         }
     }
 
+    public bool IsWindowOpen {
+        get {
+            return window.gameObject.activeInHierarchy;
+        }
+    }
+
     public IEnumerator Init(Player player, SpriteRenderer enemyRenderer, Stats enemyStats, Action callback) {
         header.text = headers.PickRandom();
         this.hero.Init(player.Sprite, player.Stats.Life, player.Stats.Power, player.Stats.Defense);

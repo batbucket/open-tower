@@ -19,7 +19,8 @@ public class EnemyResultDisplay : MonoBehaviour {
 
     public static bool IsActive {
         get {
-            return Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Mouse1);
+            return !Battle.Instance.IsWindowOpen 
+                && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Mouse1));
         }
     }
 

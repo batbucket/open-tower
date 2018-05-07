@@ -28,7 +28,8 @@ public class EnemyStatsDisplay : MonoBehaviour {
 
     public static bool IsActive {
         get {
-            return Util.GetBool(Toggle.STATS_KEY) != (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0));
+            return !Battle.Instance.IsWindowOpen 
+                && (Util.GetBool(Toggle.STATS_KEY) != (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)));
         }
     }
 
